@@ -1,7 +1,8 @@
+import AboutPage from "./pages/AboutPage/AboutPage";
 function App() {
   return (
     <div className="app">
-      <p>Hej från Fredrick!</p>
+      <AboutPage />
     </div>
   );
 }
