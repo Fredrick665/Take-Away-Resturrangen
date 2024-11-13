@@ -1,8 +1,8 @@
-import AboutPage from "./pages/AboutPage/AboutPage";
+import Router from "./Router/router";
 function App() {
   return (
     <div className="app">
-      <AboutPage />
+      <Router />
     </div>
   );
 }
