@@ -8,7 +8,10 @@ import EditItemsPage from "../pages/EditItemsPage/EditItemsPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage/OrderHistoryPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import Adminpage from "../pages/AdminPage/Adminpage";
 import SingleOrderPage from "../pages/SingleOrderPage/SingleOrderPage";
+import UpdatePage from "../pages/UpdatePage/UpdatePage";
+import Startpage from "../pages/StartPage/Startpage";
 
 function Router() {
   return (
@@ -21,8 +24,11 @@ function Router() {
       <Link to="/order-history">Order History</Link>
       <Link to="/order">Order</Link>
       <Link to="/profile">Profile</Link>
+      <Link to="/Admin">Admin</Link>
       <Link to="/single-order">Single Order</Link>
       <Link to="/about">About</Link>
+      <Link to="/update">UpdatePage</Link>
+      <Link to="/start">StartPage</Link>
       <Routes>
         <Route path="/add-item" element={<AddItemPage />} />
         <Route path="/all-orders" element={<AllOrdersPage />} />
@@ -32,8 +38,11 @@ function Router() {
         <Route path="/order-history" element={<OrderHistoryPage />} />
         <Route path="/order" element={<OrderPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/Admin" element={<Adminpage />} />
         <Route path="/single-order" element={<SingleOrderPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/update" element={<UpdatePage />} />
+        <Route path="/start" element={<Startpage />} />
       </Routes>
     </BrowserRouter>
   );
