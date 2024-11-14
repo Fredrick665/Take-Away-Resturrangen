@@ -11,6 +11,7 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import Adminpage from "../pages/AdminPage/Adminpage";
 import SingleOrderPage from "../pages/SingleOrderPage/SingleOrderPage";
 import UpdatePage from "../pages/UpdatePage/UpdatePage";
+import Startpage from "../pages/StartPage/Startpage";
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
       <Link to="/single-order">Single Order</Link>
       <Link to="/about">About</Link>
       <Link to="/update">UpdatePage</Link>
+      <Link to="/start">StartPage</Link>
       <Routes>
         <Route path="/add-item" element={<AddItemPage />} />
         <Route path="/all-orders" element={<AllOrdersPage />} />
@@ -40,6 +42,7 @@ function Router() {
         <Route path="/single-order" element={<SingleOrderPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/update" element={<UpdatePage />} />
+        <Route path="/start" element={<Startpage />} />
       </Routes>
     </BrowserRouter>
   );
