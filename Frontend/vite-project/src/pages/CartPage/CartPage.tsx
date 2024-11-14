@@ -15,48 +15,81 @@ function CartPage() {
       </div>
 
       <div className="main-cart">
-        <h2>Cart</h2>
-        <button>Price</button>
-        <button>A-Z</button>
-        <p>Total: 2800 kr</p>
-        <div className='line'></div>
-
-        <section className='product'>
-          <img src="#" alt="bild" />
-          <h2>Shushi One</h2>
-          <p>1500 kr</p>
-          <article>
-            <p>Anteckningar:</p>
-          </article>
-          <div className="sum">1</div>
-          <button className='add'>+</button>
-          <button className='subtract'>-</button>
+        <p className='main-text'>Total: 2800 kr</p>
+        <section className="main-filter">
+          <h2 className='main-heading'>Cart</h2>
+          <button className='btn-pris'>Price</button>
+          <button className='btn-az'>A-Z</button>
+          <div className='main-line'></div>
         </section>
+        <section className="product-list">
+          <section className='product-item'>
+            <div className="info-product">
+              <img src="#" alt="bild" />
+              <div className="product-details">
+                <h2 className='text-product'>Shushi One</h2>
+                <p>1500 kr</p>
+              </div>
+            </div>
+            <article className='notes-container'>
 
-        <section className='product'>
-          <img src="#" alt="bild" />
-          <h2>Shushi Two</h2>
-          <p>1500 kr</p>
-          <article>
-            <p>Anteckningar:</p>
-          </article>
-          <div className="sum">3</div>
-          <button className='add'>+</button>
-          <button className='subtract'>-</button>
+              <textarea
+                id='notes'
+                name='notes'
+                placeholder='Anteckningar:'
+                className='notes-input'
+              ></textarea>
+            </article>
+            <div className="product-sum">1</div>
+            <div className="btn-quantity">
+              <button className='btn-subtract'>-</button> <button className='btn-add'>+</button>
+            </div>
+          </section>
+
+          <section className='product-item'>
+            <div className="info-product">
+              <img src="#" alt="bild" />
+              <div className="product-details">
+                <h2 className='text-product'>Shushi Two</h2>
+                <p>800 kr</p>
+              </div>
+            </div>
+            <article className='notes-container'>
+              <textarea
+                id='notes'
+                name='notes'
+                placeholder='Anteckningar:'
+                className='notes-input'
+              ></textarea>
+            </article>
+            <div className='product-sum'>3</div>
+            <div className="btn-quantity">
+              <button className='btn-subtract'>-</button>  <button className='btn-add'>+</button>
+            </div>
+          </section>
+
+          <section className='product-item'>
+            <div className="info-product">
+              <img src="#" alt="bild" />
+              <div className="product-details">
+                <h2 className='text-product'>Shushi Three</h2>
+                <p>500 kr</p>
+              </div>
+            </div>
+            <article className='notes-container'>
+
+              <textarea
+                id='notes'
+                name='notes'
+                placeholder='Antecningar:'
+                className='notes-input'
+              ></textarea>
+            </article>
+            <div className="product-sum">3</div>
+            <div className="btn-quantity">
+              <button className='btn-subtract'>-</button> <button className='btn-add'>+</button></div>
+          </section>
         </section>
-
-        <section className='product'>
-          <img src="#" alt="bild" />
-          <h2>Shushi Three</h2>
-          <p>1500 kr</p>
-          <article>
-            <p>Anteckningar:</p>
-          </article>
-          <div className="sum">3</div>
-          <button className='add'>+</button>
-          <button className='subtract'>-</button>
-        </section>
-
       </div>
 
       <div className="footer-cart">
