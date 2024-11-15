@@ -1,0 +1,112 @@
+.all-orders-page {
+  height: 100vh;
+  text-align: center;
+  background-color: var(--clr-background);
+}
+
+.all-orders-page__hbmenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  cursor: pointer;
+}
+
+.all-orders-page__hbmenu::before,
+.all-orders-page__hbmenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  position: absolute;
+  left: 0;
+}
+
+.all-orders-page__hbmenu::before {
+  top: -10px;
+}
+
+.all-orders-page__hbmenu::after {
+  top: 10px;
+}
+
+.all-orders-page__title {
+  color: var(--clr-primary-text);
+  font-family: var(--text-poly);
+}
+.all-orders-page_contentwrapper {
+}
+.all-orders-page__list {
+}
+
+.all-orders-page__list-item {
+}
+.all-orders-page__list-item-label {
+  color: var(--clr-secondery-text);
+  font-family: var(--text-revolution);
+}
+
+.all-orders-page__checkbox {
+}
+
+.all-orders-page__list-item::before {
+}
+
+.all-orders-page__list-item::after {
+}
+
+.all-orders-page__list-item:hover {
+}
+
+.all-orders-page__checkbox::before {
+}
+
+.all-orders-page__checkbox::after {
+}
+
+.all-orders-page__checkbox:hover {
+}
+.all-orders-page__button {
+}
+
+.all-orders-page__button--edit-order {
+}
+
+.all-orders-page__button--special-requests {
+}
+
+.all-orders-page__button--az {
+}
+
+.all-orders-page__button--price {
+}
+
+.all-orders-page__button--locked-orders {
+}
+
+.all-orders-page__button::before {
+}
+
+.all-orders-page__button::after {
+}
+
+.all-orders-page__button:hover {
+}
+
+.all-orders-page__button--edit-order:hover {
+}
+
+.all-orders-page__button--special-requests:hover {
+}
+
+.all-orders-page__button--az:hover {
+}
+
+.all-orders-page__button--price:hover {
+}
+
+.all-orders-page__button--locked-orders:hover {
+}
