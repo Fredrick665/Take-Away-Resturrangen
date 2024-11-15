@@ -9,6 +9,8 @@ import OrderHistoryPage from "../pages/OrderHistoryPage/OrderHistoryPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import SingleOrderPage from "../pages/SingleOrderPage/SingleOrderPage";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
 
 function Router() {
   return (
@@ -33,6 +35,9 @@ function Router() {
         <Route path="/order" element={<OrderPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/single-order" element={<SingleOrderPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/about" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
