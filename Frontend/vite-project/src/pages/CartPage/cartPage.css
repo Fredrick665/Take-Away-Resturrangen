@@ -54,6 +54,7 @@
 .main-cart {
     height: 100vh;
     margin-top: 5rem;
+    padding: 10px;
     position: relative;
     text-align: center;
     display: flex;
@@ -67,7 +68,7 @@
     font-family: var(--text-quintessential);
     position: absolute;
     left: 30rem;
-    top: -10px;
+    top: -3px;
 }
 
 .main-filter {
@@ -245,6 +246,22 @@ p {
 
 
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    .main-text {
+        width: 30%;
+        color: var(--clr-primary-text);
+        font-family: var(--text-quintessential);
+        position: absolute;
+        left: 18rem;
+    }
+}
 
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+    .main-text {
+        width: 30%;
+        color: var(--clr-primary-text);
+        font-family: var(--text-quintessential);
+        position: absolute;
+        left: 15rem;
+    }
+}
