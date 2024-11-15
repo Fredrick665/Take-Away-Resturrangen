@@ -1,0 +1,85 @@
+.edit-items-page {
+  height: 100vh;
+  text-align: center;
+  background-color: var(--clr-background);
+  font-family: var(--text-poly);
+}
+
+.edit-items-page__title {
+  color: var(--clr-primary-text);
+}
+
+.edit-items-page__title::before {
+}
+
+.edit-items-page__title::after {
+}
+
+.edit-items-page__details {
+  background-color: var(--clr-secondery-text);
+}
+
+.edit-items-page__order-list {
+}
+
+.edit-items-page__order-item {
+}
+
+.edit-items-page__order-item::before {
+}
+
+.edit-items-page__order-item::after {
+}
+
+.edit-items-page__order-item:hover {
+}
+
+.edit-items-page__order-item-label {
+}
+
+.edit-items-page__order-item-label::before {
+}
+
+.edit-items-page__order-item-label::after {
+}
+
+.edit-items-page__order-item-button {
+}
+
+.edit-items-page__order-item-button::before {
+}
+
+.edit-items-page__order-item-button::after {
+}
+
+.edit-items-page__order-item-button:hover {
+}
+
+.edit-items-page__hbmenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  cursor: pointer;
+}
+
+.edit-items-page__hbmenu::before,
+.edit-items-page__hbmenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  position: absolute;
+  left: 0;
+}
+
+.edit-items-page__hbmenu::before {
+  top: -10px;
+}
+
+.edit-items-page__hbmenu::after {
+  top: 10px;
+}

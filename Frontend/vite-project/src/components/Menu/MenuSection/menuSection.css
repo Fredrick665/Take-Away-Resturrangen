@@ -1,0 +1,126 @@
+.menu__section {
+    width: 100%;
+    margin-top: 4rem;
+    padding:  0 4rem;
+    position: relative;
+
+    .slide-btn {
+        background-color: #000000;
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0px 0px 4px 0px #75889425;
+        position: absolute;
+        top: 50%;
+        cursor: pointer;
+        transition: 0.2s;
+
+        img {
+            width: 3rem;
+        }
+    }
+    .left {
+        left: -1rem;
+        transform: rotate(-180deg);
+    }
+    .left:hover {
+        transform: scale(1.1) rotate(-180deg);
+    }
+    .left:active {
+        transform: scale(0.9) rotate(-180deg);
+    }
+
+    .right {
+        right: -1rem;
+    }
+    .right:hover {
+        transform: scale(1.1);
+    }
+    .right:active {
+        transform: scale(0.9);
+    }
+
+  .menu__filter-section::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--clr-secondery-text);
+        top: 23px;
+        left: 355px;
+    } 
+
+    .menu__filter-section {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        
+
+        h3 {
+            font-size: 40px;
+            font-family: var(--text-revolution);
+            font-weight: 300;
+            width: 200px;
+        }
+
+        button {
+            background-color: var(--clr-red-button);
+            color: var( --clr-primary-text);
+            border-radius: 5px;
+            width: 67px;
+            height: 24px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        button:active {
+            transform: scale(0.9);
+        }
+        button:nth-of-type(1) {
+            margin-right: 10px;
+        }
+       
+    }
+
+    .menu__food-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        padding-top: 4rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 1rem;
+        overflow: hidden;
+    }
+
+}
+
+@media screen and (max-width: 1350px) {
+
+    .menu__section {
+
+        .left {
+            left: 10px;
+        }
+        .right {
+            right: 10px;
+        }
+
+        .menu__filter-section::before {
+            top: 19px;
+        } 
+        .menu__filter-section {
+
+            h3 {
+                font-size: 32px;
+            }
+        }
+    }
+}
