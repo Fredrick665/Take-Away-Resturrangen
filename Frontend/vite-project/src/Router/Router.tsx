@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutPage from "../pages/AboutPage/AboutPage";
 import AddItemPage from "../pages/AddItemPage/AddItemPage";
 import AllOrdersPage from "../pages/AllOrdersPage/AllOrdersPage";
@@ -19,7 +19,7 @@ import HomePage from "../pages/HomePage/HomePage";
 function Router() {
   return (
     <BrowserRouter>
-      <Link to="/add-item">Add Item</Link>
+      {/* <Link to="/add-item">Add Item</Link>
       <Link to="/all-orders">All Orders</Link>
       <Link to="/cart">Cart</Link>
       <Link to="/confirmed-orders">Confirmed Orders</Link>
@@ -29,12 +29,16 @@ function Router() {
       <Link to="/profile">Profile</Link>
       <Link to="/Admin">Admin</Link>
       <Link to="/single-order">Single Order</Link>
+
+      <Link to="/about">About</Link> */}
+
       <Link to="/about">About</Link>
       <Link to="/update">UpdatePage</Link>
       <Link to="/start">StartPage</Link>
       <Link to="/register">RegisterPage</Link>
       <Link to="/login">LoginPage</Link>
       <Link to="/Homepage">HomePage</Link>
+
       <Routes>
         <Route path="/add-item" element={<AddItemPage />} />
         <Route path="/all-orders" element={<AllOrdersPage />} />
