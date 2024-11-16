@@ -1,0 +1,105 @@
+.add-item-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh;
+  background-color: var(--clr-background);
+  color: var(--clr-primary-text);
+  font-family: var(--text-poly);
+}
+
+.add-item-page__hbmenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  cursor: pointer;
+}
+
+.add-item-page__hbmenu::before,
+.add-item-page__hbmenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  position: absolute;
+  left: 0;
+}
+
+.add-item-page__hbmenu::before {
+  top: -10px;
+}
+
+.add-item-page__hbmenu::after {
+  top: 10px;
+}
+.add-item-page__title {
+  color: var(--clr-primary-text);
+}
+
+.add-item-page__subtitle {
+  color: var(--clr-secondery-text);
+}
+
+.add-item-page__drag-and-drop {
+  width: 768px;
+  height: 114px;
+  background-color: var(--clr-dark-gray);
+  border: 2px dashed var(--clir-light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-secondery-text);
+  font-family: var(--text-poly);
+}
+
+.add-item-page__file-info {
+  color: var(--clr-secondery-text);
+}
+
+.add-item-page__input_name {
+  width: 768px;
+  height: 28px;
+  padding: 10px;
+  background-color: var(--clir-light-gray);
+  border: none;
+  border-radius: 5px;
+  color: var(--clr-primary-text);
+}
+
+.add-item-page__input_price {
+  width: 260px;
+  height: 28px;
+  padding: 10px;
+  background-color: var(--clir-light-gray);
+  border: none;
+  border-radius: 5px;
+  color: var(--clr-primary-text);
+}
+
+.add-item-page__input::before,
+.add-item-page__input::after {
+}
+
+.add-item-page__button {
+  width: 150px;
+  padding: 10px;
+  background-color: var(--clr-green);
+  color: var(--clr-primary-text);
+  border: none;
+  border-radius: 5px;
+  font-family: var(--text-poly);
+  cursor: pointer;
+}
+
+.add-item-page__button::before,
+.add-item-page__button::after {
+}
+
+.add-item-page__section {
+}

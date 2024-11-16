@@ -1,11 +1,11 @@
-.profile-page {
+.admin-page {
   height: 100vh;
   text-align: center;
   background-color: var(--clr-background);
   font-family: var(--text-poly);
 }
 
-.profile-page__hbmenu {
+.admin-page__hbmenu {
   position: fixed;
   top: 20px;
   left: 20px;
@@ -14,9 +14,8 @@
   background-color: var(--clr-secondery-text);
   cursor: pointer;
 }
-
-.profile-page__hbmenu::before,
-.profile-page__hbmenu::after {
+.admin-page__hbmenu::before,
+.admin-page__hbmenu::after {
   content: "";
   display: block;
   width: 100%;
@@ -25,22 +24,22 @@
   position: absolute;
   left: 0;
 }
-.profile-page__hbmenu::before {
+.admin-page__hbmenu::before {
   top: -10px;
 }
 
-.profile-page__hbmenu::after {
+.admin-page__hbmenu::after {
   top: 10px;
 }
 
-.profile-page__heading {
+.admin-page__heading {
   color: var(--clr-primary-text);
 }
-.profile-page__heading:hover {
+.admin-page__heading:hover {
 }
 
-.profile-page__heading::before {
+.admin-page__heading::before {
 }
 
-.profile-page__heading::after {
+.admin-page__heading::after {
 }

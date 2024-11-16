@@ -1,0 +1,48 @@
+.menu__food-card {
+
+    figure {
+        width: 175px;
+        height: 250px;
+        overflow: hidden;
+        border-radius: 20px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    h4 {
+        font-family: var(--text-quintessential);
+        font-size: 28px;
+        font-weight: 300;
+        margin-top: 10px;
+    }
+
+    p {
+        font-family: var(--text-poly);
+        font-size: 22px;
+        font-weight: 300;
+        margin-bottom: -10px;
+    }
+
+    button {
+        background-color: var(--clr-red-button);
+        color: var(--clr-primary-text);
+        border: none;
+        border-radius: 20px;
+        padding: 6px;
+        width: 120px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    button:hover {
+        transform: scale(1.1);
+    }
+    button:active {
+        transform: scale(0.9);
+    }
+}

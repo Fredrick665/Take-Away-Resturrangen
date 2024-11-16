@@ -1,0 +1,18 @@
+.start-page {
+  height: 100vh;
+  text-align: center;
+  background-color: var(--clr-background);
+  font-family: var(--text-revolution);
+}
+
+.start-page__heading {
+  color: var(--clr-primary-text);
+}
+.start-page__heading:hover {
+}
+
+.start-page__heading::before {
+}
+
+.start-page__heading::after {
+}

@@ -1,0 +1,79 @@
+.order-page {
+  height: 100vh;
+  text-align: center;
+  background-color: var(--clr-background);
+  font-family: var(--text-poly);
+}
+
+.order-page__hbmenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  cursor: pointer;
+}
+
+.order-page__hbmenu::before,
+.order-page__hbmenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  position: absolute;
+  left: 0;
+}
+.order-page__hbmenu::before {
+  top: -10px;
+}
+
+.order-page__hbmenu::after {
+  top: 10px;
+}
+.order-page__title {
+  color: var(--clr-primary-text);
+}
+
+.order-page__list {
+  color: var(--clr-primary-text);
+}
+
+.order-page__list-item {
+}
+.order-page__list-item:hover {
+}
+
+.order-page__list-item::before {
+}
+
+.order-page__list-item::after {
+}
+
+.order-page__list-item-label {
+}
+.order-page__list-item-label:hover {
+}
+
+.order-page__list-item-label::before {
+}
+
+.order-page__list-item-label::after {
+}
+
+.order-page__checkbox {
+}
+.order-page__checkbox:hover {
+}
+
+.order-page__checkbox::before {
+}
+
+.order-page__checkbox::after {
+}
+.order-page__number {
+  background-color: var(--clr-secondery-text);
+  width: 30px;
+  height: 30px;
+}

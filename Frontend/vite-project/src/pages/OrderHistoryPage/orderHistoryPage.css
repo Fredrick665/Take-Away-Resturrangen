@@ -1,0 +1,65 @@
+.order-history-page {
+  height: 100vh;
+  text-align: center;
+  background-color: var(--clr-background);
+  font-family: var(--text-poly);
+}
+
+.order-history-page__hbmenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  cursor: pointer;
+}
+
+.order-history-page__hbmenu::before,
+.order-history-page__hbmenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  position: absolute;
+  left: 0;
+}
+
+.order-history-page__hbmenu::before {
+  top: -10px;
+}
+
+.order-history-page__hbmenu::after {
+  top: 10px;
+}
+
+.order-history-page__title {
+  color: var(--clr-primary-text);
+}
+
+.order-history-page__order-list {
+  color: var(--clr-primary-text);
+}
+
+.order-history-page__order-item {
+}
+.order-history-page__order-item:hover {
+}
+
+.order-history-page__order-item::before {
+}
+
+.order-history-page__order-item::after {
+}
+
+.order-history-page__order-item-label {
+}
+.order-history-page__order-item-label:hover {
+}
+
+.order-history-page__order-item-label::before {
+}
+
+.order-history-page__order-item-label::after {
+}
