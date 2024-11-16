@@ -3,12 +3,12 @@
   text-align: center;
   background-color: var(--clr-background);
   font-family: var(--text-poly);
+  padding: 25px;
 }
 
 .confirmed-orders-page__logo {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  inset: 0;
 }
 
 .confirmed-orders-page__title {
@@ -17,10 +17,7 @@
 
 .confirmed-orders-page__description {
   color: var(--clr-primary-text);
-}
-
-.confirmed-orders-page__details {
-  background-color: var(--clr-secondery-text);
+  padding: 35px;
 }
 
 .confirmed-orders-page__order-title {
@@ -43,8 +40,14 @@
 
 .confirmed-orders-page__total {
 }
-
+.confirmed-orders-content_wrapper {
+}
 .confirmed-orders-page__back-button {
+  background-color: var(--clr-green);
+  font-family: var(--text-poly);
+  width: 165px;
+  height: 30px;
+  margin-top: 50px;
 }
 
 .confirmed-orders-page__logo::before {

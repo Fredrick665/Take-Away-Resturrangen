@@ -1,0 +1,29 @@
+.hbmenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.hbmenu::before,
+.hbmenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-secondery-text);
+  position: absolute;
+  left: 0;
+}
+
+.hbmenu::before {
+  top: -10px;
+}
+
+.hbmenu::after {
+  top: 10px;
+}

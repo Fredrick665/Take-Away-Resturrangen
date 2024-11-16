@@ -1,26 +1,22 @@
 import "./allOrdersPage.css";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 function AllOrdersPage() {
   return (
     <main className="all-orders-page">
-      <span className="all-orders-page__hbmenu"></span>
+      <Hamburgericon />
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
       <section className="all-orders-page_contentwrapper">
-        <button className="all-orders-page__button all-orders-page__button--edit-order">
+        <button className="all-orders-page__button--edit-order">
           Redigera Specifik beställning
         </button>
-        <button className="all-orders-page__button all-orders-page__button--special-requests">
+        <button className="all-orders-page__button--special-requests">
           Lägga till Speciella Önskemål
         </button>
       </section>
-      <h3>Sortertings Alternativ</h3>
-      <section className="all-orders-page_contentwrapper">
-        <button className="all-orders-page__button all-orders-page__button--az">
-          A-Z
-        </button>
-        <button className="all-orders-page__button all-orders-page__button--price">
-          Price
-        </button>
-        <button className="all-orders-page__button all-orders-page__button--locked-orders">
+      <section className="all-orders-page_contentwrapper_2">
+        <button className="all-orders-page__button--az">A-Z</button>
+        <button className="all-orders-page__button--price">Price</button>
+        <button className="all-orders-page__button--locked-orders">
           Låsta Beställningar
         </button>
       </section>
@@ -71,3 +67,4 @@ function AllOrdersPage() {
 }
 
 export default AllOrdersPage;
+// Författare Fredrick.

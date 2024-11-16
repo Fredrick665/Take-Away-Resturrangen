@@ -1,29 +1,31 @@
+import { Link } from "react-router-dom";
 import "./orderHistoryPage.css";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 
 function OrderHistoryPage() {
   return (
     <main className="order-history-page">
-      <span className="order-history-page__hbmenu"></span>
+      <Hamburgericon />
       <h1 className="order-history-page__title">Min orderhistorik</h1>
       <ul className="order-history-page__order-list">
         <li className="order-history-page__order-item">
           <label className="order-history-page__order-item-label">
-            Lorem ipsum dolor sit amet
+            <Link to="/singleorder">Beställning 1</Link>
           </label>
         </li>
         <li className="order-history-page__order-item">
           <label className="order-history-page__order-item-label">
-            Integer at ornare nibh
+            <Link to="/singleorder">Beställning 2</Link>
           </label>
         </li>
         <li className="order-history-page__order-item">
           <label className="order-history-page__order-item-label">
-            Suspendisse venenatis elit
+            <Link to="/singleorder">Beställning 3</Link>
           </label>
         </li>
         <li className="order-history-page__order-item">
           <label className="order-history-page__order-item-label">
-            Maecenas id dui egestas
+            <Link to="/singleorder">Beställning 4</Link>
           </label>
         </li>
       </ul>
@@ -32,3 +34,4 @@ function OrderHistoryPage() {
 }
 
 export default OrderHistoryPage;
+// Författare Fredrick.

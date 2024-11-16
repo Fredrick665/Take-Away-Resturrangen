@@ -1,17 +1,17 @@
 import "./adminpage.css";
-
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import Adminmenu from "../../components/AdminMenu/AdminMenu";
 function Adminpage() {
   return (
     <main className="admin-page">
-      <span className="admin-page__hbmenu"></span>
+      <Hamburgericon />
       <h1 className="admin-page__heading">
         Välkommen till din Adminsidan Username
       </h1>
-      <h2 className="admin-page__heading">Uppdatera menyn och priser</h2>
-      <h2 className="admin-page__heading">Alla beställningar</h2>
-      <h2 className="admin-page__heading">Lagerstatus</h2>
+      <Adminmenu />
     </main>
   );
 }
 
 export default Adminpage;
+// Författare Fredrick.

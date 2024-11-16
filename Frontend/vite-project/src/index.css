@@ -1,19 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Poly:ital@0;1&family=Protest+Revolution&family=Protest+Riot&family=Quintessential&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poly:ital@0;1&family=Protest+Revolution&family=Protest+Riot&family=Quintessential&display=swap");
 
 :root {
-  --clr-background: #0D0F13;
-  --clr-red-button: #C70039;
-  --clr-cream: #FFBD69;
-  --clr-green: #28A745;
-  --clr-primary-text: #FFFFFF;
-  --clr-secondery-text: #D1D1D1;
-  --clr-dark-gray: #68748F37;
-  --clir-light-gray: #68748F1A;
+  --clr-background: #0d0f13;
+  --clr-red-button: #c70039;
+  --clr-cream: #ffbd69;
+  --clr-green: #28a745;
+  --clr-primary-text: #ffffff;
+  --clr-secondery-text: #d1d1d1;
+  --clr-dark-gray: #68748f37;
+  --clir-light-gray: #68748f1a;
 
   --text-revolution: "Protest Revolution", sans-serif;
   --text-riot: "Protest Riot", sans-serif;
   --text-poly: "Poly", serif;
   --text-quintessential: "Quintessential", serif;
+}
+:root.theme-1 {
+  --clr-background: #ff5733;
+  --clr-red-button: #c70039;
+  --clr-cream: #fff8e7;
+  --clr-green: #28a745;
+  --clr-primary-text: #333333;
+  --clr-secondery-text: #dddddd;
+  --clr-dark-gray: #333333;
+  --clir-light-gray: #dddddd;
+}
+:root.theme-2 {
+  --clr-background: #746e5c;
+  --clr-red-button: #c70039;
+  --clr-cream: #dad9c8;
+  --clr-green: #f1b22b;
+  --clr-primary-text: #675335;
+  --clr-secondery-text: #1c170f;
+  --clr-dark-gray: #746e5c;
+  --clir-light-gray: #171474;
 }
 
 * {
@@ -21,3 +41,6 @@
   padding: 0;
   margin: 0;
 }
+/* Författare Miklos
+
+Ändrat av Fredrick. La till alla färgerna som alla hade lagt till i sin figma skiss för themeswithcern. */
