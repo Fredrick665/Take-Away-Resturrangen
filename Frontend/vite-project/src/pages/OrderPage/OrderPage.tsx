@@ -1,9 +1,10 @@
 import "./orderPage.css";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 
 function OrderPage() {
   return (
     <main className="order-page">
-      <span className="order-page__hbmenu"></span>
+      <Hamburgericon />
       <h1 className="order-page__title">Lagerstatus på ingredienser</h1>
       <ul className="order-page__list">
         <li className="order-page__list-item">
@@ -36,3 +37,4 @@ function OrderPage() {
 }
 
 export default OrderPage;
+// Författare Fredrick.

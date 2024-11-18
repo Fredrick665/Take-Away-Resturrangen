@@ -1,9 +1,10 @@
 import './cartPage.css';
-import hamburger from '../../assets/hamburger.svg';
+
 import logo from '../../assets/logo.svg';
 import CartList from '../../components/CartList/CartList';
 import { useCartStore } from '../../stores/cartStore';
 import CartCounter from '../../components/CartCounter/CartCounter';
+import Hamburgericon from '../../components/HamburgerIcon/HamburgerIcon';
 
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
@@ -13,7 +14,7 @@ function CartPage() {
   return (
     <div className="cart-page">
       <div className="header-cart">
-        <img src={hamburger} alt="hamburger" className="hamburger-icon" />
+        < Hamburgericon />
         <img src={logo} alt="logo" className="logo-icon" />
         < CartCounter /> {/* antal varor  */}
       </div>

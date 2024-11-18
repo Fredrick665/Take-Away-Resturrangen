@@ -1,17 +1,20 @@
 import "./profilePage.css";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
+import Themeswitcher from "../../components/ThemeSwitcher/ThemeSwitcher";
 
 function ProfilePage() {
   return (
     <main className="profile-page">
-      <span className="profile-page__hbmenu"></span>
+      <Hamburgericon />
       <h1 className="profile-page__heading">
         Välkommen till din profilsida Username
       </h1>
-      <h2 className="profile-page__heading">Orderhistorik</h2>
-      <h2 className="profile-page__heading">Orderstatus</h2>
-      <h2 className="profile-page__heading">Huvudsidan</h2>
+      <ProfileMenu />
+      <Themeswitcher />
     </main>
   );
 }
 
 export default ProfilePage;
+// Författare Fredrick.

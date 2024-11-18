@@ -1,10 +1,11 @@
 import "./aboutPage.css";
 import Logo from "../../assets/logo.png";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 function AboutPage() {
   return (
     <>
       <main className="about-page">
-        <span className="about-page__hbmenu"></span>
+        <Hamburgericon />
         <img src={Logo} alt="Logga" />
         <h1 className="about-page__title">Om SwiftDeluxe Restaurant</h1>
         <p className="about-page__text">
@@ -33,3 +34,4 @@ function AboutPage() {
 }
 
 export default AboutPage;
+// Författare Fredrick.
