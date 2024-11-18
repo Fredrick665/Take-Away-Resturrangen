@@ -30,11 +30,5 @@ function Router() {
       <Link to="/profile">Profile</Link>
       <Link to="/Admin">Admin</Link>
       <Link to="/single-order">Single Order</Link>
-      <Link to="/about">About</Link>
-      <Link to="/update">UpdatePage</Link>
-      <Link to="/start">StartPage</Link>
-      <Link to="/login">LoginPage</Link>
-      <Link to="/Homepage">HomePage</Link>
 
-export default Router; */
-// Författare Fredrick.
+      <Link to="/about">About</Link> */
