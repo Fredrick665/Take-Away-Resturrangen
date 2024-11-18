@@ -1,0 +1,11 @@
+.admin-menu__heading {
+  font-weight: 40px;
+  font-family: var(--text-poly);
+  padding: 50px;
+}
+.admin-menu__heading:hover {
+}
+.admin-menu__heading::after {
+}
+.admin-menu__heading::before {
+}

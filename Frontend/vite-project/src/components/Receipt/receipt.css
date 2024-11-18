@@ -1,0 +1,98 @@
+.receipt-page__details {
+  width: 180px;
+  height: 360px;
+  background-color: var(--clr-secondery-text);
+  overflow: auto;
+  font-weight: 10px;
+  text-align: center;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  list-style-type: none;
+}
+
+.receipt-page__details:hover {
+}
+
+.receipt-page__details::before {
+}
+
+.receipt-page__details::after {
+}
+
+.receipt-page__order-title {
+}
+
+.receipt-page__order-title:hover {
+}
+
+.receipt-page__order-title::before {
+}
+
+.receipt-page__order-title::after {
+}
+
+.receipt-page__order-list {
+}
+
+.receipt-page__order-item {
+}
+
+.receipt-page__order-item:hover {
+}
+
+.receipt-page__order-item::before {
+}
+
+.receipt-page__order-item::after {
+}
+
+.receipt-page__order-item-label {
+}
+
+.receipt-page__order-item-label:hover {
+}
+
+.receipt-page__order-item-label::before {
+}
+
+.receipt-page__order-item-label::after {
+}
+
+.receipt-page__wishlist-title {
+  color: var(--clr-red-button);
+  padding: 20px;
+}
+
+.receipt-page__wishlist-title:hover {
+}
+
+.receipt-page__wishlist-title::before {
+}
+
+.receipt-page__wishlist-title::after {
+}
+
+.receipt-page__wishlist-text {
+}
+
+.receipt-page__wishlist-text:hover {
+}
+
+.receipt-page__wishlist-text::before {
+}
+
+.receipt-page__wishlist-text::after {
+}
+
+.receipt-page__total {
+}
+
+.receipt-page__total:hover {
+}
+
+.receipt-page__total::before {
+}
+
+.receipt-page__total::after {
+}
