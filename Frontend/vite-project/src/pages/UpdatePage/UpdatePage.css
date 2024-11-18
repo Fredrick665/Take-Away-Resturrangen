@@ -3,34 +3,7 @@
   text-align: center;
   background-color: var(--clr-background);
   font-family: var(--text-poly);
-}
-
-.update-page__hbmenu {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 4px;
-  background-color: var(--clr-secondery-text);
-  cursor: pointer;
-}
-
-.update-page__hbmenu::before,
-.update-page__hbmenu::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: var(--clr-secondery-text);
-  position: absolute;
-  left: 0;
-}
-.update-page__hbmenu::before {
-  top: -10px;
-}
-
-.update-page__hbmenu::after {
-  top: 10px;
+  display: grid;
 }
 
 .update-page__heading {
@@ -41,6 +14,8 @@
   width: 210px;
   height: 40px;
   font-family: var(--text-poly);
+  background-color: var(--clr-red-button);
+  color: var(--clr-primary-text);
 }
 .update-page__button:hover {
 }
