@@ -30,14 +30,14 @@ function Router() {
       <Link to="/Admin">Admin</Link>
       <Link to="/single-order">Single Order</Link>
 
-      <Link to="/about">About</Link> */}
+      <Link to="/about">About</Link> 
 
       <Link to="/about">About</Link>
       <Link to="/update">UpdatePage</Link>
       <Link to="/start">StartPage</Link>
       <Link to="/register">RegisterPage</Link>
       <Link to="/login">LoginPage</Link>
-      <Link to="/Homepage">HomePage</Link>
+      <Link to="/Homepage">HomePage</Link>*/}
 
       <Routes>
         <Route path="/add-item" element={<AddItemPage />} />
@@ -55,7 +55,7 @@ function Router() {
         <Route path="/start" element={<Startpage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/Homepage" element={<HomePage />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
