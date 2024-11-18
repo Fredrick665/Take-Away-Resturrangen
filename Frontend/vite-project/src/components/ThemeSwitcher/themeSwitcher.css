@@ -1,0 +1,20 @@
+.theme-switcher {
+  width: 80%;
+  margin: auto;
+}
+
+.theme-switcher__label {
+  display: block;
+  text-align: center;
+}
+
+.theme-switcher__select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.theme-switcher__optgroup {
+  font-weight: bold;
+}
