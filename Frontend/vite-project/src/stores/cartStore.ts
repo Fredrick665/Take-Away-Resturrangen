@@ -1,23 +1,6 @@
 import { create } from 'zustand';
+import { CartState } from '../types/interface';
 
-// Typ för en enskild artikel i kundvagnen
-interface CartItem {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    notes: string;
-}
-
-// Typ för kundvagnens tillstån
-// Typ för kundvagnens tillstån
-interface CartState {
-    items: CartItem[]; // Lista över artiklar i kundvagnen
-    totalQuantity: number; // Det totala antalet artiklar i kundvagnen
-    addItem: (id: number) => void; // Funktion för att lägga till en artikel i kundvagnen
-    subtractItem: (id: number) => void; // Funktion för att ta bort en artikel från kundvagnen
-    updateNotes: (id: number, notes: string) => void; // Funktion för att uppdatera anteckningar för en artikel
-}
 
 // Funktion som laddar tillståndet från localStorage
 const loadCartState = () => {
@@ -64,26 +47,35 @@ export const useCartStore = create<CartState>((set) => {
                 };
             }),
 
-        subtractItem: (id) =>
+        subtractItem: (id: number) =>
             set((state) => {
-                const updatedItems = state.items.map((item) =>
-                    item.id === id && item.quantity > 1
-                        ? { ...item, quantity: item.quantity - 1 }   // Minska antal om det är större än 1
-                        : item   // returnera oförändrad artikel
-                );
+                // mappar produkterna och minskar mängden för det matchande ID
+                const updatedItems = state.items
+                    .map((item) =>
+                        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+                    )
+                    .filter((item) => item.quantity > 0); // Tar bort produkter med mängd <= 0
+
+                // Beräknar den totala mängden produkter i kundvagnen
                 const totalQuantity = updatedItems.reduce(
                     (sum, item) => sum + item.quantity,
-                    0           // Beräkna totalantalet artiklar
+                    0
                 );
+
+                // Uppdatera localStorage
                 localStorage.setItem(
                     'cart',
                     JSON.stringify({ items: updatedItems, totalQuantity })
-                ); // Spara tillstånd till localStorage
+                );
+
+                //  Returnerar de nya uppgifterna till tillståndet
                 return {
                     items: updatedItems,
-                    totalQuantity,    // Uppdatera totalantalet
+                    totalQuantity,
                 };
             }),
+
+
 
         updateNotes: (id, notes) =>
             set((state) => {
