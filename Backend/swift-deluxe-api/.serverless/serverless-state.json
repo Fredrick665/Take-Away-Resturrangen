@@ -1,0 +1,249 @@
+{
+  "service": {
+    "service": "swift-deluxe-api",
+    "serviceObject": {
+      "name": "swift-deluxe-api"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "region": "eu-north-1",
+      "deploymentMethod": "direct",
+      "iam": {
+        "role": "arn:aws:iam::970547369872:role/lambdaDynamoDbRole"
+      },
+      "stage": "dev",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "HelloLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-hello"
+            }
+          },
+          "HelloLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-eu-north-1-75f4c523-3d73",
+                "S3Key": "serverless/swift-deluxe-api/dev/1732028796144-2024-11-19T15:06:36.144Z/swift-deluxe-api.zip"
+              },
+              "Handler": "handler.hello",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "swift-deluxe-api-dev-hello",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": "arn:aws:iam::970547369872:role/lambdaDynamoDbRole"
+            },
+            "DependsOn": [
+              "HelloLogGroup"
+            ]
+          },
+          "HelloLambdaVersion0RDNXAnXKeisHfVenTDdfoSMJOdWFyPybOHjWtBAWI0": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "HelloLambdaFunction"
+              },
+              "CodeSha256": "O8LOmBV/3wLdZqT3My8SSCXzDIV+gmBfEwjjAK6mrY0="
+            }
+          },
+          "HttpApi": {
+            "Type": "AWS::ApiGatewayV2::Api",
+            "Properties": {
+              "Name": "dev-swift-deluxe-api",
+              "ProtocolType": "HTTP"
+            }
+          },
+          "HttpApiStage": {
+            "Type": "AWS::ApiGatewayV2::Stage",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "StageName": "$default",
+              "AutoDeploy": true,
+              "DefaultRouteSettings": {
+                "DetailedMetricsEnabled": false
+              }
+            }
+          },
+          "HelloLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "HelloLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationHello": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"HelloLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRouteGet": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "GET /",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationHello"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationHello"
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "serverless-framework-deployments-eu-north-1-75f4c523-3d73",
+            "Export": {
+              "Name": "sls-swift-deluxe-api-dev-ServerlessDeploymentBucketName"
+            }
+          },
+          "HelloLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "HelloLambdaVersion0RDNXAnXKeisHfVenTDdfoSMJOdWFyPybOHjWtBAWI0"
+            },
+            "Export": {
+              "Name": "sls-swift-deluxe-api-dev-HelloLambdaFunctionQualifiedArn"
+            }
+          },
+          "HttpApiId": {
+            "Description": "Id of the HTTP API",
+            "Value": {
+              "Ref": "HttpApi"
+            },
+            "Export": {
+              "Name": "sls-swift-deluxe-api-dev-HttpApiId"
+            }
+          },
+          "HttpApiUrl": {
+            "Description": "URL of the HTTP API",
+            "Value": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  ".execute-api.",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ".",
+                  {
+                    "Ref": "AWS::URLSuffix"
+                  }
+                ]
+              ]
+            },
+            "Export": {
+              "Name": "sls-swift-deluxe-api-dev-HttpApiUrl"
+            }
+          }
+        }
+      },
+      "vpc": {}
+    },
+    "pluginsData": {},
+    "functions": {
+      "hello": {
+        "handler": "handler.hello",
+        "events": [
+          {
+            "httpApi": {
+              "path": "/",
+              "method": "get"
+            },
+            "resolvedMethod": "GET",
+            "resolvedPath": "/"
+          }
+        ],
+        "name": "swift-deluxe-api-dev-hello",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs20.x",
+        "vpc": {},
+        "versionLogicalId": "HelloLambdaVersion0RDNXAnXKeisHfVenTDdfoSMJOdWFyPybOHjWtBAWI0"
+      }
+    },
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless.yml",
+    "initialServerlessConfig": {
+      "org": "mikkancs00",
+      "app": "swift-deluxe-api",
+      "service": "swift-deluxe-api",
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "functions": {
+        "$ref": "$[\"service\"][\"functions\"]"
+      }
+    },
+    "app": "swift-deluxe-api",
+    "appId": null,
+    "org": "mikkancs00",
+    "orgId": null,
+    "layers": {},
+    "artifact": "/Users/miki/Desktop/Folkuniversitet YH/Frontend-utveckling/Fullstack webbapplikation med TypeScript/Take-Away-Resturrangen/Backend/swift-deluxe-api/.serverless/swift-deluxe-api.zip"
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/swift-deluxe-api/dev/1732028796144-2024-11-19T15:06:36.144Z",
+    "artifact": "swift-deluxe-api.zip"
+  }
+}
