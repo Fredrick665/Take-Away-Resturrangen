@@ -1,34 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './registerForm.css';
-import { RegisterFormProps } from "../../types/interfaceReg";
+import { RegisterFormData, RegisterFormProps } from "../../types/interfaceReg";
 
-// RegisterForm-komponent som tar emot onSubmit-funktionen som prop
 const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<RegisterFormData>({
         fullName: '',
         password: '',
         repeatPassword: '',
         address: '',
-        email: ''
+        email: '',
     });
 
-    // Funktion som uppdaterar state för varje fält i formuläret
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;  // Extrahera name och value från input-fältet
+    const [errors, setErrors] = useState({
+        password: '',
+        repeatPassword: '',
+    });
+
+    // lösenordsvalidering
+    useEffect(() => {
+        const validatePasswords = () => {
+            let passwordError = '';
+            let repeatPasswordError = '';
+
+            if (formData.password && formData.password.length < 8) {
+                passwordError = 'Password must be at least 8 characters long.';
+            }
+
+            if (formData.password && formData.repeatPassword && formData.password !== formData.repeatPassword) {
+                repeatPasswordError = 'Passwords do not match!';
+            }
+
+            setErrors({
+                password: passwordError,
+                repeatPassword: repeatPasswordError,
+            });
+        };
+
+        validatePasswords();
+    }, [formData.password, formData.repeatPassword]);
+
+    // Stöd för ändringar i formulärfält
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
         setFormData((prevData) => ({
-            ...prevData,        // Bevara gamla värden
-            [name]: value     // Uppdatera det specifika fältet
+            ...prevData,
+            [name]: value,
         }));
     };
 
-    // Funktion som körs när formuläret skickas
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (formData.password !== formData.repeatPassword) {
-            alert('Passwords do not match!');
+    // Stöd för att skicka formulär
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+
+        // Om något fel stopar att skicka
+        if (errors.password || errors.repeatPassword) {
+            console.error('Form has errors:', errors);
             return;
         }
-        onSubmit(formData);   // Anropa onSubmit med formulärdata
+
+
+        onSubmit(formData);
     };
 
     return (
@@ -49,6 +80,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
                 placeholder="Password"
                 required
             />
+            {errors.password && <div className="error-message">{errors.password}</div>}
+
             <input
                 type="password"
                 name="repeatPassword"
@@ -57,6 +90,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
                 placeholder="Repeat Password"
                 required
             />
+            {errors.repeatPassword && <div className="error-message">{errors.repeatPassword}</div>}
+
             <input
                 type="text"
                 name="address"
