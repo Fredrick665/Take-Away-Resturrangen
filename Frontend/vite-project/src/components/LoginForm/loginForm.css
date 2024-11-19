@@ -22,6 +22,26 @@
     box-shadow: 4px 4px 10px rgb(116, 115, 115);
 }
 
+
+.error-message {
+    width: 100%;
+    min-height: 24px;
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1.6rem;
+    color: red;
+    text-align: center;
+    visibility: hidden;
+}
+
+.error-message:empty {
+    visibility: hidden;
+}
+
+.error-message:not(:empty) {
+    visibility: visible;
+}
+
 .login-form button[type="submit"] {
     margin-top: 1rem;
     width: 35%;
