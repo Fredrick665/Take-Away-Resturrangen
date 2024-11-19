@@ -48,5 +48,8 @@ function CartPage() {
 }
 
 export default CartPage;
+
+
+
 //Författare Katarina.
 // Ändring av Fredrick. La till en länk till confirmed orders.

@@ -1,0 +1,15 @@
+.error-message {
+    color: red;
+    font-size: 1.4rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.error-message:empty {
+    visibility: hidden;
+}
+
+.error-message:not(:empty) {
+    visibility: visible;
+}
