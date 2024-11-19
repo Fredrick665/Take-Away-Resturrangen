@@ -1,2 +1,2 @@
-organisation: mikkancs00
-iamRole: arn:aws:iam::970547369872:role/lambdaDynamoDbRole
+organisation: fredrick
+iamRole: arn:aws:iam::913524926429:role/lambdadynamodb
