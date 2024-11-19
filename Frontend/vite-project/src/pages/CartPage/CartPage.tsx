@@ -39,7 +39,7 @@ function CartPage() {
       </div>
 
       <div className="footer-cart">
-        <Link to="/cart">
+        <Link to="/confirmedorders">
           <button type="submit">Bekräfta beställning</button>
         </Link>
       </div>
