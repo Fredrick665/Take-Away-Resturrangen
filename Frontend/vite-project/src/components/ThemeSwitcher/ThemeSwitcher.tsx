@@ -1,3 +1,4 @@
+/*
 import React, { useState } from "react";
 import "./themeswitcher.css";
 
@@ -40,4 +41,5 @@ function Themeswitcher() {
 
 export default Themeswitcher;
 
-// Författare Fredrick
+// Författare Fredrick utkommenterade då den inte ska användas
+*/

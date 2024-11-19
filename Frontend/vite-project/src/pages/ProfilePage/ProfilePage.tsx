@@ -1,7 +1,6 @@
 import "./profilePage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
-import Themeswitcher from "../../components/ThemeSwitcher/ThemeSwitcher";
 
 function ProfilePage() {
   return (
@@ -11,7 +10,6 @@ function ProfilePage() {
         Välkommen till din profilsida Username
       </h1>
       <ProfileMenu />
-      <Themeswitcher />
     </main>
   );
 }
