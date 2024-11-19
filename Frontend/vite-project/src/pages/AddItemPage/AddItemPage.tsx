@@ -7,23 +7,36 @@ function AddItemPage() {
     <main className="add-item-page">
       <Hamburgericon />
       <h1 className="add-item-page__title">Lägg till ny maträtt</h1>
-      <h3 className="add-item-page__subtitle">Add Image</h3>
+      <article className="add-item-page__subtitle-container">
+        <h3 className="add-item-page__subtitle">Add Image</h3>
+      </article>
       <section className="add-item-page__drag-and-drop">
         <img src={DD} alt="Logga" />
         Drag and Drop
       </section>
       <article className="add-item-page__file-info">
-        Choose file. No file chosen.
+        <h3 className="add-item-page__subtitle">
+          Choose file. No file chosen.
+        </h3>
       </article>
-      <h3 className="add-item-page__subtitle">Add name</h3>
+      <article className="add-item-page__subtitle-container">
+        <h3 className="add-item-page__subtitle">Add food category</h3>
+      </article>
       <input className="add-item-page__input_name" type="text" placeholder="" />
-      <h3 className="add-item-page__subtitle">Add Price</h3>
-      <input
-        className="add-item-page__input_price"
-        type="number"
-        placeholder=""
-      />
-
+      <article className="add-item-page__subtitle-container">
+        <h3 className="add-item-page__subtitle">Add name</h3>
+      </article>
+      <input className="add-item-page__input_name" type="text" placeholder="" />
+      <article className="add-item-page__subtitle-container">
+        <h3 className="add-item-page__subtitle">Add Price</h3>
+      </article>
+      <section className="add-item-page__input-container">
+        <input
+          className="add-item-page__input_price"
+          type="number"
+          placeholder=""
+        />
+      </section>
       <button className="add-item-page__button">Create Dish!</button>
     </main>
   );

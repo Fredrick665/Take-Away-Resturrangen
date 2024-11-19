@@ -1,31 +1,34 @@
-import './cartPage.css';
-
-import logo from '../../assets/logo.svg';
-import CartList from '../../components/CartList/CartList';
-import { useCartStore } from '../../stores/cartStore';
-import CartCounter from '../../components/CartCounter/CartCounter';
-import Hamburgericon from '../../components/HamburgerIcon/HamburgerIcon';
+import "./cartPage.css";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.svg";
+import CartList from "../../components/CartList/CartList";
+import { useCartStore } from "../../stores/cartStore";
+import CartCounter from "../../components/CartCounter/CartCounter";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
 
   // beräknar den totala summan
-  const totalPrice = items.reduce((sum: number, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = items.reduce(
+    (sum: number, item) => sum + item.price * item.quantity,
+    0
+  );
   return (
     <div className="cart-page">
       <div className="header-cart">
-        < Hamburgericon />
+        <Hamburgericon />
         <img src={logo} alt="logo" className="logo-icon" />
-        < CartCounter /> {/* antal varor  */}
+        <CartCounter /> {/* antal varor  */}
       </div>
 
       <div className="main-cart">
-        <p className='main-text'>Total: {totalPrice} kr</p> {/* totalpris */}
+        <p className="main-text">Total: {totalPrice} kr</p> {/* totalpris */}
         <section className="main-filter">
-          <h2 className='main-heading'>Cart</h2>
-          <button className='btn-pris'>Price</button>
-          <button className='btn-az'>A-Z</button>
-          <div className='main-line'></div>
+          <h2 className="main-heading">Cart</h2>
+          <button className="btn-pris">Price</button>
+          <button className="btn-az">A-Z</button>
+          <div className="main-line"></div>
         </section>
         <CartList
           items={items}
@@ -36,10 +39,14 @@ function CartPage() {
       </div>
 
       <div className="footer-cart">
-        <button type="submit">Bekräfta beställning</button>
+        <Link to="/cart">
+          <button type="submit">Bekräfta beställning</button>
+        </Link>
       </div>
     </div>
   );
 }
 
 export default CartPage;
+//Författare Katarina.
+// Ändring av Fredrick. La till en länk till confirmed orders.
