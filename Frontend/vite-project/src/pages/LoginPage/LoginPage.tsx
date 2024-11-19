@@ -1,43 +1,33 @@
 import { Link } from "react-router-dom";
-import "./loginPage.css";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import logo from "../../assets/logo.svg";
 import closeIcon from "../../assets/closeIcon.svg";
-
-function Login(event: { preventDefault: () => void }) {
-  event.preventDefault();
-}
+import "./loginPage.css";
 
 function LoginPage() {
+  const handleLogin = (username: string, password: string) => {
+    console.log("Login data:", username, password);
+
+  };
+
   return (
     <div className="login-page">
       <div className="icons-container">
-        <img src={logo} alt="Logo" className="logo" />{" "}
+        <img src={logo} alt="Logo" className="logo" />
         <Link to="/start">
           <img src={closeIcon} alt="close" className="close-icon" />
         </Link>
       </div>
-      <form className="login-form" onSubmit={Login}>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
-          required
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Log in</button>
-      </form>
+      <LoginForm onSubmit={handleLogin} />
     </div>
   );
 }
 
 export default LoginPage;
+
+
+
+
 
 //Författare Katarina
 
