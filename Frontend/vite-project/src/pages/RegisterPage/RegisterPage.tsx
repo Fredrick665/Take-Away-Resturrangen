@@ -1,89 +1,45 @@
-// import { Link } from "react-router-dom";
-// import "./registerPage.css";
-// import logo from "../../assets/logo.svg";
-// import closeIcon from "../../assets/closeIcon.svg";
-
-// function Register(event: { preventDefault: () => void }) {
-//   event.preventDefault();
-// }
-
-// function RegisterPage() {
-//   return (
-//     <div className="register-page">
-//       <div className="icons-container">
-//         <img src={logo} alt="Logo" className="logo" />
-//         <Link to="/start">
-//           <img src={closeIcon} alt="close" className="close-icon" />
-//         </Link>
-//       </div>
-//       <form className="register-form" onSubmit={Register}>
-//         <input
-//           type="text"
-//           id="full-name"
-//           name="fullName"
-//           placeholder="Name Eftername"
-//           required
-//         />
-//         <input
-//           type="password"
-//           id="password"
-//           name="password"
-//           placeholder="Password"
-//           required
-//         />
-//         <input
-//           type="password"
-//           id="reapet-password"
-//           name="reapetPassword"
-//           placeholder="Reapet password"
-//           required
-//         />
-//         <input
-//           type="text"
-//           id="address"
-//           name="addres"
-//           placeholder="Address"
-//           required
-//         />
-//         <input
-//           type="email"
-//           id="mail"
-//           name="e-mail"
-//           placeholder="E-mail"
-//           required
-//         />
-//         <button type="submit">Registera</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default RegisterPage;
-
-
-
-
 import './registerPage.css';
 import logo from '../../assets/logo.svg';
 import closeIcon from '../../assets/closeIcon.svg';
 import { Link } from 'react-router-dom';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import { RegisterFormData } from '../../types/interfaceReg';
+import axios from 'axios';
+import { useState } from 'react';
 
 function RegisterPage() {
-  const handleRegisterSubmit = (formData: RegisterFormData) => {
-    console.log("Registrering med följande data:", formData);
+  const [statusMessage, setStatusMessage] = useState('');
 
+  const handleRegisterSubmit = async (formData: RegisterFormData) => {
+    try {
+      // Wysyłamy dane do backendu (AWS Lambda API)
+      const response = await axios.post('https://sextvrjaie.execute-api.eu-north-1.amazonaws.com/register', formData);
+
+      console.log('User registered:', response.data);
+
+      // Vi kan lägga till en sägväg till annan sida 
+      setStatusMessage('User registered successfully!');
+    } catch (error) {
+      console.error('Error registering user:', error);
+      setStatusMessage('Registration failed. Please try again.');
+    }
   };
 
   return (
     <div className="register-page">
       <div className="icons-container">
         <img src={logo} alt="Logo" className="logo" />
+        {statusMessage && (
+          <div className={`status-message ${statusMessage.includes('success') ? 'success' : 'error'}`}>
+            {statusMessage}
+          </div>
+        )}
         <Link to="/start">
           <img src={closeIcon} alt="close" className="close-icon" />
         </Link>
       </div>
+
+
       <RegisterForm onSubmit={handleRegisterSubmit} />
     </div>
   );
