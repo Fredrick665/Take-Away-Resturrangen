@@ -2,45 +2,68 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "The AWS CloudFormation template for this Serverless application",
   "Resources": {
-    "HelloLogGroup": {
+    "UserfunctionsLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-hello"
+        "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-userfunctions"
       }
     },
-    "HelloLambdaFunction": {
+    "UserfunctionsLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "serverless-framework-deployments-eu-north-1-75f4c523-3d73",
-          "S3Key": "serverless/swift-deluxe-api/dev/1732028796144-2024-11-19T15:06:36.144Z/swift-deluxe-api.zip"
+          "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
+          "S3Key": "serverless/swift-deluxe-api/dev/1732138790083-2024-11-20T21:39:50.083Z/swift-deluxe-api.zip"
         },
-        "Handler": "handler.hello",
+        "Handler": "functions/userfunctions/addnewuser.handler",
         "Runtime": "nodejs20.x",
-        "FunctionName": "swift-deluxe-api-dev-hello",
+        "FunctionName": "swift-deluxe-api-dev-userfunctions",
         "MemorySize": 1024,
         "Timeout": 6,
-        "Role": "arn:aws:iam::970547369872:role/lambdaDynamoDbRole"
+        "Environment": {
+          "Variables": {
+            "JWT_SECRET": "someRandomSecretKey12345"
+          }
+        },
+        "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
       },
       "DependsOn": [
-        "HelloLogGroup"
+        "UserfunctionsLogGroup"
       ]
     },
-    "HelloLambdaVersion0RDNXAnXKeisHfVenTDdfoSMJOdWFyPybOHjWtBAWI0": {
+    "UserfunctionsLambdaVersion8vK91jLR5xtk3KvYhLnwkKig1aUpYXGY4Kh6nMHGPc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "HelloLambdaFunction"
+          "Ref": "UserfunctionsLambdaFunction"
         },
-        "CodeSha256": "O8LOmBV/3wLdZqT3My8SSCXzDIV+gmBfEwjjAK6mrY0="
+        "CodeSha256": "y2iXyPg6ffKk27ZCExxyvJlTk3QZ5ZamTRstHGdAe5E="
       }
     },
     "HttpApi": {
       "Type": "AWS::ApiGatewayV2::Api",
       "Properties": {
         "Name": "dev-swift-deluxe-api",
-        "ProtocolType": "HTTP"
+        "ProtocolType": "HTTP",
+        "CorsConfiguration": {
+          "AllowHeaders": [
+            "Content-Type",
+            "X-Amz-Date",
+            "Authorization",
+            "X-Api-Key",
+            "X-Amz-Security-Token",
+            "X-Amz-User-Agent",
+            "X-Amzn-Trace-Id"
+          ],
+          "AllowMethods": [
+            "OPTIONS",
+            "POST"
+          ],
+          "AllowOrigins": [
+            "*"
+          ]
+        }
       }
     },
     "HttpApiStage": {
@@ -56,12 +79,12 @@
         }
       }
     },
-    "HelloLambdaPermissionHttpApi": {
+    "UserfunctionsLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "HelloLambdaFunction",
+            "UserfunctionsLambdaFunction",
             "Arn"
           ]
         },
@@ -93,7 +116,7 @@
         }
       }
     },
-    "HttpApiIntegrationHello": {
+    "HttpApiIntegrationUserfunctions": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -102,7 +125,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "HelloLambdaFunction",
+            "UserfunctionsLambdaFunction",
             "Arn"
           ]
         },
@@ -110,42 +133,69 @@
         "TimeoutInMillis": 30000
       }
     },
-    "HttpApiRouteGet": {
+    "HttpApiRoutePostRegister": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "GET /",
+        "RouteKey": "POST /register",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationHello"
+                "Ref": "HttpApiIntegrationUserfunctions"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationHello"
+      "DependsOn": "HttpApiIntegrationUserfunctions"
+    },
+    "UsersTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "user-db",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "email",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "userId",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "email",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "userId",
+            "KeyType": "RANGE"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
     }
   },
   "Outputs": {
     "ServerlessDeploymentBucketName": {
-      "Value": "serverless-framework-deployments-eu-north-1-75f4c523-3d73",
+      "Value": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
       "Export": {
         "Name": "sls-swift-deluxe-api-dev-ServerlessDeploymentBucketName"
       }
     },
-    "HelloLambdaFunctionQualifiedArn": {
+    "UserfunctionsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersion0RDNXAnXKeisHfVenTDdfoSMJOdWFyPybOHjWtBAWI0"
+        "Ref": "UserfunctionsLambdaVersion8vK91jLR5xtk3KvYhLnwkKig1aUpYXGY4Kh6nMHGPc"
       },
       "Export": {
-        "Name": "sls-swift-deluxe-api-dev-HelloLambdaFunctionQualifiedArn"
+        "Name": "sls-swift-deluxe-api-dev-UserfunctionsLambdaFunctionQualifiedArn"
       }
     },
     "HttpApiId": {

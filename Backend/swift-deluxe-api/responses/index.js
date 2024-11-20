@@ -2,20 +2,22 @@ function sendResponse(status, data) {
     return {
         statusCode: status,
         headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({data}),
+        body: JSON.stringify({ data }),
     };
 }
 
 function sendError(status, data) {
+    console.log('Error response:', { status, data });
     return {
         statusCode: status,
-        headers : {
-            'Content-Type' : 'application/json'
+        headers: {
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({succes : false, data}),
+        body: JSON.stringify({ success: false, data }),
     };
 }
 
 module.exports = { sendResponse, sendError };
+
