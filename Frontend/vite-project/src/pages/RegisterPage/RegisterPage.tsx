@@ -12,7 +12,7 @@ function RegisterPage() {
 
   const handleRegisterSubmit = async (formData: RegisterFormData) => {
     try {
-      // Wysyłamy dane do backendu (AWS Lambda API)
+      // Vi skickar data till backend (AWS Lambda API)
       const response = await axios.post('https://sextvrjaie.execute-api.eu-north-1.amazonaws.com/register', formData);
 
       console.log('User registered:', response.data);
