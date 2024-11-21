@@ -12,3 +12,6 @@ function Menu() {
 }
 
 export default Menu
+
+// Författare: Miklós
+// Komponenten visar upp en menu för restaurangens matträtter på startsidan

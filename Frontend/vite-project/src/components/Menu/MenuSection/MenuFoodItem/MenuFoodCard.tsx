@@ -7,9 +7,11 @@ function MenuFoodCard() {
       </figure>
       <h4>Food Card</h4>
       <p>250kr</p>
-      <button>Add Cart</button>
+      <button>Add to Cart</button>
     </article>
   )
 }
 
 export default MenuFoodCard
+
+// Författare: Miklós

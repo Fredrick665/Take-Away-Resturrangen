@@ -20,3 +20,5 @@ function Footer() {
 }
 
 export default Footer
+
+// Författare: Miklós
