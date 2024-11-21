@@ -11,4 +11,4 @@ function Startpage() {
 
 export default Startpage;
 
-// Författare Fredrick
+// Författare Fredrick  Att göra: Fixa Mediaquery som drar profilepage texten till höger

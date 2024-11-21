@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   height: 100vh;
   background-color: var(--clr-background);
   color: var(--clr-primary-text);
@@ -15,6 +14,12 @@
 
 .add-item-page__subtitle {
   color: var(--clr-secondery-text);
+}
+.add-item-page__subtitle-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 40%;
+  padding: 20px;
 }
 
 .add-item-page__drag-and-drop {
@@ -52,20 +57,25 @@
   border-radius: 5px;
   color: var(--clr-primary-text);
 }
-
+.add-item-page__input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
+}
 .add-item-page__input::before,
 .add-item-page__input::after {
 }
 
 .add-item-page__button {
   width: 150px;
-  padding: 10px;
+  height: 30px;
   background-color: var(--clr-green);
   color: var(--clr-primary-text);
-  border: none;
   border-radius: 5px;
   font-family: var(--text-poly);
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .add-item-page__button::before,
