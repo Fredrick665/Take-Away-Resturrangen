@@ -33,5 +33,5 @@ function Footer() {
 
 export default Footer;
 
-//Författare Miklos
+// Författare: Miklós
 // Ändring av Fredrick: La till en länk till cartpage för att kunna navigera runt sidan i samband med handledning. Tas bort senare.

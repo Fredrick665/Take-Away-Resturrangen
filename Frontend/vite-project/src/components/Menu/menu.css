@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 10rem 4rem 6rem 4rem;
+    padding: 6rem 8%;
 
     h2 {
         font-family: var(--text-riot);
@@ -27,5 +27,11 @@
 
     .menu {
         padding: 4rem 0 3rem 0;
+    }
+}
+@media screen and (max-width: 740px) {
+
+    .menu {
+        padding: 4rem 0 2rem 0;
     }
 }

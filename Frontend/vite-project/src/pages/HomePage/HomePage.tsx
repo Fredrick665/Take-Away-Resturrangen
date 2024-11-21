@@ -14,3 +14,6 @@ function HomePage() {
 }
 
 export default HomePage;
+
+// Författare: Miklós
+// HomePage är startsidan för appen
