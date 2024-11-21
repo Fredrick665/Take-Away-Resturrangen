@@ -12,6 +12,8 @@ provider:
   deploymentMethod: direct
   iam:
     role: ${file(./local.yml):iamRole}
+  environment:
+    DYNAMODB_TABLE: Menu_Items_SwiftDeluxe
 
 functions:
   hello:
@@ -20,3 +22,30 @@ functions:
       - httpApi:
           path: /
           method: get
+
+  getMenuItems:
+    handler: functions/userfunctions/getmenu.getMenuItems
+    events:
+      - httpApi:
+          path: /menu-items
+          method: get
+
+  createOrder:
+    handler: functions/userfunctions/neworder.neworder
+    events:
+      - httpApi:
+          path: /order
+          method: post
+resources:
+  Resources:
+    OrdersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Orders_SwiftDeluxe
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
