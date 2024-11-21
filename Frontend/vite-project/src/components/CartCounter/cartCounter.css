@@ -1,5 +1,7 @@
 .cart-counter-container {
-    position: relative;
+    position: fixed;
+    right: 10px;
+    top: 0px;
     padding: 4px 8px;
     display: flex;
     align-items: center;
@@ -7,8 +9,8 @@
     min-width: 25px;
     height: 25px;
     z-index: 1000;
+    cursor: pointer;
 }
-
 
 .cart-icon {
     width: 2.5rem;

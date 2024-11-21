@@ -1,5 +1,6 @@
 import "./header.css";
 import Hamburgericon from "../HamburgerIcon/HamburgerIcon";
+import CartCounter from "../CartCounter/CartCounter";
 
 function Header() {
   return (
@@ -16,7 +17,9 @@ function Header() {
         alt=""
       />
       <h1>SwiftDeluxe Restaruant</h1>
+      <CartCounter />
     </header>
+    
   );
 }
 
