@@ -35,7 +35,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                "S3Key": "serverless/swift-deluxe-api/dev/1732138790083-2024-11-20T21:39:50.083Z/swift-deluxe-api.zip"
+                "S3Key": "serverless/swift-deluxe-api/dev/1732278003710-2024-11-22T12:20:03.710Z/swift-deluxe-api.zip"
               },
               "Handler": "functions/userfunctions/addnewuser.handler",
               "Runtime": "nodejs20.x",
@@ -53,14 +53,14 @@
               "UserfunctionsLogGroup"
             ]
           },
-          "UserfunctionsLambdaVersion8vK91jLR5xtk3KvYhLnwkKig1aUpYXGY4Kh6nMHGPc": {
+          "UserfunctionsLambdaVersioneiaasaLrS0iarBrsvGeu6Iy9RU6VRKGAUkySLA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UserfunctionsLambdaFunction"
               },
-              "CodeSha256": "y2iXyPg6ffKk27ZCExxyvJlTk3QZ5ZamTRstHGdAe5E="
+              "CodeSha256": "HyXiVfN8BSajUNmUMbh28Y0Vhy3OvQ57ifL3igrBtY8="
             }
           },
           "HttpApi": {
@@ -211,7 +211,7 @@
           "UserfunctionsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UserfunctionsLambdaVersion8vK91jLR5xtk3KvYhLnwkKig1aUpYXGY4Kh6nMHGPc"
+              "Ref": "UserfunctionsLambdaVersioneiaasaLrS0iarBrsvGeu6Iy9RU6VRKGAUkySLA"
             },
             "Export": {
               "Name": "sls-swift-deluxe-api-dev-UserfunctionsLambdaFunctionQualifiedArn"
@@ -275,7 +275,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "UserfunctionsLambdaVersion8vK91jLR5xtk3KvYhLnwkKig1aUpYXGY4Kh6nMHGPc"
+        "versionLogicalId": "UserfunctionsLambdaVersioneiaasaLrS0iarBrsvGeu6Iy9RU6VRKGAUkySLA"
       }
     },
     "resources": {
@@ -334,7 +334,7 @@
     "artifact": "D:\\FU23\\TypeScript\\Take-Away-Resturrangen\\Backend\\swift-deluxe-api\\.serverless\\swift-deluxe-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/swift-deluxe-api/dev/1732138790083-2024-11-20T21:39:50.083Z",
+    "artifactDirectoryName": "serverless/swift-deluxe-api/dev/1732278003710-2024-11-22T12:20:03.710Z",
     "artifact": "swift-deluxe-api.zip"
   }
 }

@@ -1,4 +1,4 @@
-function sendResponse(status, data) {
+export function sendResponse(status, data) {
     return {
         statusCode: status,
         headers: {
@@ -8,7 +8,7 @@ function sendResponse(status, data) {
     };
 }
 
-function sendError(status, data) {
+export function sendError(status, data) {
     console.log('Error response:', { status, data });
     return {
         statusCode: status,
@@ -19,5 +19,7 @@ function sendError(status, data) {
     };
 }
 
-module.exports = { sendResponse, sendError };
 
+
+// Förfatare Fredrick
+// Katerina ändrade från module.exports till export och uppdaterade funktionerna för att använda ES-modul syntax

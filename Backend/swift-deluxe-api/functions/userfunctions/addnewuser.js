@@ -1,31 +1,24 @@
 
-const bcrypt = require('bcryptjs');
-const { v4: uuidv4 } = require('uuid');
-const { db } = require('../../services/index.js');
-const { sendResponse, sendError } = require('../../responses/index.js');
+import middy from '@middy/core';
+import { validateRegistration } from "../../middleware/validateReg.js";
+import { errorHandlerReg } from "../../middleware/errorHandlerReg.js";
+import { db } from "../../services/index.js";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { v4 as uuidv4 } from 'uuid';
+
+// Hämta JWT-hemligheten från miljövariabler
+// (JWT Secret är en säkerhetsnyckel som används för att signera och verifiera JSON Web Tokens)
 const jwtSecret = process.env.JWT_SECRET;
-const jwt = require('jsonwebtoken');
 
-exports.handler = async (event) => {
-    console.log('Incoming event:', event);
-    const { fullName, email, password, address, role = 'user' } = JSON.parse(event.body);
-    console.log('User data:', { fullName, email, password, address, role });
-    // Walidacja
-    if (!fullName || !email || !password || !address || !role) {
-        console.log('Validation failed: Missing fields');
-        return sendError(400, "All fields are required.");
-    }
-
-    if (role !== 'user' && role !== 'admin') {
-        return sendError(400, "Invalid role. Allowed values are 'user' or 'admin'.");
-    }
+export const addNewUser = async (event) => {
+    console.log("Event received:", event);
+    const { fullName, email, password, address, role } = JSON.parse(event.body);
 
     try {
+        // Kryptera lösenordet innan vi sparar användaren
         const hashedPassword = await bcrypt.hash(password, 10);
         const userId = uuidv4();
-
-        // Domyślna role 'user'
-        const role = 'user';
 
         await db.put({
             TableName: 'user-db',
@@ -39,23 +32,36 @@ exports.handler = async (event) => {
             },
         });
 
-        console.log('User data inserted into database');
-
+        // Skapa en JWT-token för den nya användaren
         const token = jwt.sign({ userId, email, role }, jwtSecret, {
             expiresIn: '1h',
-        });    // giltigt 1 timme
-
-        console.log('JWT token generated:', token);
-
-        return sendResponse(201, {
-            message: "User registered successfully.",
-            token: token,
-
         });
 
+        return {
+            statusCode: 201,
+            body: JSON.stringify({
+                success: true,
+                message: "User registered successfully.",
+                token,
+            }),
+        };
     } catch (error) {
         console.error("Error registering user:", error);
-        return sendError(500, "Error registering user.");
+        return {
+            statusCode: 500,
+            body: JSON.stringify({
+                success: false,
+                message: "Error registering user.",
+            }),
+        };
     }
 };
 
+// Använda middy för att applicera middleware-funktioner
+export const handler = middy(addNewUser)
+    .use(validateRegistration())
+    .use(errorHandlerReg());
+
+
+
+// Författare Katerina
