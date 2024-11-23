@@ -14,6 +14,8 @@ provider:
     role: ${file(./local.yml):iamRole}
   environment:
     DYNAMODB_TABLE: Menu_Items_SwiftDeluxe
+  httpApi:
+    cors: true
 
 functions:
   hello:

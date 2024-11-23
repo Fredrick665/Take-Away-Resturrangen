@@ -7,13 +7,14 @@ import "./loginPage.css";
 function LoginPage() {
   const handleLogin = (username: string, password: string) => {
     console.log("Login data:", username, password);
-
   };
 
   return (
     <div className="login-page">
       <div className="icons-container">
-        <img src={logo} alt="Logo" className="logo" />
+        <Link to="homepage">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
         <Link to="/start">
           <img src={closeIcon} alt="close" className="close-icon" />
         </Link>
@@ -25,10 +26,6 @@ function LoginPage() {
 
 export default LoginPage;
 
-
-
-
-
 //Författare Katarina
 
-// Ändrat av Fredrick. Lagt till routing så man hamnar på startsidan när man klickar på krysset
+// Ändrat av Fredrick. Lagt till routing så man hamnar på startsidan när man klickar på krysset. Ändrat igen och lagt till routing så man hamnar på homepage om man klickar på loggan.
