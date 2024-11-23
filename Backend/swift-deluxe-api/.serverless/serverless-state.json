@@ -15,6 +15,9 @@
       "environment": {
         "DYNAMODB_TABLE": "Menu_Items_SwiftDeluxe"
       },
+      "httpApi": {
+        "cors": true
+      },
       "stage": "dev",
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
@@ -44,7 +47,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-12ec1d17-1eaf",
-                "S3Key": "serverless/swift-deluxe-api/dev/1732197055243-2024-11-21T13:50:55.243Z/swift-deluxe-api.zip"
+                "S3Key": "serverless/swift-deluxe-api/dev/1732284779397-2024-11-22T14:12:59.397Z/swift-deluxe-api.zip"
               },
               "Handler": "handler.hello",
               "Runtime": "nodejs20.x",
@@ -67,7 +70,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-12ec1d17-1eaf",
-                "S3Key": "serverless/swift-deluxe-api/dev/1732197055243-2024-11-21T13:50:55.243Z/swift-deluxe-api.zip"
+                "S3Key": "serverless/swift-deluxe-api/dev/1732284779397-2024-11-22T14:12:59.397Z/swift-deluxe-api.zip"
               },
               "Handler": "functions/userfunctions/getmenu.getMenuItems",
               "Runtime": "nodejs20.x",
@@ -90,7 +93,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-12ec1d17-1eaf",
-                "S3Key": "serverless/swift-deluxe-api/dev/1732197055243-2024-11-21T13:50:55.243Z/swift-deluxe-api.zip"
+                "S3Key": "serverless/swift-deluxe-api/dev/1732284779397-2024-11-22T14:12:59.397Z/swift-deluxe-api.zip"
               },
               "Handler": "functions/userfunctions/neworder.neworder",
               "Runtime": "nodejs20.x",
@@ -108,41 +111,60 @@
               "CreateOrderLogGroup"
             ]
           },
-          "HelloLambdaVersionNVB0beI85RnHCpZ3vFM8t093Z0w4P3S0Cmj5qjMIc": {
+          "HelloLambdaVersionYY9KdwE0RB7fqZmKlpkalTtcHBR1dKILsahfeCcFY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "uU0NxGXXa4U1FdbD9Bt+EIhtS/3WziE8TGZTuZ+Q9C0="
+              "CodeSha256": "Zb1/lX6+VeRAJB1NvALEztAwLd2R4bXJ1euGMfp6Mb0="
             }
           },
-          "GetMenuItemsLambdaVersion4Bw1B2t9BnG9snqrHXB4G62Rnj7P3efUDi53VycrQA": {
+          "GetMenuItemsLambdaVersionId7V1AJBRtIusd2OgZR1CQiadbQWnVTscXlWtELWpE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetMenuItemsLambdaFunction"
               },
-              "CodeSha256": "uU0NxGXXa4U1FdbD9Bt+EIhtS/3WziE8TGZTuZ+Q9C0="
+              "CodeSha256": "Zb1/lX6+VeRAJB1NvALEztAwLd2R4bXJ1euGMfp6Mb0="
             }
           },
-          "CreateOrderLambdaVersionyosqOmquR4Tl89SXI8k46XJr65kcZc4dyV5l55pH0PU": {
+          "CreateOrderLambdaVersiona6hw48ePQtuBdNFo3p9NEreZb2XvuiW13dVU4zuh6K8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateOrderLambdaFunction"
               },
-              "CodeSha256": "uU0NxGXXa4U1FdbD9Bt+EIhtS/3WziE8TGZTuZ+Q9C0="
+              "CodeSha256": "Zb1/lX6+VeRAJB1NvALEztAwLd2R4bXJ1euGMfp6Mb0="
             }
           },
           "HttpApi": {
             "Type": "AWS::ApiGatewayV2::Api",
             "Properties": {
               "Name": "dev-swift-deluxe-api",
-              "ProtocolType": "HTTP"
+              "ProtocolType": "HTTP",
+              "CorsConfiguration": {
+                "AllowHeaders": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent",
+                  "X-Amzn-Trace-Id"
+                ],
+                "AllowMethods": [
+                  "OPTIONS",
+                  "GET",
+                  "POST"
+                ],
+                "AllowOrigins": [
+                  "*"
+                ]
+              }
             }
           },
           "HttpApiStage": {
@@ -404,7 +426,7 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionNVB0beI85RnHCpZ3vFM8t093Z0w4P3S0Cmj5qjMIc"
+              "Ref": "HelloLambdaVersionYY9KdwE0RB7fqZmKlpkalTtcHBR1dKILsahfeCcFY"
             },
             "Export": {
               "Name": "sls-swift-deluxe-api-dev-HelloLambdaFunctionQualifiedArn"
@@ -413,7 +435,7 @@
           "GetMenuItemsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetMenuItemsLambdaVersion4Bw1B2t9BnG9snqrHXB4G62Rnj7P3efUDi53VycrQA"
+              "Ref": "GetMenuItemsLambdaVersionId7V1AJBRtIusd2OgZR1CQiadbQWnVTscXlWtELWpE"
             },
             "Export": {
               "Name": "sls-swift-deluxe-api-dev-GetMenuItemsLambdaFunctionQualifiedArn"
@@ -422,7 +444,7 @@
           "CreateOrderLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateOrderLambdaVersionyosqOmquR4Tl89SXI8k46XJr65kcZc4dyV5l55pH0PU"
+              "Ref": "CreateOrderLambdaVersiona6hw48ePQtuBdNFo3p9NEreZb2XvuiW13dVU4zuh6K8"
             },
             "Export": {
               "Name": "sls-swift-deluxe-api-dev-CreateOrderLambdaFunctionQualifiedArn"
@@ -486,7 +508,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionNVB0beI85RnHCpZ3vFM8t093Z0w4P3S0Cmj5qjMIc"
+        "versionLogicalId": "HelloLambdaVersionYY9KdwE0RB7fqZmKlpkalTtcHBR1dKILsahfeCcFY"
       },
       "getMenuItems": {
         "handler": "functions/userfunctions/getmenu.getMenuItems",
@@ -506,7 +528,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "GetMenuItemsLambdaVersion4Bw1B2t9BnG9snqrHXB4G62Rnj7P3efUDi53VycrQA"
+        "versionLogicalId": "GetMenuItemsLambdaVersionId7V1AJBRtIusd2OgZR1CQiadbQWnVTscXlWtELWpE"
       },
       "createOrder": {
         "handler": "functions/userfunctions/neworder.neworder",
@@ -526,7 +548,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "CreateOrderLambdaVersionyosqOmquR4Tl89SXI8k46XJr65kcZc4dyV5l55pH0PU"
+        "versionLogicalId": "CreateOrderLambdaVersiona6hw48ePQtuBdNFo3p9NEreZb2XvuiW13dVU4zuh6K8"
       }
     },
     "resources": {
@@ -577,7 +599,7 @@
     "artifact": "C:\\Users\\MSI GF75\\OneDrive\\Skrivbord\\Dev\\termin2\\Typescript\\Resturangen\\Take-Away-Resturrangen\\Backend\\swift-deluxe-api\\.serverless\\swift-deluxe-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/swift-deluxe-api/dev/1732197055243-2024-11-21T13:50:55.243Z",
+    "artifactDirectoryName": "serverless/swift-deluxe-api/dev/1732284779397-2024-11-22T14:12:59.397Z",
     "artifact": "swift-deluxe-api.zip"
   }
 }

@@ -40,7 +40,7 @@ function EditItemsPage() {
               </button>
             </label>
           </li>
-        </ul>{" "}
+        </ul>
         <ul className="edit-items-page__order-list">
           <li className="edit-items-page__order-item">
             <label className="edit-items-page__order-item-label">
