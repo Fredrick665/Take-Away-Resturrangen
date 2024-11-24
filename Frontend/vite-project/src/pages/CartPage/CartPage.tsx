@@ -50,3 +50,7 @@ function CartPage() {
 }
 
 export default CartPage;
+
+
+
+// Förtfattare Katerina

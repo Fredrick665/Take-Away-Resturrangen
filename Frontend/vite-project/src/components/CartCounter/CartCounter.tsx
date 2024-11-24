@@ -19,5 +19,8 @@ function CartCounter() {
 }
 
 export default CartCounter;
-// Författare ?
+
+
+
+// Författare Katerina
 // Ändring av Fredrick. Lagt routing på kundvagnen så man hamnar på cart page

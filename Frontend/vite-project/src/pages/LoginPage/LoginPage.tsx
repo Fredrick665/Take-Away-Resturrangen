@@ -26,6 +26,6 @@ function LoginPage() {
 
 export default LoginPage;
 
-//Författare Katarina
+//Författare Katerina
 
 // Ändrat av Fredrick. Lagt till routing så man hamnar på startsidan när man klickar på krysset. Ändrat igen och lagt till routing så man hamnar på homepage om man klickar på loggan.

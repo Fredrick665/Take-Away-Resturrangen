@@ -53,3 +53,6 @@ function CartListItem({
 }
 
 export default CartListItem;
+
+
+// Förtfattare Katerina

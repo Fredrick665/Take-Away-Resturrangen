@@ -99,3 +99,7 @@ export const useCartStore = create<CartState>((set) => {
       }),
   };
 });
+
+
+
+//  Förtfattare Katerina

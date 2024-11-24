@@ -36,3 +36,6 @@ function CartList({ items, onAdd, onSubtract, onNotesChange }: CartListProps) {
 }
 
 export default CartList;
+
+
+// Förtfattare Katerina
