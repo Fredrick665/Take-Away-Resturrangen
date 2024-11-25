@@ -1,17 +1,16 @@
-// MenuFoodCard.tsx
-import { useCartStore } from './../../../../stores/cartStore'; // Store importálása
+import { useCartStore } from './../../../../stores/cartStore';
 import './menuFoodCard.css';
 
 function MenuFoodCard() {
   const addItemToCart = useCartStore((state) => state.addItem);
   const foodItem = {
-    id: 1, // Az étel ID-ja (ennek dinamikusnak kell lennie a valós adatokkal)
+    id: 1,
     name: 'Sushi One',
     price: 1500,
   };
 
   const handleAddToCart = () => {
-    addItemToCart(foodItem.id); // Hozzáadjuk az ételt a kosárhoz
+    addItemToCart(foodItem.id);
   };
 
   return (
@@ -29,8 +28,6 @@ function MenuFoodCard() {
   );
 }
 
-
 export default MenuFoodCard;
-
 
 // Författare: Miklós

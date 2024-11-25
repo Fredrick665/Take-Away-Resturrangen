@@ -6,7 +6,9 @@ import Receipt from "../../components/Receipt/Receipt";
 function ConfirmedOrdersPage() {
   return (
     <main className="confirmed-orders-page">
-      <img className="confirmed-orders-page__logo" src={Logo} alt="Logga" />
+      <Link to="/homepage">
+        <img className="confirmed-orders-page__logo" src={Logo} alt="Logga" />
+      </Link>
       <h1 className="confirmed-orders-page__title">
         Kvitto på din beställning
       </h1>
@@ -26,3 +28,4 @@ function ConfirmedOrdersPage() {
 
 export default ConfirmedOrdersPage;
 // Författare Fredrick.
+// // Ändring av Fredrick. Lagt till routing så man hamnar på homepage när man klickar på loggan.

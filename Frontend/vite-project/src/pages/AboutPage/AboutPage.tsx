@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./aboutPage.css";
 import Logo from "../../assets/logo.png";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
@@ -6,7 +7,9 @@ function AboutPage() {
     <>
       <main className="about-page">
         <Hamburgericon />
-        <img src={Logo} alt="Logga" />
+        <Link to="/homepage">
+          <img src={Logo} alt="Logga" />
+        </Link>
         <h1 className="about-page__title">Om SwiftDeluxe Restaurant</h1>
         <p className="about-page__text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et odio
@@ -35,3 +38,4 @@ function AboutPage() {
 
 export default AboutPage;
 // Författare Fredrick.
+// Ändring av Fredrick. Lagt till routing så man hamnar på homepage när man klickar på loggan.

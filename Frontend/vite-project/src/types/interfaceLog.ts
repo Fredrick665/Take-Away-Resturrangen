@@ -5,3 +5,7 @@ export interface LoginFormProps {
         password: string     // Lösenord som användaren skriver in
     ) => void;   // Funktionens resultat är void, vilket betyder att den inte returnerar något
 };
+
+
+
+// Förtfatare Katerina

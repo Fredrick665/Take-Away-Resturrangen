@@ -15,3 +15,6 @@ export interface CartState {
     subtractItem: (id: number) => void; // Funktion för att ta bort en artikel från kundvagnen
     updateNotes: (id: number, notes: string) => void; // Funktion för att uppdatera anteckningar för en artikel
 }
+
+
+// Förtfattare Katerina

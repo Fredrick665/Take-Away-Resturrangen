@@ -114,3 +114,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
 };
 
 export default RegisterForm;
+
+
+
+// Förtfatare Katerina

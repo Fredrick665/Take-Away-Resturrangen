@@ -53,3 +53,6 @@ export const useCartStore = create<CartState>((set) => ({
     return { items: updatedItems, totalQuantity: updatedItems.reduce((sum, item) => sum + item.quantity, 0) };
   }),
 }));
+
+// Förtfattare Katerina
+// Ändrat av Miklós för att man ska kunna lägga maträtt på varukorg

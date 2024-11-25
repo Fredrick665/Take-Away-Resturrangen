@@ -19,7 +19,9 @@ function CartPage() {
     <div className="cart-page">
       <div className="header-cart">
         <Hamburgericon />
-        <img src={logo} alt="logo" className="logo-icon" />
+        <Link to="/homepage">
+          <img src={logo} alt="logo" className="logo-icon" />
+        </Link>
         <CartCounter /> {/* antal varor  */}
       </div>
 
@@ -54,5 +56,4 @@ export default CartPage;
 
 
 
-//Författare Katarina.
-// Ändring av Fredrick. La till en länk till confirmed orders.
+// Förtfattare Katerina

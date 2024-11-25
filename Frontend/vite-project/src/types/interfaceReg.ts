@@ -11,3 +11,7 @@ export interface RegisterFormData {
 export interface RegisterFormProps {
     onSubmit: (formData: RegisterFormData) => void;   // Funktion som skickar in formulärdata vid registrering
 }
+
+
+
+// Förtfatare Katerina
