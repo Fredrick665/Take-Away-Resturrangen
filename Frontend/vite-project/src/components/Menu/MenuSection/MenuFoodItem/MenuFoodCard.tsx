@@ -1,38 +1,18 @@
-import "./menuFoodCard.css";
-
-interface MenuFoodCardProps {
-  itemId: string;
-  price: number;
-  imageurl: string;
-  title: string;
-}
-
-const MenuFoodCard: React.FC<MenuFoodCardProps> = ({
-  price,
-  imageurl,
-  title,
-}) => {
-  return (
-    <article className="menu__food-card">
-      <figure>
-        <img src={imageurl} alt={title} />
-      </figure>
-      <h4>{title}</h4>
-      <p>{price}kr</p>
-      <button>Add to Cart</button>
-    </article>
-  );
-};
-
-export default MenuFoodCard;
-
-// Författare: Miklós
-// Ändrat av Fredrick så menufoodcard tar emot title och price som props från menusection.
-
-/*import "./menuFoodCard.css";
-
+import { useCartStore } from './../../../../stores/cartStore';
+import './menuFoodCard.css';
 
 function MenuFoodCard() {
+  const addItemToCart = useCartStore((state) => state.addItem);
+  const foodItem = {
+    id: 1,
+    name: 'Sushi One',
+    price: 1500,
+  };
+
+  const handleAddToCart = () => {
+    addItemToCart(foodItem.id);
+  };
+
   return (
     <article className="menu__food-card">
       <figure>
@@ -41,11 +21,13 @@ function MenuFoodCard() {
           alt=""
         />
       </figure>
-      <h4>Food Card</h4>
-      <p>250kr</p>
-      <button>Add to Cart</button>
+      <h4>{foodItem.name}</h4>
+      <p>{foodItem.price}kr</p>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </article>
   );
 }
 
-export default MenuFoodCard;*/
+export default MenuFoodCard;
+
+// Författare: Miklós

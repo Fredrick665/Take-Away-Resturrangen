@@ -1,13 +1,7 @@
-import "./cartList.css";
-import CartListItem from "../CartList/CartListItem/CartListItem";
 
-export interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  notes: string;
-}
+import './cartList.css';
+import CartListItem from "./CartListItem/CartListItem";
+import { CartItem } from "../../types/interface";
 
 interface CartListProps {
   items: CartItem[];
@@ -36,6 +30,6 @@ function CartList({ items, onAdd, onSubtract, onNotesChange }: CartListProps) {
 }
 
 export default CartList;
-
-
+        
 // Förtfattare Katerina
+// Miklós ändrarde koden för att kunna lägga maträtt till och hantera varukorg med hjälp av zustand

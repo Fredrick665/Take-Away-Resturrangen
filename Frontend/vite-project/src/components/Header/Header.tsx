@@ -20,7 +20,9 @@ function Header() {
         />
       </Link>
       <h1>SwiftDeluxe Restaruant</h1>
-      <CartCounter />
+      <Link to="/cart">
+        <CartCounter />
+      </Link>
     </header>
   );
 }
