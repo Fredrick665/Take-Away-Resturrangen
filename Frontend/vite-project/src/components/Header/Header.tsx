@@ -1,6 +1,7 @@
 import "./header.css";
 import Hamburgericon from "../HamburgerIcon/HamburgerIcon";
 import CartCounter from "../CartCounter/CartCounter";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -17,7 +18,9 @@ function Header() {
         alt=""
       />
       <h1>SwiftDeluxe Restaruant</h1>
-      <CartCounter />
+      <Link to="/cart">
+        <CartCounter />
+      </Link>
     </header>
     
   );

@@ -1,5 +1,4 @@
 import "./footer.css";
-import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="footer">
@@ -24,9 +23,6 @@ function Footer() {
           alt=""
         />
       </section>
-      <Link to="/cart">
-        <button>Till Cartpage</button>
-      </Link>
     </footer>
   );
 }

@@ -9,11 +9,12 @@ import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
 
-  // beräknar den totala summan
+  // Beräknar den totala summan
   const totalPrice = items.reduce(
     (sum: number, item) => sum + item.price * item.quantity,
     0
   );
+  
   return (
     <div className="cart-page">
       <div className="header-cart">
@@ -30,6 +31,8 @@ function CartPage() {
           <button className="btn-az">A-Z</button>
           <div className="main-line"></div>
         </section>
+        
+        {/* Helyesen átadott props típusokkal */}
         <CartList
           items={items}
           onAdd={addItem}
