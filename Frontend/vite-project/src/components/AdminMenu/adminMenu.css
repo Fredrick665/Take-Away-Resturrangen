@@ -3,6 +3,9 @@
   font-family: var(--text-poly);
   padding: 50px;
 }
+
+
+
 .admin-menu__heading:hover {
 }
 .admin-menu__heading::after {

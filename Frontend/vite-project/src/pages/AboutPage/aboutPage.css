@@ -1,7 +1,33 @@
 .about-page {
   background-color: var(--clr-background);
-  height: 100vh;
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
+  .about-page__article {
+    min-height: 60vh;
+    padding: 0 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        font-size: 3rem;
+        font-weight: 300;
+      }
+
+      p {
+      margin-top: 2rem;
+      line-height: 24px;
+      font-weight: 300;
+      font-size: 1rem;
+    }
+  }
+
+  
 }
 
 .about-page__hbmenu {
@@ -32,6 +58,8 @@
 .about-page__hbmenu::after {
   top: 10px;
 }
+
+
 
 .about-page__hbmenu:hover {
 }
@@ -68,4 +96,13 @@
 }
 
 .about-page__text::after {
+}
+
+@media screen and (max-width: 700px) {
+
+  .about-page {
+    .about-page__article {
+      padding: 4rem 10%;
+    }  
+  }
 }

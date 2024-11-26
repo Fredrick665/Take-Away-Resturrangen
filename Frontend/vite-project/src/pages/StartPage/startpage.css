@@ -4,16 +4,25 @@
   text-align: center;
   background-color: var(--clr-background);
   font-family: var(--text-revolution);
-  padding: 80px;
+  padding: 80px 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .start-page__heading {
   color: var(--clr-primary-text);
-  font-size: 64px;
-  padding: 60px;
+  font-size: 56px;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
 .start-page__heading:hover {
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.75);
 }
 
 .start-page__heading::before {
