@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-.login-form input[type="text"],
+.login-form input[type="email"],
 .login-form input[type="password"] {
     width: 80%;
     font-size: 2.5rem;

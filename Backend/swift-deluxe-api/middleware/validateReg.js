@@ -6,10 +6,12 @@ export const validateRegistration = () => ({
         const { error } = userSchema.validate(body);
 
         if (error) {
-            throw new Error(error.details[0].message);
+            throw new Error(`Validation error: ${error.details[0].message}`);    // felobjektet som returneras av Joi
         }
     }
 });
+
+
 
 
 

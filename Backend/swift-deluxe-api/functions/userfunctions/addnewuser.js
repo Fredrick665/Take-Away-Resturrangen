@@ -1,30 +1,22 @@
-
 import middy from '@middy/core';
 import { validateRegistration } from "../../middleware/validateReg.js";
 import { errorHandlerReg } from "../../middleware/errorHandlerReg.js";
 import { db } from "../../services/index.js";
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 
-// Hämta JWT-hemligheten från miljövariabler
-// (JWT Secret är en säkerhetsnyckel som används för att signera och verifiera JSON Web Tokens)
-const jwtSecret = process.env.JWT_SECRET;
-
-export const addNewUser = async (event) => {
-    console.log("Event received:", event);
-    const { fullName, email, password, address, role } = JSON.parse(event.body);
+export const registerUser = async (event) => {
+    const { username, email, password, address, role } = JSON.parse(event.body);
 
     try {
-        // Kryptera lösenordet innan vi sparar användaren
         const hashedPassword = await bcrypt.hash(password, 10);
         const userId = uuidv4();
 
         await db.put({
-            TableName: 'user-db',
+            TableName: 'users-db',
             Item: {
                 userId,
-                fullName,
+                username,
                 email,
                 password: hashedPassword,
                 address,
@@ -32,17 +24,11 @@ export const addNewUser = async (event) => {
             },
         });
 
-        // Skapa en JWT-token för den nya användaren
-        const token = jwt.sign({ userId, email, role }, jwtSecret, {
-            expiresIn: '1h',
-        });
-
         return {
             statusCode: 201,
             body: JSON.stringify({
                 success: true,
                 message: "User registered successfully.",
-                token,
             }),
         };
     } catch (error) {
@@ -57,8 +43,7 @@ export const addNewUser = async (event) => {
     }
 };
 
-// Använda middy för att applicera middleware-funktioner
-export const handler = middy(addNewUser)
+export const handler = middy(registerUser)
     .use(validateRegistration())
     .use(errorHandlerReg());
 

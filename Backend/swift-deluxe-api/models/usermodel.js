@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const userSchema = Joi.object({
-    fullName: Joi.string().min(3).required(),
+    username: Joi.string().min(3).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
     repeatPassword: Joi.string().valid(Joi.ref('password')).required().messages({
@@ -12,3 +12,6 @@ const userSchema = Joi.object({
 });
 
 export default userSchema;
+
+
+// Författare Katerina

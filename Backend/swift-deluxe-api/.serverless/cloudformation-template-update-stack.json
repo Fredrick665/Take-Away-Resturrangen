@@ -2,22 +2,28 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "The AWS CloudFormation template for this Serverless application",
   "Resources": {
-    "UserfunctionsLogGroup": {
+    "RegisterUserLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-userfunctions"
+        "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-registerUser"
       }
     },
-    "UserfunctionsLambdaFunction": {
+    "LoginUserLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-loginUser"
+      }
+    },
+    "RegisterUserLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-          "S3Key": "serverless/swift-deluxe-api/dev/1732278003710-2024-11-22T12:20:03.710Z/swift-deluxe-api.zip"
+          "S3Key": "serverless/swift-deluxe-api/dev/1732649135026-2024-11-26T19:25:35.026Z/swift-deluxe-api.zip"
         },
         "Handler": "functions/userfunctions/addnewuser.handler",
         "Runtime": "nodejs20.x",
-        "FunctionName": "swift-deluxe-api-dev-userfunctions",
+        "FunctionName": "swift-deluxe-api-dev-registerUser",
         "MemorySize": 1024,
         "Timeout": 6,
         "Environment": {
@@ -28,17 +34,50 @@
         "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
       },
       "DependsOn": [
-        "UserfunctionsLogGroup"
+        "RegisterUserLogGroup"
       ]
     },
-    "UserfunctionsLambdaVersioneiaasaLrS0iarBrsvGeu6Iy9RU6VRKGAUkySLA": {
+    "LoginUserLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
+          "S3Key": "serverless/swift-deluxe-api/dev/1732649135026-2024-11-26T19:25:35.026Z/swift-deluxe-api.zip"
+        },
+        "Handler": "functions/userfunctions/loginUser.handler",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "swift-deluxe-api-dev-loginUser",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "JWT_SECRET": "someRandomSecretKey12345"
+          }
+        },
+        "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
+      },
+      "DependsOn": [
+        "LoginUserLogGroup"
+      ]
+    },
+    "RegisterUserLambdaVersionl5UoSlceB9P9lPDpXQUbzrdODvyXwEEEZ86KVxPigQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "UserfunctionsLambdaFunction"
+          "Ref": "RegisterUserLambdaFunction"
         },
-        "CodeSha256": "HyXiVfN8BSajUNmUMbh28Y0Vhy3OvQ57ifL3igrBtY8="
+        "CodeSha256": "4I9AYIpP3K2NCDukPgjly2jACJh8KeMgYyKUWtYvLdg="
+      }
+    },
+    "LoginUserLambdaVersionGWYlS3sJad6uWyZqDLzmq7HYEXeQdwbkXXBtaWmEi9g": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LoginUserLambdaFunction"
+        },
+        "CodeSha256": "4I9AYIpP3K2NCDukPgjly2jACJh8KeMgYyKUWtYvLdg="
       }
     },
     "HttpApi": {
@@ -79,12 +118,12 @@
         }
       }
     },
-    "UserfunctionsLambdaPermissionHttpApi": {
+    "RegisterUserLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "UserfunctionsLambdaFunction",
+            "RegisterUserLambdaFunction",
             "Arn"
           ]
         },
@@ -116,7 +155,7 @@
         }
       }
     },
-    "HttpApiIntegrationUserfunctions": {
+    "HttpApiIntegrationRegisterUser": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -125,7 +164,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "UserfunctionsLambdaFunction",
+            "RegisterUserLambdaFunction",
             "Arn"
           ]
         },
@@ -146,36 +185,103 @@
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationUserfunctions"
+                "Ref": "HttpApiIntegrationRegisterUser"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationUserfunctions"
+      "DependsOn": "HttpApiIntegrationRegisterUser"
+    },
+    "LoginUserLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LoginUserLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationLoginUser": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "LoginUserLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePostLogin": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "POST /login",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationLoginUser"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationLoginUser"
     },
     "UsersTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
-        "TableName": "user-db",
+        "TableName": "users-db",
         "AttributeDefinitions": [
           {
-            "AttributeName": "email",
-            "AttributeType": "S"
-          },
-          {
-            "AttributeName": "userId",
+            "AttributeName": "username",
             "AttributeType": "S"
           }
         ],
         "KeySchema": [
           {
-            "AttributeName": "email",
+            "AttributeName": "username",
             "KeyType": "HASH"
-          },
-          {
-            "AttributeName": "userId",
-            "KeyType": "RANGE"
           }
         ],
         "BillingMode": "PAY_PER_REQUEST"
@@ -189,13 +295,22 @@
         "Name": "sls-swift-deluxe-api-dev-ServerlessDeploymentBucketName"
       }
     },
-    "UserfunctionsLambdaFunctionQualifiedArn": {
+    "RegisterUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UserfunctionsLambdaVersioneiaasaLrS0iarBrsvGeu6Iy9RU6VRKGAUkySLA"
+        "Ref": "RegisterUserLambdaVersionl5UoSlceB9P9lPDpXQUbzrdODvyXwEEEZ86KVxPigQ"
       },
       "Export": {
-        "Name": "sls-swift-deluxe-api-dev-UserfunctionsLambdaFunctionQualifiedArn"
+        "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
+      }
+    },
+    "LoginUserLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "LoginUserLambdaVersionGWYlS3sJad6uWyZqDLzmq7HYEXeQdwbkXXBtaWmEi9g"
+      },
+      "Export": {
+        "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
       }
     },
     "HttpApiId": {

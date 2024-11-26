@@ -18,11 +18,18 @@ provider:
     cors: true  
 
 functions:
-  userfunctions:
+  registerUser:
     handler: functions/userfunctions/addnewuser.handler
     events:
       - httpApi:
           path: /register
+          method: post
+
+  loginUser:
+    handler: functions/userfunctions/loginUser.handler
+    events:
+      - httpApi:
+          path: /login
           method: post
          
 
@@ -31,16 +38,12 @@ resources:
     UsersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: user-db
+        TableName: users-db
         AttributeDefinitions:
-          - AttributeName: email
+          - AttributeName: username
             AttributeType: S
-          - AttributeName: userId
-            AttributeType: S  #  userId som ett extra attribut
         KeySchema:
-          - AttributeName: email
+          - AttributeName: username
             KeyType: HASH  # Huvudnyckel (Partition key)
-          - AttributeName: userId
-            KeyType: RANGE  # userId som sorteringsnyckel (RANGE key)
         BillingMode: PAY_PER_REQUEST
         

@@ -1,13 +1,14 @@
 import './registerPage.css';
 import logo from '../../assets/logo.svg';
 import closeIcon from '../../assets/closeIcon.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import { RegisterFormData } from '../../types/interfaceReg';
 import axios from 'axios';
 import { useState } from 'react';
 
 function RegisterPage() {
+  const navigate = useNavigate();
   const [statusMessage, setStatusMessage] = useState('');
 
   const handleRegisterSubmit = async (formData: RegisterFormData) => {
@@ -16,6 +17,10 @@ function RegisterPage() {
       const response = await axios.post('https://sextvrjaie.execute-api.eu-north-1.amazonaws.com/register', formData);
 
       console.log('User registered:', response.data);
+
+      window.alert('You are registred in!')
+
+      navigate('/homepage')
 
       // Vi kan lägga till en sägväg till annan sida 
       setStatusMessage('User registered successfully!');

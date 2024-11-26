@@ -23,3 +23,4 @@ export function sendError(status, data) {
 
 // Förfatare Fredrick
 // Katerina ändrade från module.exports till export och uppdaterade funktionerna för att använda ES-modul syntax
+

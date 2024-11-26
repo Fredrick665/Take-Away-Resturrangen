@@ -1,45 +1,58 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import './registerForm.css';
-import { RegisterFormData, RegisterFormProps } from "../../types/interfaceReg";
+import { RegisterFormData, RegisterFormProps, Errors } from "../../types/interfaceReg";
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
+    // State för att hålla formulärdata
     const [formData, setFormData] = useState<RegisterFormData>({
-        fullName: '',
+        username: '',
         password: '',
         repeatPassword: '',
         address: '',
         email: '',
+        role: 'user',
     });
 
-    const [errors, setErrors] = useState({
+    // State för att hålla felmeddelanden
+    const [errors, setErrors] = useState<Errors>({
         password: '',
         repeatPassword: '',
+        email: '',
     });
 
-    // lösenordsvalidering
-    useEffect(() => {
-        const validatePasswords = () => {
-            let passwordError = '';
-            let repeatPasswordError = '';
-
-            if (formData.password && formData.password.length < 8) {
-                passwordError = 'Password must be at least 8 characters long.';
-            }
-
-            if (formData.password && formData.repeatPassword && formData.password !== formData.repeatPassword) {
-                repeatPasswordError = 'Passwords do not match!';
-            }
-
-            setErrors({
-                password: passwordError,
-                repeatPassword: repeatPasswordError,
-            });
+    // Funktion för att validera formuläret
+    const validateForm = () => {
+        // Skapar ett objekt för att hålla felmeddelanden
+        const errors: Errors = {
+            password: '',
+            repeatPassword: '',
+            email: '',
         };
 
-        validatePasswords();
-    }, [formData.password, formData.repeatPassword]);
+        // Regular expression för att validera e-postformat
+        const emailRegex = /\S+@\S+\.\S+/;
 
-    // Stöd för ändringar i formulärfält
+        if (formData.password.length < 8) {
+            errors.password = 'Password must be at least 8 characters long.';
+        }
+
+        // Kontrollera om lösenord och bekräftelse av lösenord är lika
+        if (formData.password !== formData.repeatPassword) {
+            errors.repeatPassword = 'Passwords do not match!';
+        }
+
+        // Kontrollera om e-postformatet är korrekt
+        if (!emailRegex.test(formData.email)) {
+            errors.email = 'Please enter a valid email address.';
+        }
+
+        setErrors(errors);
+
+        // Funktion för att hantera ändringar i formulärfält
+        return Object.keys(errors).every((key) => errors[key as keyof Errors] === '');
+    };
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
@@ -48,17 +61,18 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         }));
     };
 
-    // Stöd för att skicka formulär
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
 
-        // Om något fel stopar att skicka
-        if (errors.password || errors.repeatPassword) {
+        console.log('Validating formData:', formData);
+
+        // Om formuläret inte är korrekt, stoppa inlämning
+        if (!validateForm()) {
             console.error('Form has errors:', errors);
             return;
         }
-
-
+        console.log("Data being submitted to backend:", formData);
+        console.log('Form is valid, submitting:', formData);
         onSubmit(formData);
     };
 
@@ -66,8 +80,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         <form className="register-form" onSubmit={handleSubmit}>
             <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 placeholder="Full Name"
                 required
@@ -108,9 +122,18 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
                 placeholder="Email"
                 required
             />
+            {errors.email && <div className="error-message">{errors.email}</div>}
+
+
             <button type="submit">Register</button>
         </form>
     );
 };
 
 export default RegisterForm;
+
+
+
+
+
+// Förfatare Katerina
