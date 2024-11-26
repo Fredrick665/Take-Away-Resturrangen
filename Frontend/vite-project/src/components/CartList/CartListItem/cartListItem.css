@@ -1,17 +1,16 @@
 .product-item {
-    max-width: 95%;
-    margin-top: 1.3rem;
-    margin-left: .8rem;
-    padding: .8rem 1rem .8rem .6rem;
+    max-width: 100%;
+    margin-top: 2rem;
+    padding: .8rem 1rem .8rem 1rem;
     background-color: #16181d;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    border-radius: 20px;
 }
 
 .info-product {
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -21,7 +20,7 @@
 .info-product img {
     width: 100%;
     max-width: 120px;
-    height: 130%;
+    height: 100%;
     background-color: #28A745;
 }
 
@@ -54,12 +53,11 @@ p {
 }
 
 .notes-container {
-    width: 60%;
-    margin: 0.3rem;
+    width: 75%;
+    margin: 0.3rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    font-family: var(--text-quintessential);
 }
 
 #notes {
@@ -80,9 +78,7 @@ p {
     resize: vertical;
 }
 
-
 .btn-quantity {
-
     display: flex;
     gap: 1rem;
 }
@@ -98,6 +94,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .btn-subtract {
@@ -111,4 +108,31 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 670px) {
+    .product-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding: 1rem 1rem;
+    }
+    .info-product img {
+        width: 95px;
+    }
+    .text-product,
+p {
+    color: var(--clr-primary-text);
+    font-weight: 300;
+    font-size: 18px;
+}   
+    .notes-container {
+     height: 100%;
+     grid-row: span 2;
+    }
+
+    .notes-input {
+        height: 100%;
+    }
 }

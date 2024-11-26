@@ -34,7 +34,6 @@ function CartPage() {
           <div className="main-line"></div>
         </section>
         
-        {/* Helyesen átadott props típusokkal */}
         <CartList
           items={items}
           onAdd={addItem}

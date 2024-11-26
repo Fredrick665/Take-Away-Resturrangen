@@ -2,6 +2,7 @@ import "./header.css";
 import Hamburgericon from "../HamburgerIcon/HamburgerIcon";
 import CartCounter from "../CartCounter/CartCounter";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
 
 function Header() {
   return (
@@ -12,13 +13,7 @@ function Header() {
         alt="header image"
       />
       <Hamburgericon />
-      <Link to="/homepage">
-        <img
-          className="header__logo"
-          src="/src/assets/restaurant-logo.png"
-          alt=""
-        />
-      </Link>
+      <img src={Logo} className="header__logo" alt="Logga" />
       <h1>SwiftDeluxe Restaruant</h1>
       <Link to="/cart">
         <CartCounter />
@@ -31,4 +26,3 @@ export default Header;
 // Miklos författare till denna component
 // Ändring av Fredrick. La till hamburgaricon.
 // Ändring av Fredrick. Löste en bugg som Fredrick introducerat
-// En till ändring av Fredrick. Lagt routing på loggan
