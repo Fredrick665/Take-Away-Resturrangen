@@ -1,3 +1,4 @@
+
 import './registerPage.css';
 import logo from '../../assets/logo.svg';
 import closeIcon from '../../assets/closeIcon.svg';
@@ -13,20 +14,36 @@ function RegisterPage() {
 
   const handleRegisterSubmit = async (formData: RegisterFormData) => {
     try {
-      // Vi skickar data till backend (AWS Lambda API)
-      const response = await axios.post('https://sextvrjaie.execute-api.eu-north-1.amazonaws.com/register', formData);
 
+      const response = await axios.post('https://sextvrjaie.execute-api.eu-north-1.amazonaws.com/register', formData);
       console.log('User registered:', response.data);
 
-      // window.alert('You are registred in!')
+      navigate('/homepage');
 
-      navigate('/homepage')
-
-      // Vi kan lägga till en sägväg till annan sida 
       setStatusMessage('User registered successfully!');
     } catch (error) {
       console.error('Error registering user:', error);
-      setStatusMessage('Registration failed. Please try again.');
+
+      // Om felet kommer från backend
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          const backendMessage = error.response.data?.message || 'An error occurred with the backend.';
+
+          setStatusMessage(backendMessage);  // meddelande till användaren
+        } else if (error.request) {
+
+          console.error("No response received from backend:", error.request);
+          setStatusMessage('Network error. Please try again later.');
+        } else {
+
+          console.error("Error setting up the request:", error.message);
+          setStatusMessage("An error occurred. Please try again.");
+        }
+      } else {
+
+        console.error("Unknown error:", error);
+        setStatusMessage("An unknown error occurred. Please try again.");
+      }
     }
   };
 
@@ -44,13 +61,14 @@ function RegisterPage() {
         </Link>
       </div>
 
-
       <RegisterForm onSubmit={handleRegisterSubmit} />
     </div>
   );
 }
 
 export default RegisterPage;
+
+
 
 
 // Författare Katarina
