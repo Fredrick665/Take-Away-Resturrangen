@@ -1,124 +1,35 @@
-// import middy from '@middy/core';
-// import { validateRegistration } from "../../middleware/validateReg.js";
-// import { errorHandlerReg } from "../../middleware/errorHandlerReg.js";
-// import { db } from "../../services/index.js";
-// import bcrypt from 'bcryptjs';
-// import { v4 as uuidv4 } from 'uuid';
-
-// export const registerUser = async (event) => {
-//     const { username, email, password, address, role } = JSON.parse(event.body);
-
-//     try {
-//         const hashedPassword = await bcrypt.hash(password, 10);
-//         const userId = uuidv4();
-
-//         await db.put({
-//             TableName: 'users-db',
-//             Item: {
-//                 userId,
-//                 username,
-//                 email,
-//                 password: hashedPassword,
-//                 address,
-//                 role,
-//             },
-//         });
-
-//         return {
-//             statusCode: 201,
-//             body: JSON.stringify({
-//                 success: true,
-//                 message: "User registered successfully.",
-//             }),
-//         };
-//     } catch (error) {
-//         console.error("Error registering user:", error);
-//         return {
-//             statusCode: 500,
-//             body: JSON.stringify({
-//                 success: false,
-//                 message: "Error registering user.",
-//             }),
-//         };
-//     }
-// };
-
-// export const handler = middy(registerUser)
-//     .use(validateRegistration())
-//     .use(errorHandlerReg());
-
-
 
 import middy from '@middy/core';
-import { validateRegistration } from "../../middleware/validateReg.js";
-import { errorHandlerReg } from "../../middleware/errorHandlerReg.js";
+import { validateRegistration, validatePasswords, validateEmailAndUsername } from "../../middleware/validateReg.js";
+import { sendResponse, sendError } from "../../responses/index.js";
 import { db } from "../../services/index.js";
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
+import { errorHandlerReg } from "../../middleware/errorHandlerReg.js";
 
-// Funkcja rejestracji użytkownika
 export const registerUser = async (event) => {
     const { username, email, password, repeatPassword, address, role = 'user' } = JSON.parse(event.body);
 
-    // Walidacja, czy hasła się zgadzają
-    if (password !== repeatPassword) {
-        return {
-            statusCode: 400,
-            body: JSON.stringify({
-                success: false,
-                message: "Hasła muszą być takie same.",
-            }),
-        };
+    // Password Validation
+    const passwordError = validatePasswords(password, repeatPassword);
+    if (passwordError) {
+        return sendError(400, passwordError);
+    }
+
+    // Email and username uniqueness validation
+    const usernameEmailError = await validateEmailAndUsername(username, email);
+    if (usernameEmailError) {
+        return sendError(400, usernameEmailError);
     }
 
     try {
-        // Hashowanie hasła
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Generowanie unikalnego ID użytkownika
         const userId = uuidv4();
 
-        // Sprawdzenie, czy użytkownik już istnieje w bazie danych (unikalność username/email)
-        const existingUsername = await db.get({
-            TableName: 'users-db',
-            Key: { username },
-        });
-
-
-        if (existingUsername.Item) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({
-                    success: false,
-                    message: "Nazwa użytkownika jest już zajęta.",
-                }),
-            };
-        }
-
-        const existingEmail = await db.scan({
-            TableName: 'users-db',
-            FilterExpression: "email = :email",
-            ExpressionAttributeValues: {
-                ":email": email,
-            },
-        });
-
-        if (existingEmail.Items && existingEmail.Items.length > 0) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({
-                    success: false,
-                    message: "E-mail jest już zajęty.",
-                }),
-            };
-        }
-
-
-        // Dodanie użytkownika do bazy danych
         await db.put({
             TableName: 'users-db',
             Item: {
-                username,      // Klucz główny (PK)
+                username,
                 userId,
                 email,
                 password: hashedPassword,
@@ -127,29 +38,17 @@ export const registerUser = async (event) => {
             },
         });
 
-        return {
-            statusCode: 201,
-            body: JSON.stringify({
-                success: true,
-                message: "Użytkownik zarejestrowany pomyślnie.",
-            }),
-        };
+        return sendResponse(201, { message: "User registered successfully." });
     } catch (error) {
-        console.error("Błąd rejestracji użytkownika:", error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({
-                success: false,
-                message: "Wystąpił błąd przy rejestracji użytkownika.",
-            }),
-        };
+        console.error("User registration error:", error);
+        return sendError(500, "An error occurred while registering the user.");
     }
 };
 
-// Middleware do rejestracji
 export const handler = middy(registerUser)
-    .use(validateRegistration())  // Walidacja danych przed rejestracją
-    .use(errorHandlerReg());  // Obsługa błędów
+    .use(validateRegistration())
+    .use(errorHandlerReg());
+
 
 
 

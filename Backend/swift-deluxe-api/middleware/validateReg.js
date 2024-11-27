@@ -1,4 +1,6 @@
 import userSchema from "../models/usermodel.js";
+import { db } from '../services/index.js';
+
 
 export const validateRegistration = () => ({
     before: (handler) => {
@@ -12,6 +14,43 @@ export const validateRegistration = () => ({
 });
 
 
+export const validatePasswords = (password, repeatPassword) => {
+    if (password !== repeatPassword) {
+        return "Passwords must be the same.";
+    }
+
+    if (password.length < 8) {
+        return "Password must be at least 8 characters long.";
+    }
+
+    return null;
+};
+
+
+export const validateEmailAndUsername = async (username, email) => {
+    const existingUsername = await db.get({
+        TableName: 'users-db',
+        Key: { username },
+    });
+
+    if (existingUsername.Item) {
+        return "Username is already taken.";
+    }
+
+    const existingEmail = await db.scan({
+        TableName: 'users-db',
+        FilterExpression: "email = :email",
+        ExpressionAttributeValues: {
+            ":email": email,
+        },
+    });
+
+    if (existingEmail.Items && existingEmail.Items.length > 0) {
+        return "E-mail is already taken.";
+    }
+
+    return null;
+};
 
 
 
