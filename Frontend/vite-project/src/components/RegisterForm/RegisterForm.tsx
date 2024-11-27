@@ -1,55 +1,198 @@
 
+// import React, { useState } from 'react';
+// import './registerForm.css';
+// import { RegisterFormData, RegisterFormProps, Errors } from "../../types/interfaceReg";
+
+// const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
+//     // State för att hålla formulärdata
+//     const [formData, setFormData] = useState<RegisterFormData>({
+//         username: '',
+//         password: '',
+//         repeatPassword: '',
+//         address: '',
+//         email: '',
+//         role: 'user',
+//     });
+
+//     // State för att hålla felmeddelanden
+//     const [errors, setErrors] = useState<Errors>({
+//         password: '',
+//         repeatPassword: '',
+//         email: '',
+//     });
+
+//     // Funktion för att validera formuläret
+//     const validateForm = () => {
+//         // Skapar ett objekt för att hålla felmeddelanden
+//         const errors: Errors = {
+//             password: '',
+//             repeatPassword: '',
+//             email: '',
+//         };
+
+//         // Regular expression för att validera e-postformat
+//         const emailRegex = /\S+@\S+\.\S+/;
+
+//         if (formData.password.length < 8) {
+//             errors.password = 'Password must be at least 8 characters long.';
+//         }
+
+//         // Kontrollera om lösenord och bekräftelse av lösenord är lika
+//         if (formData.password !== formData.repeatPassword) {
+//             errors.repeatPassword = 'Passwords do not match!';
+//         }
+
+//         // Kontrollera om e-postformatet är korrekt
+//         if (!emailRegex.test(formData.email)) {
+//             errors.email = 'Please enter a valid email address.';
+//         }
+
+//         setErrors(errors);
+
+//         // Funktion för att hantera ändringar i formulärfält
+//         return Object.keys(errors).every((key) => errors[key as keyof Errors] === '');
+//     };
+
+//     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//         const { name, value } = event.target;
+//         setFormData((prevData) => ({
+//             ...prevData,
+//             [name]: value,
+//         }));
+//     };
+
+//     const handleSubmit = (event: React.FormEvent) => {
+//         event.preventDefault();
+
+//         console.log('Validating formData:', formData);
+
+//         // Om formuläret inte är korrekt, stoppa inlämning
+//         if (!validateForm()) {
+//             console.error('Form has errors:', errors);
+//             return;
+//         }
+//         console.log("Data being submitted to backend:", formData);
+//         console.log('Form is valid, submitting:', formData);
+//         onSubmit(formData);
+//     };
+
+//     return (
+//         <form className="register-form" onSubmit={handleSubmit}>
+//             <input
+//                 type="text"
+//                 name="username"
+//                 value={formData.username}
+//                 onChange={handleChange}
+//                 placeholder="Full Name"
+//                 required
+//             />
+//             <input
+//                 type="password"
+//                 name="password"
+//                 value={formData.password}
+//                 onChange={handleChange}
+//                 placeholder="Password"
+//                 required
+//             />
+//             {errors.password && <div className="error-message">{errors.password}</div>}
+
+//             <input
+//                 type="password"
+//                 name="repeatPassword"
+//                 value={formData.repeatPassword}
+//                 onChange={handleChange}
+//                 placeholder="Repeat Password"
+//                 required
+//             />
+//             {errors.repeatPassword && <div className="error-message">{errors.repeatPassword}</div>}
+
+//             <input
+//                 type="text"
+//                 name="address"
+//                 value={formData.address}
+//                 onChange={handleChange}
+//                 placeholder="Address"
+//                 required
+//             />
+//             <input
+//                 type="email"
+//                 name="email"
+//                 value={formData.email}
+//                 onChange={handleChange}
+//                 placeholder="Email"
+//                 required
+//             />
+//             {errors.email && <div className="error-message">{errors.email}</div>}
+
+
+//             <button type="submit">Register</button>
+//         </form>
+//     );
+// };
+
+// export default RegisterForm;
+
+
+
+
+
+
 import React, { useState } from 'react';
 import './registerForm.css';
 import { RegisterFormData, RegisterFormProps, Errors } from "../../types/interfaceReg";
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
-    // State för att hålla formulärdata
+    // State dla danych formularza
     const [formData, setFormData] = useState<RegisterFormData>({
         username: '',
         password: '',
         repeatPassword: '',
         address: '',
         email: '',
-        role: 'user',
+        role: 'user',  // Domyślna rola
     });
 
-    // State för att hålla felmeddelanden
+    // State dla błędów formularza
     const [errors, setErrors] = useState<Errors>({
+        username: '',
         password: '',
         repeatPassword: '',
         email: '',
+        address: '',
     });
 
-    // Funktion för att validera formuläret
+    // Funkcja do walidacji formularza
     const validateForm = () => {
-        // Skapar ett objekt för att hålla felmeddelanden
         const errors: Errors = {
+            username: '',
             password: '',
             repeatPassword: '',
             email: '',
+            address: '',
         };
 
-        // Regular expression för att validera e-postformat
-        const emailRegex = /\S+@\S+\.\S+/;
+        const emailRegex = /\S+@\S+\.\S+/;  // Regex do walidacji emaila
+
+
 
         if (formData.password.length < 8) {
             errors.password = 'Password must be at least 8 characters long.';
         }
 
-        // Kontrollera om lösenord och bekräftelse av lösenord är lika
         if (formData.password !== formData.repeatPassword) {
             errors.repeatPassword = 'Passwords do not match!';
         }
 
-        // Kontrollera om e-postformatet är korrekt
         if (!emailRegex.test(formData.email)) {
             errors.email = 'Please enter a valid email address.';
         }
 
+        if (formData.address.trim() === '') {
+            errors.address = 'Address is required.';
+        }
+
         setErrors(errors);
 
-        // Funktion för att hantera ändringar i formulärfält
         return Object.keys(errors).every((key) => errors[key as keyof Errors] === '');
     };
 
@@ -64,16 +207,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
 
-        console.log('Validating formData:', formData);
-
-        // Om formuläret inte är korrekt, stoppa inlämning
+        // Walidacja formularza przed wysłaniem
         if (!validateForm()) {
             console.error('Form has errors:', errors);
             return;
         }
+
         console.log("Data being submitted to backend:", formData);
-        console.log('Form is valid, submitting:', formData);
-        onSubmit(formData);
+        onSubmit(formData);  // Wywołanie metody onSubmit, która przekazuje dane do backendu
     };
 
     return (
@@ -86,6 +227,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
                 placeholder="Full Name"
                 required
             />
+
             <input
                 type="password"
                 name="password"
@@ -114,6 +256,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
                 placeholder="Address"
                 required
             />
+            {errors.address && <div className="error-message">{errors.address}</div>}
+
             <input
                 type="email"
                 name="email"
@@ -124,15 +268,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
             />
             {errors.email && <div className="error-message">{errors.email}</div>}
 
-
             <button type="submit">Register</button>
         </form>
     );
 };
 
 export default RegisterForm;
-
-
 
 
 

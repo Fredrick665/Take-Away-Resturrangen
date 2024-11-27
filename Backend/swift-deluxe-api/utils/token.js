@@ -22,7 +22,7 @@ export const comparePasswords = async (password, storedPassword) => {
 export const generateJWT = (user) => {
     const payload = {
         userId: user.userId,
-        email: user.email,
+        username: user.username,
         role: user.role
     };
 

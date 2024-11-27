@@ -18,7 +18,7 @@ function RegisterPage() {
 
       console.log('User registered:', response.data);
 
-      window.alert('You are registred in!')
+      // window.alert('You are registred in!')
 
       navigate('/homepage')
 

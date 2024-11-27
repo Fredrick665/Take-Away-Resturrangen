@@ -16,7 +16,9 @@ export interface RegisterFormProps {
 
 // Definierar typen för registreringsformulärfel
 export type Errors = {
+    username: string;
     password: string;
     repeatPassword: string;
     email: string;
+    address: string;
 };
