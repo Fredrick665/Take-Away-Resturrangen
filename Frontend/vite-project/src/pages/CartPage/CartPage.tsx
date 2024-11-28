@@ -4,48 +4,95 @@ import logo from "../../assets/logo.svg";
 import CartList from "../../components/CartList/CartList";
 import { useCartStore } from "../../stores/cartStore";
 import CartCounter from "../../components/CartCounter/CartCounter";
-import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import HamburgerIcon from "../../components/HamburgerIcon/HamburgerIcon";
+import axios from "axios";
+import { useState } from "react";
 
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Beräknar den totala summan
+  const handleAdd = (itemId: string) => {
+    const item = items.find((item) => item.itemId === itemId);
+    if (item) {
+      addItem(item);
+    } else {
+      console.error("Item with id ${itemId} not found in cart.");
+    }
+  };
+
+  const handleSubtract = subtractItem;
+  const handleNotesChange = updateNotes;
+
   const totalPrice = items.reduce(
     (sum: number, item) => sum + item.price * item.quantity,
     0
   );
-  
+
+  const handleSubmit = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    try {
+      const orderItems = items.map((item) => ({
+        id: item.itemId,
+        name: item.title,
+        quantity: item.quantity,
+        notes: item.notes,
+      }));
+
+      const response = await axios.post(
+        "https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order",
+        { orderItems }
+      );
+
+      console.log("Order skapad:", response.data);
+    } catch (error) {
+      console.error("Fel vid skapande av order:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="cart-page">
       <div className="header-cart">
-        <Hamburgericon />
+        <HamburgerIcon />
         <Link to="/homepage">
           <img src={logo} alt="logo" className="logo-icon" />
         </Link>
-        <CartCounter /> {/* antal varor  */}
+        <CartCounter />
       </div>
 
       <div className="main-cart">
-        <p className="main-text">Total: {totalPrice} kr</p> {/* totalpris */}
+        <p className="main-text">Total: {totalPrice} kr</p>
         <section className="main-filter">
           <h2 className="main-heading">Cart</h2>
           <button className="btn-pris">Price</button>
           <button className="btn-az">A-Z</button>
           <div className="main-line"></div>
         </section>
-        
-        {/* Helyesen átadott props típusokkal */}
         <CartList
           items={items}
-          onAdd={addItem}
-          onSubtract={subtractItem}
-          onNotesChange={updateNotes}
+          onAdd={handleAdd}
+          onSubtract={handleSubtract}
+          onNotesChange={handleNotesChange}
         />
       </div>
 
       <div className="footer-cart">
-        <Link to="/confirmedorders">
-          <button type="submit">Bekräfta beställning</button>
+        <Link
+          to="/confirmedorders"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit().then(() => {
+              window.location.href = "/confirmedorders";
+            });
+          }}
+        >
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
+          </button>
         </Link>
       </div>
     </div>
@@ -54,6 +101,5 @@ function CartPage() {
 
 export default CartPage;
 
-
-
 // Förtfattare Katerina
+// Ändringar av Fredrick. Har typat om en del.

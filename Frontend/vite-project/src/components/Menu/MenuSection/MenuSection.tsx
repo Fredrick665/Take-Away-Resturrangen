@@ -7,6 +7,7 @@ interface MenuItem {
   price: number;
   imageurl: string;
   title: string;
+  category: string;
 }
 
 const MenuSection: React.FC = () => {
@@ -36,35 +37,48 @@ const MenuSection: React.FC = () => {
     }
   };
 
+  const groupedByCategory = menuItems.reduce((groups, item) => {
+    const { category } = item;
+    if (!groups[category]) {
+      groups[category] = [];
+    }
+    groups[category].push(item);
+    return groups;
+  }, {} as { [key: string]: MenuItem[] });
+
   return (
-    <section className="menu__section">
-      <button
-        className="slide-btn left"
-        onClick={() => scrollContainer("left")}
-      >
-        <img src="/src/assets/arrow-icon.svg" alt="Previous" />
-      </button>
-      <button
-        className="slide-btn right"
-        onClick={() => scrollContainer("right")}
-      >
-        <img src="/src/assets/arrow-icon.svg" alt="Next" />
-      </button>
+    <>
+      {Object.keys(groupedByCategory).map((category) => (
+        <section key={category} className="menu__section">
+          <button
+            className="slide-btn left"
+            onClick={() => scrollContainer("left")}
+          >
+            <img src="/src/assets/arrow-icon.svg" alt="Previous" />
+          </button>
+          <button
+            className="slide-btn right"
+            onClick={() => scrollContainer("right")}
+          >
+            <img src="/src/assets/arrow-icon.svg" alt="Next" />
+          </button>
 
-      <section className="menu__filter-section">
-        <h3>Food Type</h3>
-        <div className="menu__filter-btns">
-          <button>Price</button>
-          <button>A-Z</button>
-        </div>
-      </section>
+          <section className="menu__filter-section">
+            <h3>{category}</h3>
+            <div className="menu__filter-btns">
+              <button>Price</button>
+              <button>A-Z</button>
+            </div>
+          </section>
 
-      <section className="menu__food-container" ref={containerRef}>
-        {menuItems.map((item) => (
-          <MenuFoodCard key={item.itemId} {...item} />
-        ))}
-      </section>
-    </section>
+          <section className="menu__food-container" ref={containerRef}>
+            {groupedByCategory[category].map((item) => (
+              <MenuFoodCard key={item.itemId} {...item} />
+            ))}
+          </section>
+        </section>
+      ))}
+    </>
   );
 };
 
@@ -72,3 +86,5 @@ export default MenuSection;
 
 // Författare: Miklós
 // Ändring av Fredrick. Har använt useFootgun för att hämta menyalternativen och skickat ner dem som props till menufooditems. Funktionalitet för kategori för sorteringen finns inte än.
+// Ändring av Fredrick. Allt är sorterat efter kategori.
+//Ändringar av Fredrick. Har typat om en del.
