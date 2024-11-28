@@ -1,7 +1,7 @@
 {
   "D:\\FU23\\TypeScript\\Take-Away-Resturrangen\\Backend\\swift-deluxe-api": {
     "versionSfCore": null,
-    "versionFramework": "4.4.12",
+    "versionFramework": "4.4.13",
     "isWithinCompose": false,
     "isCompose": false,
     "composeOrgName": null,
@@ -50,7 +50,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/addnewuser.handler",
                       "Runtime": "nodejs20.x",
@@ -73,7 +73,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/loginUser.handler",
                       "Runtime": "nodejs20.x",
@@ -91,24 +91,24 @@
                       "LoginUserLogGroup"
                     ]
                   },
-                  "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g": {
+                  "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "RegisterUserLambdaFunction"
                       },
-                      "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                      "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
                     }
                   },
-                  "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw": {
+                  "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LoginUserLambdaFunction"
                       },
-                      "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                      "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
                     }
                   },
                   "HttpApi": {
@@ -330,7 +330,7 @@
                   "RegisterUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                      "Ref": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -339,7 +339,7 @@
                   "LoginUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                      "Ref": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -402,7 +402,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                "versionLogicalId": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
               },
               "loginUser": {
                 "handler": "functions/userfunctions/loginUser.handler",
@@ -422,7 +422,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                "versionLogicalId": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
               }
             },
             "resources": {
@@ -510,7 +510,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/addnewuser.handler",
                       "Runtime": "nodejs20.x",
@@ -533,7 +533,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/loginUser.handler",
                       "Runtime": "nodejs20.x",
@@ -551,24 +551,24 @@
                       "LoginUserLogGroup"
                     ]
                   },
-                  "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g": {
+                  "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "RegisterUserLambdaFunction"
                       },
-                      "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                      "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
                     }
                   },
-                  "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw": {
+                  "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LoginUserLambdaFunction"
                       },
-                      "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                      "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
                     }
                   },
                   "HttpApi": {
@@ -790,7 +790,7 @@
                   "RegisterUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                      "Ref": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -799,7 +799,7 @@
                   "LoginUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                      "Ref": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -862,7 +862,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                "versionLogicalId": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
               },
               "loginUser": {
                 "handler": "functions/userfunctions/loginUser.handler",
@@ -882,7 +882,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                "versionLogicalId": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
               }
             },
             "resources": {
@@ -970,7 +970,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/addnewuser.handler",
                       "Runtime": "nodejs20.x",
@@ -993,7 +993,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/loginUser.handler",
                       "Runtime": "nodejs20.x",
@@ -1011,24 +1011,24 @@
                       "LoginUserLogGroup"
                     ]
                   },
-                  "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g": {
+                  "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "RegisterUserLambdaFunction"
                       },
-                      "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                      "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
                     }
                   },
-                  "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw": {
+                  "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LoginUserLambdaFunction"
                       },
-                      "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                      "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
                     }
                   },
                   "HttpApi": {
@@ -1250,7 +1250,7 @@
                   "RegisterUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                      "Ref": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -1259,7 +1259,7 @@
                   "LoginUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                      "Ref": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -1322,7 +1322,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                "versionLogicalId": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
               },
               "loginUser": {
                 "handler": "functions/userfunctions/loginUser.handler",
@@ -1342,7 +1342,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                "versionLogicalId": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
               }
             },
             "resources": {
@@ -1431,7 +1431,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/userfunctions/addnewuser.handler",
                 "Runtime": "nodejs20.x",
@@ -1454,7 +1454,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1732719643124-2024-11-27T15:00:43.124Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1732779364084-2024-11-28T07:36:04.084Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/userfunctions/loginUser.handler",
                 "Runtime": "nodejs20.x",
@@ -1472,24 +1472,24 @@
                 "LoginUserLogGroup"
               ]
             },
-            "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g": {
+            "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "RegisterUserLambdaFunction"
                 },
-                "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
               }
             },
-            "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw": {
+            "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "LoginUserLambdaFunction"
                 },
-                "CodeSha256": "4iRPq9gjXdR53in1AdTksZpSo/G5GgF92PP6ccUW9ic="
+                "CodeSha256": "O74NaXBG3nP8m4oT9lBBMuVQGsjvx6phfGRcBN94Ct0="
               }
             },
             "HttpApi": {
@@ -1711,7 +1711,7 @@
             "RegisterUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+                "Ref": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -1720,7 +1720,7 @@
             "LoginUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+                "Ref": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -1783,7 +1783,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "RegisterUserLambdaVersionKcX26Z4YBjsqFdupfYu3X8wQZP3eWfZwpgYI1L47g"
+          "versionLogicalId": "RegisterUserLambdaVersionUQCXpV4L0VKdWIR2UuNm2RyIEzuXpbFcVwRieiav5M"
         },
         "loginUser": {
           "handler": "functions/userfunctions/loginUser.handler",
@@ -1803,7 +1803,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "LoginUserLambdaVersionrYfB4j0XFkkBYFCRjdsVGFT37ru6g3PyiQf1ra1kXw"
+          "versionLogicalId": "LoginUserLambdaVersionpEf1fNo1phicJV3OenSObsES7T9MealFjEb2tSphc"
         }
       },
       "resources": {
@@ -1864,24 +1864,24 @@
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "796973483684",
     "projectType": "traditional",
-    "versionSf": "4.4.12",
+    "versionSf": "4.4.13",
     "serviceProviderAwsCfStackName": "swift-deluxe-api-dev",
     "integrations": {},
     "serviceUniqueId": "arn:aws:cloudformation:eu-north-1:796973483684:stack/swift-deluxe-api-dev/50d98e00-a772-11ef-ad98-0ae1d4f67c81",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-north-1:796973483684:stack/swift-deluxe-api-dev/50d98e00-a772-11ef-ad98-0ae1d4f67c81",
     "serviceProviderAwsCfStackCreated": "2024-11-20T19:04:49.743Z",
-    "serviceProviderAwsCfStackUpdated": "2024-11-27T15:00:47.233Z",
+    "serviceProviderAwsCfStackUpdated": "2024-11-28T07:36:12.479Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "RegisterUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-registerUser:35",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-registerUser:39",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "LoginUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-loginUser:36",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-loginUser:40",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
       },

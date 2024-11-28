@@ -21,9 +21,9 @@ export const comparePasswords = async (password, storedPassword) => {
 // Funktion för att generera JWT (token)
 export const generateJWT = (user) => {
     const payload = {
-        userId: user.userId,
+        // userId: user.userId,
         username: user.username,
-        role: user.role
+        // role: user.role
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });

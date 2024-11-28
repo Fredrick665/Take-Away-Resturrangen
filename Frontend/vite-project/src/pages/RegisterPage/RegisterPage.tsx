@@ -18,7 +18,7 @@ function RegisterPage() {
       const response = await axios.post('https://sextvrjaie.execute-api.eu-north-1.amazonaws.com/register', formData);
       console.log('User registered:', response.data);
 
-      navigate('/homepage');
+      navigate('/login');
 
       setStatusMessage('User registered successfully!');
     } catch (error) {

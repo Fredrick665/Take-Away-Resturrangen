@@ -4,7 +4,7 @@ import "./loginForm.css";
 import { LoginFormProps } from "../../types/interfaceLog";
 
 function LoginForm({ onSubmit }: LoginFormProps) {
-    const [email, setEmail] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -12,8 +12,8 @@ function LoginForm({ onSubmit }: LoginFormProps) {
         event.preventDefault();
 
         // Ingångsverifiering
-        if (!email || !password) {
-            setErrorMessage("Both email and password are required.");
+        if (!username || !password) {
+            setErrorMessage("Both username and password are required.");
             return;
         }
 
@@ -24,19 +24,21 @@ function LoginForm({ onSubmit }: LoginFormProps) {
 
         setErrorMessage(null);
 
-        console.log("Submitting:", email, password); // Debugging log
-        onSubmit(email, password);
+        console.log("Submitting:", username, password); // Debugging log
+        onSubmit(username, password);
     };
 
     return (
         <form className="login-form" onSubmit={handleSubmit}>
+
+
             <div>
                 <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                 />
             </div>
@@ -55,6 +57,7 @@ function LoginForm({ onSubmit }: LoginFormProps) {
             {errorMessage && <div className="error-message">{errorMessage}</div>}
 
             <button type="submit">Log in</button>
+
         </form>
     );
 }

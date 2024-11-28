@@ -6,7 +6,7 @@ const jwtSecret = process.env.JWT_SECRET;
 export const adminAuthenticator = () => ({
     before: async (handler) => {
         // Hämta auktoriseringshuvudet
-        const authHeader = handler.event.headers.Authorization;
+        const authHeader = handler.event.headers.authorization;
 
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             console.error('No token provided');

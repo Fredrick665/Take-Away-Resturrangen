@@ -1,7 +1,7 @@
 
 export interface LoginFormProps {
     onSubmit: (
-        email: string,
+        username: string,
         password: string
     ) => void;   // Funktionens resultat är void, vilket betyder att den inte returnerar något
 };
