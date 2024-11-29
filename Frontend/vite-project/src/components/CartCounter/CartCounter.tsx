@@ -20,7 +20,6 @@ function CartCounter() {
 
 export default CartCounter;
 
-
-
 // Författare Katerina
-// Ändring av Fredrick. Lagt routing på kundvagnen så man hamnar på cart page
+// Ändring av Fredrick. Lagt routing på kundvagnen så man hamnar på cart page.
+// Ändring av Fredrick. Fick ändra lite css så att siffran i kundvagnen syntes på homepage.

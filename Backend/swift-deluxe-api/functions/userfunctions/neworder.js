@@ -9,7 +9,7 @@ const dynamoDBClient = new DynamoDBClient({ region: "eu-north-1" });
 exports.neworder = async (event) => {
   try {
     const requestBody = JSON.parse(event.body);
-    const { orderItems } = requestBody;
+    const { orderItems, message } = requestBody;
 
     if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
       return {
@@ -25,6 +25,7 @@ exports.neworder = async (event) => {
     const newOrder = {
       id: orderId,
       orderItems: orderItems,
+      message: message || "",
       status: "PENDING",
       createdAt: new Date().toISOString(),
     };
@@ -48,4 +49,6 @@ exports.neworder = async (event) => {
     };
   }
 };
+
 //Författare Fredrick
+// Ändring av Fredrick. La till funktionen att skicka med meddelanden med beställningen

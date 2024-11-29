@@ -1,0 +1,71 @@
+const { DynamoDB } = require("@aws-sdk/client-dynamodb");
+const {
+  DynamoDBDocument,
+  UpdateCommand,
+  GetCommand,
+} = require("@aws-sdk/lib-dynamodb");
+
+const db = DynamoDBDocument.from(new DynamoDB());
+const orderTableName = "Orders_SwiftDeluxe";
+
+exports.updateOrder = async (event) => {
+  try {
+    const { id, orderItems, message } = JSON.parse(event.body);
+
+    if (!id || (!orderItems && !message)) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          error:
+            "Order ID samt minst ett av 'orderItems' eller 'message' krävs",
+        }),
+      };
+    }
+
+    const existingOrder = await db.send(
+      new GetCommand({ TableName: orderTableName, Key: { id } })
+    );
+    if (!existingOrder.Item) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: "Order hittades inte" }),
+      };
+    }
+
+    const updateParams = {
+      TableName: orderTableName,
+      Key: { id },
+      UpdateExpression:
+        "SET " +
+        (orderItems ? "#oi = :orderItems, " : "") +
+        (message ? "#msg = :message, " : "") +
+        "updatedAt = :updatedAt",
+      ExpressionAttributeNames: {
+        ...(orderItems && { "#oi": "orderItems" }),
+        ...(message && { "#msg": "message" }),
+      },
+      ExpressionAttributeValues: {
+        ...(orderItems && { ":orderItems": orderItems }),
+        ...(message && { ":message": message }),
+        ":updatedAt": new Date().toISOString(),
+      },
+      ReturnValues: "UPDATED_NEW",
+    };
+
+    const result = await db.send(new UpdateCommand(updateParams));
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: "Order uppdaterades framgångsrikt!",
+        updatedAttributes: result.Attributes,
+      }),
+    };
+  } catch (error) {
+    console.error("Fel vid uppdatering av order:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Kunde inte uppdatera order" }),
+    };
+  }
+};

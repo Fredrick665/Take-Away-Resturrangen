@@ -1,20 +1,28 @@
-// Typ för en enskild artikel i kundvagnen
 export interface CartItem {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    notes: string;
+  id: number;
+  itemId: string;
+  category: string;
+  price: number;
+  imageurl: string;
+  title: string;
+  desc: string;
+  quantity: number;
+  notes: string;
+}
+export interface OrderItem {
+  id: string;
+  name: string;
+  quantity: number;
+  notes?: string;
 }
 
-// Typ för kundvagnens tillstån
 export interface CartState {
-    items: CartItem[]; // Lista över artiklar i kundvagnen
-    totalQuantity: number; // Det totala antalet artiklar i kundvagnen
-    addItem: (id: number) => void; // Funktion för att lägga till en artikel i kundvagnen
-    subtractItem: (id: number) => void; // Funktion för att ta bort en artikel från kundvagnen
-    updateNotes: (id: number, notes: string) => void; // Funktion för att uppdatera anteckningar för en artikel
+  items: CartItem[];
+  totalQuantity: number;
+  addItem: (menuItem: CartItem) => void;
+  subtractItem: (itemId: string) => void;
+  updateNotes: (itemId: string, notes: string) => void;
 }
-
 
 // Förtfattare Katerina
+//Ändringar av Fredrick Har typat om en del
