@@ -26,8 +26,10 @@
 }
 
 .header__logo {
-  position: absolute;
-  left: 5%;
+
+        position: absolute;
+        left: 5%;
+        width: 30rem;
 }
 
 @media screen and (max-width: 1100px) {

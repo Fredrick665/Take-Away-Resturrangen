@@ -1,9 +1,13 @@
 import "./footer.css";
+import Logo from "../../assets/logo.png";
+import FacebookBtn from "./../../assets/facebook-logo.svg";
+import InstagramBtn from "./../../assets/instagram-logo.svg"
+
 function Footer() {
   return (
     <footer className="footer">
       <section className="footer__logo">
-        <img src="/src/assets/restaurant-logo.png" alt="" />
+      <img src={Logo} alt="Logga" />
         <h1>SwiftDeluxe Restaruant</h1>
       </section>
       <ul className="footer__contacts">
@@ -14,13 +18,13 @@ function Footer() {
       <section className="footer__social-media">
         <img
           className="footer__social-media-icon"
-          src="/src/assets/facebook-logo.svg"
-          alt=""
+          src={FacebookBtn}
+          alt="facebook button"
         />
         <img
           className="footer__social-media-icon"
-          src="/src/assets/instagram-logo.svg"
-          alt=""
+          src={InstagramBtn}
+          alt="instagram button"
         />
       </section>
     </footer>

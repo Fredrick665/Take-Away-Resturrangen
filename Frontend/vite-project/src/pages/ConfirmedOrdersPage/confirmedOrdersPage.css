@@ -3,7 +3,10 @@
   text-align: center;
   background-color: var(--clr-background);
   font-family: var(--text-poly);
-  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .confirmed-orders-page__logo {
@@ -48,6 +51,9 @@
   width: 165px;
   height: 30px;
   margin-top: 50px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .confirmed-orders-page__logo::before {
