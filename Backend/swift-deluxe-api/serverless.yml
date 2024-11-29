@@ -38,6 +38,14 @@ functions:
       - httpApi:
           path: /order
           method: post
+
+  updateOrder:
+    handler: functions/updateorder.updateOrderItemsAndMessage
+    events:
+      - httpApi:
+          path: /order
+          method: put
+
 resources:
   Resources:
     OrdersTable:
