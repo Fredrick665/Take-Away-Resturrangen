@@ -1,28 +1,46 @@
-import { useCartStore } from './../../../../stores/cartStore';
-import './menuFoodCard.css';
+import { useCartStore } from "./../../../../stores/cartStore";
+import "./menuFoodCard.css";
 
-function MenuFoodCard() {
+interface MenuFoodCardprops {
+  imageurl: string;
+  title: string;
+  price: number;
+  itemId: string;
+  category: string;
+}
+
+function MenuFoodCard({
+  imageurl,
+  title,
+  price,
+  itemId,
+  category,
+}: MenuFoodCardprops) {
   const addItemToCart = useCartStore((state) => state.addItem);
-  const foodItem = {
-    id: 1,
-    name: 'Sushi One',
-    price: 1500,
-  };
 
   const handleAddToCart = () => {
-    addItemToCart(foodItem.id);
+    addItemToCart({
+      itemId,
+      imageurl,
+      title,
+      price,
+      desc: "",
+      quantity: 1,
+      notes: "",
+      category,
+      id: 0,
+    });
   };
 
   return (
     <article className="menu__food-card">
-      <figure>
-        <img
-          src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-        />
-      </figure>
-      <h4>{foodItem.name}</h4>
-      <p>{foodItem.price}kr</p>
+      <div>
+        <figure>
+          <img src={imageurl} alt={title} />
+        </figure>
+        <h4>{title}</h4>
+        <p>{price}kr</p>
+      </div>
       <button onClick={handleAddToCart}>Add to Cart</button>
     </article>
   );
@@ -31,3 +49,5 @@ function MenuFoodCard() {
 export default MenuFoodCard;
 
 // Författare: Miklós
+// Ändring av Fredrick: Har typat upp props för att få ett fungerande beställningsflöde.
+// Mer ändringar av Fredrick. Har typat om en del.

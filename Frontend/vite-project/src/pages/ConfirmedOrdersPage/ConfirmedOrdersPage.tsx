@@ -22,10 +22,18 @@ function ConfirmedOrdersPage() {
           Tillbaka till Homepage
         </button>
       </Link>
+      <h1 className="confirmed-orders-page__title">
+        Ändrat dig? Klicka på knappen nedan för att göra ändringar på din
+        beställning
+      </h1>
+      <button className="confirmed-orders-page__back-button">
+        Ändra Order
+      </button>
     </main>
   );
 }
 
 export default ConfirmedOrdersPage;
+
 // Författare Fredrick.
 // // Ändring av Fredrick. Lagt till routing så man hamnar på homepage när man klickar på loggan.

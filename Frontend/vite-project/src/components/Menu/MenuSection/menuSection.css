@@ -48,7 +48,7 @@
         height: 2px;
         background: var(--clr-dark-gray);
         top: 23px;
-        left: 355px;
+        left: 0px;
     } 
 
     .menu__filter-section {
@@ -63,11 +63,17 @@
             font-size: 40px;
             font-family: var(--text-revolution);
             font-weight: 300;
-            width: 200px;
+            background-color: var(--clr-background);
+            z-index: 4;
+            
         }
         .menu__filter-btns {
             display: flex;
             align-items: center;
+            background-color: var(--clr-background);
+            z-index: 4;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
 
         button {
@@ -138,7 +144,15 @@
 }
 .menu__filter-section::before {
     display: none;
-} 
+}
+
+.menu__section {
+    .menu__food-container {
+        align-items: flex-start;
+    }
+}
+
+
 }
 
 @media screen and (max-width: 740px) {

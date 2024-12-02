@@ -155,3 +155,30 @@
         font-size: 1.3rem;
     }
 }
+
+
+
+
+
+
+/* Stilar för message */
+.status-message {
+    margin-top: 20px;
+    padding: 20px 10px 10px 10px;
+    border-radius: 5px;
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.status-message.success {
+    background-color: var(--clr-green);
+    color: var(--clr-secondery-text);
+    border: none;
+}
+
+.status-message.error {
+    background-color: var(--clr-red-button);
+    color: var(--clr-secondery-text);
+    border: none;
+}

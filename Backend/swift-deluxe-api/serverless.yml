@@ -14,16 +14,24 @@ provider:
     role: ${file(./local.yml):iamRole}
   environment:
     DYNAMODB_TABLE: Menu_Items_SwiftDeluxe
+    JWT_SECRET: ${env:JWT_SECRET}  
   httpApi:
-    cors: true
+    cors: true  
 
 functions:
-  hello:
-    handler: handler.hello
+  registerUser:
+    handler: functions/userfunctions/addnewuser.handler
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /register
+          method: post
+
+  loginUser:
+    handler: functions/userfunctions/loginUser.handler
+    events:
+      - httpApi:
+          path: /login
+          method: post
 
   getMenuItems:
     handler: functions/userfunctions/getmenu.getMenuItems
@@ -38,6 +46,16 @@ functions:
       - httpApi:
           path: /order
           method: post
+
+
+  updateOrder:
+    handler: functions/updateorder.updateOrderItemsAndMessage
+    events:
+      - httpApi:
+          path: /order
+          method: put
+
+
 resources:
   Resources:
     OrdersTable:
@@ -51,3 +69,15 @@ resources:
           - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+          
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: users-db
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
+            KeyType: HASH  # Partition key
+        BillingMode: PAY_PER_REQUEST      
