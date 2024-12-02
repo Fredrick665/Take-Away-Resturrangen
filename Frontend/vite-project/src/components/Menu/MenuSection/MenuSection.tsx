@@ -1,7 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MenuFoodCard from "./MenuFoodItem/MenuFoodCard";
+import FilterBtn from "./../../FilterBtns/FilterBtns";
 import "./menuSection.css";
-import  ArrowBtn  from "./../../../assets/arrow-icon.svg"
+import ArrowBtn from "./../../../assets/arrow-icon.svg";
 
 interface MenuItem {
   itemId: string;
@@ -12,6 +13,8 @@ interface MenuItem {
 
 const MenuSection: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [sortedItems, setSortedItems] = useState<MenuItem[]>([]);
+  const [sortBy, setSortBy] = useState<"price" | "name" | "none">("none");
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -22,6 +25,7 @@ const MenuSection: React.FC = () => {
         );
         const data: MenuItem[] = await response.json();
         setMenuItems(data);
+        setSortedItems(data);
       } catch (error) {
         console.error("Failed to fetch menu items:", error);
       }
@@ -29,6 +33,22 @@ const MenuSection: React.FC = () => {
 
     fetchMenuItems();
   }, []);
+
+  useEffect(() => {
+    let sortedArray = [...menuItems];
+    if (sortBy === "price") {
+      sortedArray.sort((a, b) => a.price - b.price);
+    } else if (sortBy === "name") {
+      sortedArray.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      sortedArray = [...menuItems];
+    }
+    setSortedItems(sortedArray);
+  }, [sortBy, menuItems]);
+
+  const handleSort = (type: "price" | "name") => {
+    setSortBy((prevSortBy) => (prevSortBy === type ? "none" : type));
+  };
 
   const scrollContainer = (direction: "left" | "right"): void => {
     if (containerRef.current) {
@@ -55,13 +75,17 @@ const MenuSection: React.FC = () => {
       <section className="menu__filter-section">
         <h3>Food Type</h3>
         <div className="menu__filter-btns">
-          <button>Price</button>
-          <button>A-Z</button>
+          <FilterBtn isActive={sortBy === "price"} onClick={() => handleSort("price")}>
+            Price
+          </FilterBtn>
+          <FilterBtn isActive={sortBy === "name"} onClick={() => handleSort("name")}>
+            A-Z
+          </FilterBtn>
         </div>
       </section>
 
       <section className="menu__food-container" ref={containerRef}>
-        {menuItems.map((item) => (
+        {sortedItems.map((item) => (
           <MenuFoodCard key={item.itemId} {...item} />
         ))}
       </section>
@@ -70,6 +94,7 @@ const MenuSection: React.FC = () => {
 };
 
 export default MenuSection;
+
 
 // Författare: Miklós
 // Ändring av Fredrick. Har använt useFootgun för att hämta menyalternativen och skickat ner dem som props till menufooditems. Funktionalitet för kategori för sorteringen finns inte än.
