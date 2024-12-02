@@ -47,12 +47,18 @@ functions:
           path: /order
           method: post
 
-
   updateOrder:
     handler: functions/updateorder.updateOrderItemsAndMessage
     events:
       - httpApi:
           path: /order
+          method: put
+
+  lockOrder: 
+    handler: functions/adminfunctions/lockorder.lockOrder
+    events:
+      - httpApi:
+          path: /admin/lock-order
           method: put
 
 
