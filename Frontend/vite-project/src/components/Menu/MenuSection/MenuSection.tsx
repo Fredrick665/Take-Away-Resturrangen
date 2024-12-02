@@ -12,7 +12,8 @@ interface MenuItem {
 
 const MenuSection: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [sortBy, setSortBy] = useState<{ [key: string]: string }>({});
+  const containerRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -21,7 +22,13 @@ const MenuSection: React.FC = () => {
           "https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/menu-items"
         );
         const data: MenuItem[] = await response.json();
-        setMenuItems(data);
+
+        const parsedData = data.map((item) => ({
+          ...item,
+          price: parseFloat(item.price.toString()),
+        }));
+
+        setMenuItems(parsedData);
       } catch (error) {
         console.error("Failed to fetch menu items:", error);
       }
@@ -30,10 +37,11 @@ const MenuSection: React.FC = () => {
     fetchMenuItems();
   }, []);
 
-  const scrollContainer = (direction: "left" | "right"): void => {
-    if (containerRef.current) {
+  const scrollContainer = (category: string, direction: "left" | "right"): void => {
+    const container = containerRefs.current[category];
+    if (container) {
       const scrollAmount: number = direction === "left" ? -500 : 500;
-      containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
@@ -46,19 +54,50 @@ const MenuSection: React.FC = () => {
     return groups;
   }, {} as { [key: string]: MenuItem[] });
 
+  const handleSortToggle = (category: string, criteria: string) => {
+    setSortBy((prevSortBy) => {
+      const currentSort = prevSortBy[category];
+      const newSort =
+        currentSort === criteria ? "none" : criteria;
+      return {
+        ...prevSortBy,
+        [category]: newSort,
+      };
+    });
+  };
+
+  const getSortedItems = (category: string) => {
+    const items = groupedByCategory[category] || [];
+    const currentSort = sortBy[category] || "none";
+
+    if (currentSort === "price") {
+      return [...items].sort((a, b) => a.price - b.price);
+    }
+    if (currentSort === "reverse-price") {
+      return [...items].sort((a, b) => b.price - a.price);
+    }
+    if (currentSort === "az") {
+      return [...items].sort((a, b) => a.title.localeCompare(b.title));
+    }
+    if (currentSort === "za") {
+      return [...items].sort((a, b) => b.title.localeCompare(a.title));
+    }
+    return items;
+  };
+
   return (
     <>
       {Object.keys(groupedByCategory).map((category) => (
         <section key={category} className="menu__section">
           <button
             className="slide-btn left"
-            onClick={() => scrollContainer("left")}
+            onClick={() => scrollContainer(category, "left")}
           >
             <img src="/src/assets/arrow-icon.svg" alt="Previous" />
           </button>
           <button
             className="slide-btn right"
-            onClick={() => scrollContainer("right")}
+            onClick={() => scrollContainer(category, "right")}
           >
             <img src="/src/assets/arrow-icon.svg" alt="Next" />
           </button>
@@ -66,13 +105,34 @@ const MenuSection: React.FC = () => {
           <section className="menu__filter-section">
             <h3>{category}</h3>
             <div className="menu__filter-btns">
-              <button>Price</button>
-              <button>A-Z</button>
+              <button
+                onClick={() =>
+                  handleSortToggle(
+                    category,
+                    sortBy[category] === "price" ? "reverse-price" : "price"
+                  )
+                }
+              >
+                Price: {sortBy[category] === "price" ? "→" : "←"}
+              </button>
+              <button
+                onClick={() =>
+                  handleSortToggle(
+                    category,
+                    sortBy[category] === "az" ? "za" : "az"
+                  )
+                }
+              >
+                {sortBy[category] === "az" ? "A-Z" : "Z-A"}
+              </button>
             </div>
           </section>
 
-          <section className="menu__food-container" ref={containerRef}>
-            {groupedByCategory[category].map((item) => (
+          <section
+            className="menu__food-container"
+            ref={(el) => (containerRefs.current[category] = el)}
+          >
+            {getSortedItems(category).map((item) => (
               <MenuFoodCard key={item.itemId} {...item} />
             ))}
           </section>
@@ -84,7 +144,8 @@ const MenuSection: React.FC = () => {
 
 export default MenuSection;
 
+
 // Författare: Miklós
 // Ändring av Fredrick. Har använt useFootgun för att hämta menyalternativen och skickat ner dem som props till menufooditems. Funktionalitet för kategori för sorteringen finns inte än.
 // Ändring av Fredrick. Allt är sorterat efter kategori.
-//Ändringar av Fredrick. Har typat om en del.
+// Ändringar av Fredrick. Har typat om en del.
