@@ -1,12 +1,12 @@
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { PutCommand } = require("@aws-sdk/lib-dynamodb");
-const { v4: uuidv4 } = require("uuid");
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { v4 as uuidv4 } from "uuid";
 
 const orderTableName = "Orders_SwiftDeluxe";
 
 const dynamoDBClient = new DynamoDBClient({ region: "eu-north-1" });
 
-exports.neworder = async (event) => {
+export const neworder = async (event) => {
   try {
     const requestBody = JSON.parse(event.body);
     const { orderItems, message } = requestBody;
@@ -26,7 +26,7 @@ exports.neworder = async (event) => {
       id: orderId,
       orderItems: orderItems,
       message: message || "",
-      status: "PENDING",
+      status: "Pending",
       createdAt: new Date().toISOString(),
     };
 
