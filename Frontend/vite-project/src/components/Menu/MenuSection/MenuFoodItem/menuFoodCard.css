@@ -47,3 +47,18 @@
         transform: scale(0.9);
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .menu__food-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 420px;
+    
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+}
+    

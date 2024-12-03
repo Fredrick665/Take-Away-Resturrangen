@@ -1,7 +1,7 @@
 {
   "D:\\FU23\\TypeScript\\Take-Away-Resturrangen\\Backend\\swift-deluxe-api": {
     "versionSfCore": null,
-    "versionFramework": "4.4.13",
+    "versionFramework": "4.4.14",
     "isWithinCompose": false,
     "isCompose": false,
     "composeOrgName": null,
@@ -70,12 +70,18 @@
                       "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-lockOrder"
                     }
                   },
+                  "GetordersLogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-getorders"
+                    }
+                  },
                   "RegisterUserLambdaFunction": {
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/addnewuser.handler",
                       "Runtime": "nodejs20.x",
@@ -99,7 +105,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/loginUser.handler",
                       "Runtime": "nodejs20.x",
@@ -123,7 +129,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/getmenu.getMenuItems",
                       "Runtime": "nodejs20.x",
@@ -147,7 +153,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/neworder.neworder",
                       "Runtime": "nodejs20.x",
@@ -171,7 +177,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/updateorder.updateOrderItemsAndMessage",
                       "Runtime": "nodejs20.x",
@@ -195,7 +201,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/adminfunctions/lockorder.lockOrder",
                       "Runtime": "nodejs20.x",
@@ -214,64 +220,98 @@
                       "LockOrderLogGroup"
                     ]
                   },
-                  "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ": {
+                  "GetordersLambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
+                      },
+                      "Handler": "functions/adminfunctions/getorders.getOrders",
+                      "Runtime": "nodejs20.x",
+                      "FunctionName": "swift-deluxe-api-dev-getorders",
+                      "MemorySize": 1024,
+                      "Timeout": 6,
+                      "Environment": {
+                        "Variables": {
+                          "DYNAMODB_TABLE": "Menu_Items_SwiftDeluxe",
+                          "JWT_SECRET": "<REDACTED>"
+                        }
+                      },
+                      "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
+                    },
+                    "DependsOn": [
+                      "GetordersLogGroup"
+                    ]
+                  },
+                  "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "RegisterUserLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ": {
+                  "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LoginUserLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw": {
+                  "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "GetMenuItemsLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM": {
+                  "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "CreateOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M": {
+                  "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "UpdateOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc": {
+                  "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LockOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
+                    }
+                  },
+                  "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "GetordersLambdaFunction"
+                      },
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
                   "HttpApi": {
@@ -765,6 +805,81 @@
                     },
                     "DependsOn": "HttpApiIntegrationLockOrder"
                   },
+                  "GetordersLambdaPermissionHttpApi": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "GetordersLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "apigateway.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "HttpApi"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApiIntegrationGetorders": {
+                    "Type": "AWS::ApiGatewayV2::Integration",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "IntegrationType": "AWS_PROXY",
+                      "IntegrationUri": {
+                        "Fn::GetAtt": [
+                          "GetordersLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "PayloadFormatVersion": "2.0",
+                      "TimeoutInMillis": 30000
+                    }
+                  },
+                  "HttpApiRouteGetOrder": {
+                    "Type": "AWS::ApiGatewayV2::Route",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "RouteKey": "GET /order",
+                      "Target": {
+                        "Fn::Join": [
+                          "/",
+                          [
+                            "integrations",
+                            {
+                              "Ref": "HttpApiIntegrationGetorders"
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "DependsOn": "HttpApiIntegrationGetorders"
+                  },
                   "OrdersTable": {
                     "Type": "AWS::DynamoDB::Table",
                     "Properties": {
@@ -814,7 +929,7 @@
                   "RegisterUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                      "Ref": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -823,7 +938,7 @@
                   "LoginUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                      "Ref": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -832,7 +947,7 @@
                   "GetMenuItemsLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                      "Ref": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-GetMenuItemsLambdaFunctionQualifiedArn"
@@ -841,7 +956,7 @@
                   "CreateOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                      "Ref": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-CreateOrderLambdaFunctionQualifiedArn"
@@ -850,7 +965,7 @@
                   "UpdateOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                      "Ref": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-UpdateOrderLambdaFunctionQualifiedArn"
@@ -859,10 +974,19 @@
                   "LockOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                      "Ref": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LockOrderLambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "GetordersLambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
+                    },
+                    "Export": {
+                      "Name": "sls-swift-deluxe-api-dev-GetordersLambdaFunctionQualifiedArn"
                     }
                   },
                   "HttpApiId": {
@@ -922,7 +1046,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                "versionLogicalId": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
               },
               "loginUser": {
                 "handler": "functions/userfunctions/loginUser.handler",
@@ -942,7 +1066,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                "versionLogicalId": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
               },
               "getMenuItems": {
                 "handler": "functions/userfunctions/getmenu.getMenuItems",
@@ -962,7 +1086,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                "versionLogicalId": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
               },
               "createOrder": {
                 "handler": "functions/userfunctions/neworder.neworder",
@@ -982,7 +1106,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                "versionLogicalId": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
               },
               "updateOrder": {
                 "handler": "functions/updateorder.updateOrderItemsAndMessage",
@@ -1002,7 +1126,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                "versionLogicalId": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
               },
               "lockOrder": {
                 "handler": "functions/adminfunctions/lockorder.lockOrder",
@@ -1022,7 +1146,27 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                "versionLogicalId": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
+              },
+              "getorders": {
+                "handler": "functions/adminfunctions/getorders.getOrders",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/order",
+                      "method": "get"
+                    },
+                    "resolvedMethod": "GET",
+                    "resolvedPath": "/order"
+                  }
+                ],
+                "name": "swift-deluxe-api-dev-getorders",
+                "package": {},
+                "memory": 1024,
+                "timeout": 6,
+                "runtime": "nodejs20.x",
+                "vpc": {},
+                "versionLogicalId": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
               }
             },
             "resources": {
@@ -1149,12 +1293,18 @@
                       "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-lockOrder"
                     }
                   },
+                  "GetordersLogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-getorders"
+                    }
+                  },
                   "RegisterUserLambdaFunction": {
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/addnewuser.handler",
                       "Runtime": "nodejs20.x",
@@ -1178,7 +1328,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/loginUser.handler",
                       "Runtime": "nodejs20.x",
@@ -1202,7 +1352,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/getmenu.getMenuItems",
                       "Runtime": "nodejs20.x",
@@ -1226,7 +1376,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/neworder.neworder",
                       "Runtime": "nodejs20.x",
@@ -1250,7 +1400,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/updateorder.updateOrderItemsAndMessage",
                       "Runtime": "nodejs20.x",
@@ -1274,7 +1424,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/adminfunctions/lockorder.lockOrder",
                       "Runtime": "nodejs20.x",
@@ -1293,64 +1443,98 @@
                       "LockOrderLogGroup"
                     ]
                   },
-                  "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ": {
+                  "GetordersLambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
+                      },
+                      "Handler": "functions/adminfunctions/getorders.getOrders",
+                      "Runtime": "nodejs20.x",
+                      "FunctionName": "swift-deluxe-api-dev-getorders",
+                      "MemorySize": 1024,
+                      "Timeout": 6,
+                      "Environment": {
+                        "Variables": {
+                          "DYNAMODB_TABLE": "Menu_Items_SwiftDeluxe",
+                          "JWT_SECRET": "<REDACTED>"
+                        }
+                      },
+                      "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
+                    },
+                    "DependsOn": [
+                      "GetordersLogGroup"
+                    ]
+                  },
+                  "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "RegisterUserLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ": {
+                  "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LoginUserLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw": {
+                  "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "GetMenuItemsLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM": {
+                  "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "CreateOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M": {
+                  "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "UpdateOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc": {
+                  "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LockOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
+                    }
+                  },
+                  "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "GetordersLambdaFunction"
+                      },
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
                   "HttpApi": {
@@ -1844,6 +2028,81 @@
                     },
                     "DependsOn": "HttpApiIntegrationLockOrder"
                   },
+                  "GetordersLambdaPermissionHttpApi": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "GetordersLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "apigateway.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "HttpApi"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApiIntegrationGetorders": {
+                    "Type": "AWS::ApiGatewayV2::Integration",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "IntegrationType": "AWS_PROXY",
+                      "IntegrationUri": {
+                        "Fn::GetAtt": [
+                          "GetordersLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "PayloadFormatVersion": "2.0",
+                      "TimeoutInMillis": 30000
+                    }
+                  },
+                  "HttpApiRouteGetOrder": {
+                    "Type": "AWS::ApiGatewayV2::Route",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "RouteKey": "GET /order",
+                      "Target": {
+                        "Fn::Join": [
+                          "/",
+                          [
+                            "integrations",
+                            {
+                              "Ref": "HttpApiIntegrationGetorders"
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "DependsOn": "HttpApiIntegrationGetorders"
+                  },
                   "OrdersTable": {
                     "Type": "AWS::DynamoDB::Table",
                     "Properties": {
@@ -1893,7 +2152,7 @@
                   "RegisterUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                      "Ref": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -1902,7 +2161,7 @@
                   "LoginUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                      "Ref": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -1911,7 +2170,7 @@
                   "GetMenuItemsLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                      "Ref": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-GetMenuItemsLambdaFunctionQualifiedArn"
@@ -1920,7 +2179,7 @@
                   "CreateOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                      "Ref": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-CreateOrderLambdaFunctionQualifiedArn"
@@ -1929,7 +2188,7 @@
                   "UpdateOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                      "Ref": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-UpdateOrderLambdaFunctionQualifiedArn"
@@ -1938,10 +2197,19 @@
                   "LockOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                      "Ref": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LockOrderLambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "GetordersLambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
+                    },
+                    "Export": {
+                      "Name": "sls-swift-deluxe-api-dev-GetordersLambdaFunctionQualifiedArn"
                     }
                   },
                   "HttpApiId": {
@@ -2001,7 +2269,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                "versionLogicalId": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
               },
               "loginUser": {
                 "handler": "functions/userfunctions/loginUser.handler",
@@ -2021,7 +2289,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                "versionLogicalId": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
               },
               "getMenuItems": {
                 "handler": "functions/userfunctions/getmenu.getMenuItems",
@@ -2041,7 +2309,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                "versionLogicalId": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
               },
               "createOrder": {
                 "handler": "functions/userfunctions/neworder.neworder",
@@ -2061,7 +2329,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                "versionLogicalId": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
               },
               "updateOrder": {
                 "handler": "functions/updateorder.updateOrderItemsAndMessage",
@@ -2081,7 +2349,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                "versionLogicalId": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
               },
               "lockOrder": {
                 "handler": "functions/adminfunctions/lockorder.lockOrder",
@@ -2101,7 +2369,27 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                "versionLogicalId": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
+              },
+              "getorders": {
+                "handler": "functions/adminfunctions/getorders.getOrders",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/order",
+                      "method": "get"
+                    },
+                    "resolvedMethod": "GET",
+                    "resolvedPath": "/order"
+                  }
+                ],
+                "name": "swift-deluxe-api-dev-getorders",
+                "package": {},
+                "memory": 1024,
+                "timeout": 6,
+                "runtime": "nodejs20.x",
+                "vpc": {},
+                "versionLogicalId": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
               }
             },
             "resources": {
@@ -2228,12 +2516,18 @@
                       "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-lockOrder"
                     }
                   },
+                  "GetordersLogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-getorders"
+                    }
+                  },
                   "RegisterUserLambdaFunction": {
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/addnewuser.handler",
                       "Runtime": "nodejs20.x",
@@ -2257,7 +2551,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/loginUser.handler",
                       "Runtime": "nodejs20.x",
@@ -2281,7 +2575,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/getmenu.getMenuItems",
                       "Runtime": "nodejs20.x",
@@ -2305,7 +2599,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/userfunctions/neworder.neworder",
                       "Runtime": "nodejs20.x",
@@ -2329,7 +2623,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/updateorder.updateOrderItemsAndMessage",
                       "Runtime": "nodejs20.x",
@@ -2353,7 +2647,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                        "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                       },
                       "Handler": "functions/adminfunctions/lockorder.lockOrder",
                       "Runtime": "nodejs20.x",
@@ -2372,64 +2666,98 @@
                       "LockOrderLogGroup"
                     ]
                   },
-                  "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ": {
+                  "GetordersLambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
+                        "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
+                      },
+                      "Handler": "functions/adminfunctions/getorders.getOrders",
+                      "Runtime": "nodejs20.x",
+                      "FunctionName": "swift-deluxe-api-dev-getorders",
+                      "MemorySize": 1024,
+                      "Timeout": 6,
+                      "Environment": {
+                        "Variables": {
+                          "DYNAMODB_TABLE": "Menu_Items_SwiftDeluxe",
+                          "JWT_SECRET": "<REDACTED>"
+                        }
+                      },
+                      "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
+                    },
+                    "DependsOn": [
+                      "GetordersLogGroup"
+                    ]
+                  },
+                  "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "RegisterUserLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ": {
+                  "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LoginUserLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw": {
+                  "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "GetMenuItemsLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM": {
+                  "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "CreateOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M": {
+                  "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "UpdateOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
-                  "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc": {
+                  "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "LockOrderLambdaFunction"
                       },
-                      "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
+                    }
+                  },
+                  "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "GetordersLambdaFunction"
+                      },
+                      "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
                     }
                   },
                   "HttpApi": {
@@ -2923,6 +3251,81 @@
                     },
                     "DependsOn": "HttpApiIntegrationLockOrder"
                   },
+                  "GetordersLambdaPermissionHttpApi": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "GetordersLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "apigateway.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "HttpApi"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApiIntegrationGetorders": {
+                    "Type": "AWS::ApiGatewayV2::Integration",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "IntegrationType": "AWS_PROXY",
+                      "IntegrationUri": {
+                        "Fn::GetAtt": [
+                          "GetordersLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "PayloadFormatVersion": "2.0",
+                      "TimeoutInMillis": 30000
+                    }
+                  },
+                  "HttpApiRouteGetOrder": {
+                    "Type": "AWS::ApiGatewayV2::Route",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "RouteKey": "GET /order",
+                      "Target": {
+                        "Fn::Join": [
+                          "/",
+                          [
+                            "integrations",
+                            {
+                              "Ref": "HttpApiIntegrationGetorders"
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "DependsOn": "HttpApiIntegrationGetorders"
+                  },
                   "OrdersTable": {
                     "Type": "AWS::DynamoDB::Table",
                     "Properties": {
@@ -2972,7 +3375,7 @@
                   "RegisterUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                      "Ref": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -2981,7 +3384,7 @@
                   "LoginUserLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                      "Ref": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -2990,7 +3393,7 @@
                   "GetMenuItemsLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                      "Ref": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-GetMenuItemsLambdaFunctionQualifiedArn"
@@ -2999,7 +3402,7 @@
                   "CreateOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                      "Ref": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-CreateOrderLambdaFunctionQualifiedArn"
@@ -3008,7 +3411,7 @@
                   "UpdateOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                      "Ref": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-UpdateOrderLambdaFunctionQualifiedArn"
@@ -3017,10 +3420,19 @@
                   "LockOrderLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                      "Ref": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
                     },
                     "Export": {
                       "Name": "sls-swift-deluxe-api-dev-LockOrderLambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "GetordersLambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
+                    },
+                    "Export": {
+                      "Name": "sls-swift-deluxe-api-dev-GetordersLambdaFunctionQualifiedArn"
                     }
                   },
                   "HttpApiId": {
@@ -3080,7 +3492,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                "versionLogicalId": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
               },
               "loginUser": {
                 "handler": "functions/userfunctions/loginUser.handler",
@@ -3100,7 +3512,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                "versionLogicalId": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
               },
               "getMenuItems": {
                 "handler": "functions/userfunctions/getmenu.getMenuItems",
@@ -3120,7 +3532,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                "versionLogicalId": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
               },
               "createOrder": {
                 "handler": "functions/userfunctions/neworder.neworder",
@@ -3140,7 +3552,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                "versionLogicalId": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
               },
               "updateOrder": {
                 "handler": "functions/updateorder.updateOrderItemsAndMessage",
@@ -3160,7 +3572,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                "versionLogicalId": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
               },
               "lockOrder": {
                 "handler": "functions/adminfunctions/lockorder.lockOrder",
@@ -3180,7 +3592,27 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                "versionLogicalId": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
+              },
+              "getorders": {
+                "handler": "functions/adminfunctions/getorders.getOrders",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/order",
+                      "method": "get"
+                    },
+                    "resolvedMethod": "GET",
+                    "resolvedPath": "/order"
+                  }
+                ],
+                "name": "swift-deluxe-api-dev-getorders",
+                "package": {},
+                "memory": 1024,
+                "timeout": 6,
+                "runtime": "nodejs20.x",
+                "vpc": {},
+                "versionLogicalId": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
               }
             },
             "resources": {
@@ -3308,12 +3740,18 @@
                 "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-lockOrder"
               }
             },
+            "GetordersLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/swift-deluxe-api-dev-getorders"
+              }
+            },
             "RegisterUserLambdaFunction": {
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/userfunctions/addnewuser.handler",
                 "Runtime": "nodejs20.x",
@@ -3337,7 +3775,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/userfunctions/loginUser.handler",
                 "Runtime": "nodejs20.x",
@@ -3361,7 +3799,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/userfunctions/getmenu.getMenuItems",
                 "Runtime": "nodejs20.x",
@@ -3385,7 +3823,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/userfunctions/neworder.neworder",
                 "Runtime": "nodejs20.x",
@@ -3409,7 +3847,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/updateorder.updateOrderItemsAndMessage",
                 "Runtime": "nodejs20.x",
@@ -3433,7 +3871,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
-                  "S3Key": "serverless/swift-deluxe-api/dev/1733210992180-2024-12-03T07:29:52.180Z/swift-deluxe-api.zip"
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
                 },
                 "Handler": "functions/adminfunctions/lockorder.lockOrder",
                 "Runtime": "nodejs20.x",
@@ -3452,64 +3890,98 @@
                 "LockOrderLogGroup"
               ]
             },
-            "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ": {
+            "GetordersLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-eu-north-1-193c9376-f19d",
+                  "S3Key": "serverless/swift-deluxe-api/dev/1733248558664-2024-12-03T17:55:58.664Z/swift-deluxe-api.zip"
+                },
+                "Handler": "functions/adminfunctions/getorders.getOrders",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "swift-deluxe-api-dev-getorders",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Environment": {
+                  "Variables": {
+                    "DYNAMODB_TABLE": "Menu_Items_SwiftDeluxe",
+                    "JWT_SECRET": "<REDACTED>"
+                  }
+                },
+                "Role": "arn:aws:iam::796973483684:role/LambdaDynamoDbRole"
+              },
+              "DependsOn": [
+                "GetordersLogGroup"
+              ]
+            },
+            "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "RegisterUserLambdaFunction"
                 },
-                "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
               }
             },
-            "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ": {
+            "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "LoginUserLambdaFunction"
                 },
-                "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
               }
             },
-            "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw": {
+            "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetMenuItemsLambdaFunction"
                 },
-                "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
               }
             },
-            "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM": {
+            "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "CreateOrderLambdaFunction"
                 },
-                "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
               }
             },
-            "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M": {
+            "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "UpdateOrderLambdaFunction"
                 },
-                "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
               }
             },
-            "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc": {
+            "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "LockOrderLambdaFunction"
                 },
-                "CodeSha256": "vSB4cPP80IV5lj8UPWZrtyfjhxCwClWLJEG6qK6MzAU="
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
+              }
+            },
+            "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "GetordersLambdaFunction"
+                },
+                "CodeSha256": "3sc1V8JEKIsecQklYYxJupFSUOVvzBubS7mh5aAjcTw="
               }
             },
             "HttpApi": {
@@ -4003,6 +4475,81 @@
               },
               "DependsOn": "HttpApiIntegrationLockOrder"
             },
+            "GetordersLambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "GetordersLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationGetorders": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "GetordersLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRouteGetOrder": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "GET /order",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationGetorders"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationGetorders"
+            },
             "OrdersTable": {
               "Type": "AWS::DynamoDB::Table",
               "Properties": {
@@ -4052,7 +4599,7 @@
             "RegisterUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+                "Ref": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
@@ -4061,7 +4608,7 @@
             "LoginUserLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+                "Ref": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
@@ -4070,7 +4617,7 @@
             "GetMenuItemsLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+                "Ref": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-GetMenuItemsLambdaFunctionQualifiedArn"
@@ -4079,7 +4626,7 @@
             "CreateOrderLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+                "Ref": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-CreateOrderLambdaFunctionQualifiedArn"
@@ -4088,7 +4635,7 @@
             "UpdateOrderLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+                "Ref": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-UpdateOrderLambdaFunctionQualifiedArn"
@@ -4097,10 +4644,19 @@
             "LockOrderLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+                "Ref": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
               },
               "Export": {
                 "Name": "sls-swift-deluxe-api-dev-LockOrderLambdaFunctionQualifiedArn"
+              }
+            },
+            "GetordersLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
+              },
+              "Export": {
+                "Name": "sls-swift-deluxe-api-dev-GetordersLambdaFunctionQualifiedArn"
               }
             },
             "HttpApiId": {
@@ -4160,7 +4716,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "RegisterUserLambdaVersionV3E0UGnMGGmMuofnd06rI2vZIzt1khKrkY4MaSBkMQ"
+          "versionLogicalId": "RegisterUserLambdaVersion9ksXeGkjrUNEBLMi5ed9G2O4exvDDPppNKtPtLeIHKY"
         },
         "loginUser": {
           "handler": "functions/userfunctions/loginUser.handler",
@@ -4180,7 +4736,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "LoginUserLambdaVersionqyOOyHurQ4ZBv68jw6vLhvl5MnrpaYKbZ4Q9TEuPzhQ"
+          "versionLogicalId": "LoginUserLambdaVersionJmq4jVVH1IhHyLyjPGzrnTXON5CR6ifqG7BoxFh758"
         },
         "getMenuItems": {
           "handler": "functions/userfunctions/getmenu.getMenuItems",
@@ -4200,7 +4756,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetMenuItemsLambdaVersionec4iFzH10QVh1ERFuXAwPOVNRR18vMMbMAFgk9gmWw"
+          "versionLogicalId": "GetMenuItemsLambdaVersionQLDQuERmXpd7cme4zCdLTY8uY61uoHhtauFViMqGwk"
         },
         "createOrder": {
           "handler": "functions/userfunctions/neworder.neworder",
@@ -4220,7 +4776,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "CreateOrderLambdaVersion4hrC9nV3d9JARBz24jFfsSfv8kM6JzXAivDvbyM"
+          "versionLogicalId": "CreateOrderLambdaVersionvop6A7oYcxtiFvfVBD8QGNTYgpSBxMU4TC9KPreoAg"
         },
         "updateOrder": {
           "handler": "functions/updateorder.updateOrderItemsAndMessage",
@@ -4240,7 +4796,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "UpdateOrderLambdaVersionDrrHv1L1yERz8NnDAVchN0EF5aRUJoIwH8n4IWRG9M"
+          "versionLogicalId": "UpdateOrderLambdaVersionX640rhm0OxrTvJMCrxlK5McauVgDsY0Q92pnZllli3E"
         },
         "lockOrder": {
           "handler": "functions/adminfunctions/lockorder.lockOrder",
@@ -4260,7 +4816,27 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "LockOrderLambdaVersioniQRguQMksZCQqLtfQpjfIf9mnIfii2ppZiwMMk6uLc"
+          "versionLogicalId": "LockOrderLambdaVersionPE1INKe3RdB2E6q3evLpcVRhVszAIQfFAOAoNMrIirs"
+        },
+        "getorders": {
+          "handler": "functions/adminfunctions/getorders.getOrders",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/order",
+                "method": "get"
+              },
+              "resolvedMethod": "GET",
+              "resolvedPath": "/order"
+            }
+          ],
+          "name": "swift-deluxe-api-dev-getorders",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "GetordersLambdaVersionpFB8VKqoYfagzWFYDOY8MYCr65UVu6drSDFY2glaJvU"
         }
       },
       "resources": {
@@ -4307,7 +4883,7 @@
         "Outputs": {}
       }
     },
-    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\r\norg: ${file(./local.yml):organisation}\r\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\r\napp: swift-deluxe-api\r\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\r\nservice: swift-deluxe-api\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  region: eu-north-1\r\n  deploymentMethod: direct\r\n  iam:\r\n    role: ${file(./local.yml):iamRole}\r\n  environment:\r\n    DYNAMODB_TABLE: Menu_Items_SwiftDeluxe\r\n    JWT_SECRET: ${env:JWT_SECRET}  \r\n  httpApi:\r\n    cors: true  \r\n\r\nfunctions:\r\n  registerUser:\r\n    handler: functions/userfunctions/addnewuser.handler\r\n    events:\r\n      - httpApi:\r\n          path: /register\r\n          method: post\r\n\r\n  loginUser:\r\n    handler: functions/userfunctions/loginUser.handler\r\n    events:\r\n      - httpApi:\r\n          path: /login\r\n          method: post\r\n\r\n  getMenuItems:\r\n    handler: functions/userfunctions/getmenu.getMenuItems\r\n    events:\r\n      - httpApi:\r\n          path: /menu-items\r\n          method: get\r\n\r\n  createOrder:\r\n    handler: functions/userfunctions/neworder.neworder\r\n    events:\r\n      - httpApi:\r\n          path: /order\r\n          method: post\r\n\r\n  updateOrder:\r\n    handler: functions/updateorder.updateOrderItemsAndMessage\r\n    events:\r\n      - httpApi:\r\n          path: /order\r\n          method: put\r\n\r\n  lockOrder: \r\n    handler: functions/adminfunctions/lockorder.lockOrder\r\n    events:\r\n      - httpApi:\r\n          path: /admin/lock-order\r\n          method: put\r\n\r\n\r\nresources:\r\n  Resources:\r\n    OrdersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: Orders_SwiftDeluxe\r\n        AttributeDefinitions:\r\n          - AttributeName: id\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: id\r\n            KeyType: HASH\r\n        BillingMode: PAY_PER_REQUEST\r\n          \r\n    UsersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: users-db\r\n        AttributeDefinitions:\r\n          - AttributeName: username\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: username\r\n            KeyType: HASH  # Partition key\r\n        BillingMode: PAY_PER_REQUEST      ",
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\r\norg: ${file(./local.yml):organisation}\r\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\r\napp: swift-deluxe-api\r\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\r\nservice: swift-deluxe-api\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  region: eu-north-1\r\n  deploymentMethod: direct\r\n  iam:\r\n    role: ${file(./local.yml):iamRole}\r\n  environment:\r\n    DYNAMODB_TABLE: Menu_Items_SwiftDeluxe\r\n    JWT_SECRET: ${env:JWT_SECRET}\r\n  httpApi:\r\n    cors: true\r\n\r\nfunctions:\r\n  registerUser:\r\n    handler: functions/userfunctions/addnewuser.handler\r\n    events:\r\n      - httpApi:\r\n          path: /register\r\n          method: post\r\n\r\n  loginUser:\r\n    handler: functions/userfunctions/loginUser.handler\r\n    events:\r\n      - httpApi:\r\n          path: /login\r\n          method: post\r\n\r\n  getMenuItems:\r\n    handler: functions/userfunctions/getmenu.getMenuItems\r\n    events:\r\n      - httpApi:\r\n          path: /menu-items\r\n          method: get\r\n\r\n  createOrder:\r\n    handler: functions/userfunctions/neworder.neworder\r\n    events:\r\n      - httpApi:\r\n          path: /order\r\n          method: post\r\n\r\n  updateOrder:\r\n    handler: functions/updateorder.updateOrderItemsAndMessage\r\n    events:\r\n      - httpApi:\r\n          path: /order\r\n          method: put\r\n\r\n  lockOrder: \r\n    handler: functions/adminfunctions/lockorder.lockOrder\r\n    events:\r\n      - httpApi:\r\n          path: /admin/lock-order\r\n          method: put\r\n\r\n  getorders:\r\n    handler: functions/adminfunctions/getorders.getOrders\r\n    events:\r\n      - httpApi:\r\n          path: /order\r\n          method: get\r\n\r\nresources:\r\n  Resources:\r\n    OrdersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: Orders_SwiftDeluxe\r\n        AttributeDefinitions:\r\n          - AttributeName: id\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: id\r\n            KeyType: HASH\r\n        BillingMode: PAY_PER_REQUEST\r\n\r\n    UsersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: users-db\r\n        AttributeDefinitions:\r\n          - AttributeName: username\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: username\r\n            KeyType: HASH # Partition key\r\n        BillingMode: PAY_PER_REQUEST\r\n",
     "command": [
       "deploy"
     ],
@@ -4340,36 +4916,42 @@
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "796973483684",
     "projectType": "traditional",
-    "versionSf": "4.4.13",
+    "versionSf": "4.4.14",
     "serviceProviderAwsCfStackName": "swift-deluxe-api-dev",
     "integrations": {},
     "serviceUniqueId": "arn:aws:cloudformation:eu-north-1:796973483684:stack/swift-deluxe-api-dev/50d98e00-a772-11ef-ad98-0ae1d4f67c81",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-north-1:796973483684:stack/swift-deluxe-api-dev/50d98e00-a772-11ef-ad98-0ae1d4f67c81",
     "serviceProviderAwsCfStackCreated": "2024-11-20T19:04:49.743Z",
-    "serviceProviderAwsCfStackUpdated": "2024-12-03T07:29:55.573Z",
+    "serviceProviderAwsCfStackUpdated": "2024-12-03T17:56:02.850Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "CreateOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-createOrder:12",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-createOrder:14",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-CreateOrderLambdaFunctionQualifiedArn"
       },
       {
+        "OutputKey": "GetordersLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-getorders:2",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-swift-deluxe-api-dev-GetordersLambdaFunctionQualifiedArn"
+      },
+      {
         "OutputKey": "RegisterUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-registerUser:51",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-registerUser:53",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-RegisterUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "LoginUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-loginUser:52",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-loginUser:54",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-LoginUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "LockOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-lockOrder:7",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-lockOrder:9",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-LockOrderLambdaFunctionQualifiedArn"
       },
@@ -4381,13 +4963,13 @@
       },
       {
         "OutputKey": "UpdateOrderLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-updateOrder:7",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-updateOrder:9",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-UpdateOrderLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetMenuItemsLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-getMenuItems:12",
+        "OutputValue": "arn:aws:lambda:eu-north-1:796973483684:function:swift-deluxe-api-dev-getMenuItems:14",
         "Description": "Current Lambda function version",
         "ExportName": "sls-swift-deluxe-api-dev-GetMenuItemsLambdaFunctionQualifiedArn"
       },

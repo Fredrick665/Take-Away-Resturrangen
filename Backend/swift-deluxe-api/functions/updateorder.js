@@ -1,14 +1,14 @@
-const { DynamoDB } = require("@aws-sdk/client-dynamodb");
-const {
+import { DynamoDB } from "@aws-sdk/client-dynamodb";
+import {
   DynamoDBDocument,
   UpdateCommand,
   GetCommand,
-} = require("@aws-sdk/lib-dynamodb");
+} from "@aws-sdk/lib-dynamodb";
 
 const db = DynamoDBDocument.from(new DynamoDB());
 const orderTableName = "Orders_SwiftDeluxe";
 
-exports.updateOrder = async (event) => {
+export const updateOrderItemsAndMessage = async (event) => {
   try {
     const { id, orderItems, message, status } = JSON.parse(event.body);
 
@@ -72,5 +72,5 @@ exports.updateOrder = async (event) => {
   }
 };
 
+
 // Författare Fredrick
-// Katerina lagt till att man kan ändra status
