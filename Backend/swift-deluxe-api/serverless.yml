@@ -54,6 +54,13 @@ functions:
           path: /order
           method: put
 
+  lockOrder: 
+    handler: functions/adminfunctions/lockorder.lockOrder
+    events:
+      - httpApi:
+          path: /admin/lock-order
+          method: put
+
   getorders:
     handler: functions/adminfunctions/getorders.getOrders
     events:

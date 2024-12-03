@@ -10,9 +10,9 @@ const orderTableName = "Orders_SwiftDeluxe";
 
 export const updateOrderItemsAndMessage = async (event) => {
   try {
-    const { id, orderItems, message } = JSON.parse(event.body);
+    const { id, orderItems, message, status } = JSON.parse(event.body);
 
-    if (!id || (!orderItems && !message)) {
+    if (!id || (!orderItems && !message && !status)) {
       return {
         statusCode: 400,
         body: JSON.stringify({
@@ -39,21 +39,23 @@ export const updateOrderItemsAndMessage = async (event) => {
         "SET " +
         (orderItems ? "#oi = :orderItems, " : "") +
         (message ? "#msg = :message, " : "") +
+        (status ? "#st = :status, " : "") +
         "updatedAt = :updatedAt",
       ExpressionAttributeNames: {
         ...(orderItems && { "#oi": "orderItems" }),
         ...(message && { "#msg": "message" }),
+        ...(status && { "#st": "status" }),
       },
       ExpressionAttributeValues: {
         ...(orderItems && { ":orderItems": orderItems }),
         ...(message && { ":message": message }),
+        ...(status && { ":status": status }),
         ":updatedAt": new Date().toISOString(),
       },
       ReturnValues: "UPDATED_NEW",
     };
 
     const result = await db.send(new UpdateCommand(updateParams));
-
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -69,4 +71,6 @@ export const updateOrderItemsAndMessage = async (event) => {
     };
   }
 };
+
+
 // Författare Fredrick

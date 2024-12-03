@@ -84,6 +84,7 @@ const AllOrdersPage: React.FC = () => {
 
         await axios.put(
           `https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order`,
+
           {
             id: editingOrder.id,
             orderItems: editingOrder.orderItems,
