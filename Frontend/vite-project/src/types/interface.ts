@@ -15,7 +15,18 @@ export interface OrderItem {
   quantity: number;
   notes?: string;
 }
-
+export interface Order {
+  createdAt: string;
+  message: string;
+  id: string;
+  updatedAt: string;
+  orderItems: OrderItem[];
+  status: "Locked" | "Pending" | "Cancelled";
+}
+export interface ApiResponse {
+  message: string;
+  orders: Order[];
+}
 export interface CartState {
   items: CartItem[];
   totalQuantity: number;
@@ -26,3 +37,4 @@ export interface CartState {
 
 // Förtfattare Katerina
 //Ändringar av Fredrick Har typat om en del
+//Ändringar av Fredrick Har lagt till interfaces för API svar och Ordrar
