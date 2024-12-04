@@ -28,7 +28,7 @@ function Router() {
       <Route path="/order" element={<OrderPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/Admin" element={<Adminpage />} />
-      <Route path="/singleorder" element={<SingleOrderPage />} />
+      <Route path="/singleorder/:orderId" element={<SingleOrderPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/update" element={<UpdatePage />} />
       <Route path="/start" element={<Startpage />} />
@@ -41,4 +41,5 @@ function Router() {
 }
 
 export default Router;
+
 // Författare Fredrick.

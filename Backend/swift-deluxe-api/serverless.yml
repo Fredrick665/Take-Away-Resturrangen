@@ -54,7 +54,7 @@ functions:
           path: /order
           method: put
 
-  lockOrder: 
+  lockOrder:
     handler: functions/adminfunctions/lockorder.lockOrder
     events:
       - httpApi:
@@ -67,6 +67,20 @@ functions:
       - httpApi:
           path: /order
           method: get
+
+  getorder:
+    handler: functions/userfunctions/orderhistory.orderhistory
+    events:
+      - httpApi:
+          path: /order/{orderId}
+          method: get
+
+  deleteorder:
+    handler: functions/userfunctions/deleteorder.deleteOrder
+    events:
+      - httpApi:
+          path: /delete
+          method: delete
 
 resources:
   Resources:

@@ -1,5 +1,5 @@
 import "./cartPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import CartList from "../../components/CartList/CartList";
 import { useCartStore } from "../../stores/cartStore";
@@ -11,6 +11,7 @@ import { useState } from "react";
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleAdd = (itemId: string) => {
     const item = items.find((item) => item.itemId === itemId);
@@ -86,7 +87,7 @@ function CartPage() {
           onClick={(e) => {
             e.preventDefault();
             handleSubmit().then(() => {
-              window.location.href = "/confirmedorders";
+              navigate("/confirmedorders");
             });
           }}
         >
@@ -94,6 +95,7 @@ function CartPage() {
             {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
           </button>
         </Link>
+        ;
       </div>
     </div>
   );
