@@ -119,7 +119,6 @@ const AllOrdersPage: React.FC = () => {
     return <p>{error}</p>;
   }
 
-
   return (
     <main className="all-orders-page">
       <Hamburgericon />
@@ -143,11 +142,9 @@ const AllOrdersPage: React.FC = () => {
         {orders.map((order) => (
           <li key={order.id} className="all-orders-page__list-item">
             <label className="all-orders-page__list-item-label">
-              <strong>Order ID:</strong> {order.id}
-              <br />
-              <strong>Status:</strong> {order.status}
-              <br />
-              <strong>Items:</strong>
+              <ul>Order ID:</ul> {order.id}
+              <ul>Status:</ul> {order.status}
+              <ul>Items:</ul>
               <ul>
                 {order.orderItems.map((item: OrderItem) => (
                   <li key={item.id}>
@@ -155,13 +152,8 @@ const AllOrdersPage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <strong>Meddelande:</strong> {order.message}
+              <ul>Meddelande:</ul> {order.message}
             </label>
-            <input
-              type="checkbox"
-              className="all-orders-page__checkbox"
-              id={`order-${order.id}`}
-            />
             <button
               onClick={() => handleEditOrder(order.id)}
               className="all-orders-page__button--edit-order"

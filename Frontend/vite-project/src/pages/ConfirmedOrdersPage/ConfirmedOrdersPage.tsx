@@ -23,12 +23,13 @@ function ConfirmedOrdersPage() {
         </button>
       </Link>
       <h1 className="confirmed-orders-page__title">
-        Ändrat dig? Klicka på knappen nedan för att göra ändringar på din
-        beställning
+        Har du ångrat dig eller vill ändra din beställning?
       </h1>
-      <button className="confirmed-orders-page__back-button">
-        Ändra Order
-      </button>
+      <Link to="/orderhistory">
+        <button className="confirmed-orders-page__back-button">
+          Ångra/Ändra.
+        </button>
+      </Link>
     </main>
   );
 }
