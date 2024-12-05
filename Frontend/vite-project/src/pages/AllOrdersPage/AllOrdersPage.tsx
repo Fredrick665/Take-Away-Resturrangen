@@ -123,14 +123,7 @@ const AllOrdersPage: React.FC = () => {
     <main className="all-orders-page">
       <Hamburgericon />
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
-      <section className="all-orders-page_contentwrapper">
-        <button className="all-orders-page__button--edit-order">
-          Redigera Specifik beställning
-        </button>
-        <button className="all-orders-page__button--special-requests">
-          Lägga till Speciella Önskemål
-        </button>
-      </section>
+      <section className="all-orders-page_contentwrapper"></section>
       <section className="all-orders-page_contentwrapper_2">
         <button className="all-orders-page__button--az">A-Z</button>
         <button className="all-orders-page__button--price">Pris</button>
