@@ -1,5 +1,5 @@
 const cspHeader =
-  "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; object-src 'none'; img-src 'self' https://images.unsplash.com;";
+  "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; object-src 'none'; img-src 'self' https://images.unsplash.com https://swiftdeluxeimages.s3.eu-north-1.amazonaws.com;";
 
 export const sendResponse = (statusCode, body) => {
   return {

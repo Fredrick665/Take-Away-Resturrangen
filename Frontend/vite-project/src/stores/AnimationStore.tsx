@@ -1,4 +1,3 @@
-/*
 import { create } from "zustand";
 import { Variants } from "framer-motion";
 
@@ -8,14 +7,41 @@ const useAnimationStore = create(() => ({
     visible: { opacity: 1, y: 0 },
   } as Variants,
 
+  fadeInDown: {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  } as Variants,
+
+  fadeInBottom: {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 },
+  } as Variants,
+
+  fadeInTop: {
+    hidden: { y: -100, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  } as Variants,
+
   scaleUp: {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
   } as Variants,
 
+  slideUp: {
+    hidden: { y: 100, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  } as Variants,
+
   slideInLeft: {
     hidden: { x: -100, opacity: 0 },
     visible: { x: 0, opacity: 1 },
+  } as Variants,
+
+  scaleFade: {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.9 },
   } as Variants,
 
   staggerChildren: {
@@ -27,38 +53,97 @@ const useAnimationStore = create(() => ({
     },
   } as Variants,
 
-  fadeInDown: {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  } as Variants,
-
-  scaleFade: {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.9 },
-  } as Variants,
-
-  fadeInTop: {
-    hidden: { y: -100, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-  } as Variants,
-
   staggeredFadeIn: {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   } as Variants,
 
-  fadeInBottom: {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -10 },
+  buttonHover: {
+    whileHover: {
+      scale: 1.1,
+      boxShadow: "5px 5px 15px #000",
+      transition: { duration: 0.5 },
+    },
+    whileTap: {
+      scale: 0.9,
+      boxShadow: "5px 5px 5px #000",
+      rotate: -10,
+    },
   } as Variants,
 
-  slideUp: {
-    hidden: { y: 100, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
+  inputFocusScale: {
+    whileFocus: {
+      scale: 1.2,
+    },
+  } as Variants,
+
+  inputFocusStyle: {
+    whileFocus: {
+      scale: 1.2,
+      borderColor: "#ff0000",
+      padding: ".5rem",
+    },
+  } as Variants,
+
+  setBtn: {
+    initial: { y: 0, scale: 1, backgroundColor: "rgba(255, 255, 255, 0)" },
+    animate: (isClicked: boolean) => ({
+      y: isClicked ? 100 : 0,
+      opacity: isClicked ? 0 : 1,
+      scale: isClicked ? 0.3 : 1,
+      backgroundColor: isClicked ? "rgb(0, 255, 0)" : "rgba(255, 255, 255, 0)",
+    }),
+    transition: {
+      duration: 0.5,
+    },
+  },
+
+  digitalBtn: {
+    initial: { scale: 1, rotate: 0, fontSize: 14 },
+    animate: (isClicked: boolean) => ({
+      scale: isClicked ? 1.6 : 1,
+      rotate: isClicked ? 360 : 0,
+      fontSize: isClicked ? 20 : 14,
+    }),
+    transition: { duration: 0.5 },
+  },
+
+  menuItemVariants: {
+    hidden: { opacity: 0, x: 100 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.2 + 0.2,
+        duration: 0.4,
+      },
+    }),
+  } as Variants,
+
+  iconVariants: {
+    hidden: { opacity: 0, x: 100, filter: "invert(0.8)" },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        delay: 0.2,
+      },
+    },
+    clicked: {
+      x: 0,
+      rotate: 360,
+      filter: "invert(0.5)",
+      scale: 0.8,
+      transition: {
+        duration: 0.9,
+        ease: "linear",
+      },
+    },
   } as Variants,
 }));
+
+export default useAnimationStore;
 
 // Exempel på hur man kan använda det.
 // <motion.section
@@ -135,37 +220,12 @@ const useAnimationStore = create(() => ({
 //        transition={{ duration: 0.6, delay: 0.3 }}
 //      >
 // </motion.footer>
-*/
+
 /*
 import { Variants } from "framer-motion";
 Jespers Exempel
 
-const buttonHover = {
-  whileHover: {
-    scale: 1.1,
-    boxShadow: '5px 5px 15px #000',
-    transition: { duration: 0.5 },
-  },
-  whileTap: {
-    scale: 0.9,
-    boxShadow: '5px 5px 5px #000',
-    rotate: -10,
-  },
-};
 
-const inputFocusScale = {
-  whileFocus: {
-    scale: 1.2,
-  },
-};
-
-const inputFocusStyle = {
-  whileFocus: {
-    scale: 1.2,
-    borderColor: '#ff0000',
-    padding: '.5rem',
-  },
-};
 
 const bounceBall = {
   initial: {
