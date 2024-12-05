@@ -26,23 +26,31 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 [Länk till aplikation](http://swift-deluxe.s3-website.eu-north-1.amazonaws.com/)
 
  **Kund (Köpare)**
-   - Läsa menyn: Kunden kan navigera till sidan /menu för att se tillgängliga rätter och drycker.
+   - Startsida och navigering: På startsidan hittar du en hamburgermeny i det övre vänstra hörnet. Härifrån kan du navigera till följande sidor:
+      - Registrering: För att skapa ett nytt användarkonto.
+      - Inloggning: För att logga in på ditt konto och få tillgång till personliga funktioner.
+      - Om oss (About): För att läsa mer om restaurangen och vår verksamhet.
+      - Profilsida: För att hantera ditt konto och se din beställningshistorik.
+      - Obs! För att öppna menyn, klicka på hamburgarikonen (tre horisontella linjer).
+   - Läsa menyn: Kunden kan navigera till sidan /homepage för att se tillgängliga rätter.
    - Göra en beställning:
-      1. Välj en rätt från menyn och lägg till i varukorgen.
-      2. Gå till /cart för att granska din beställning.
-      3. Slutför beställningen genom att fylla i nödvändiga uppgifter.
-   - Orderstatus: Kunden kan se statusen för sin beställning på sidan /orderhistory.
+      - Välj en rätt från menyn (eller klicka så många gånger behöver man) och lägg till i varukorgen.
+      - Gå till /cart (klicka på korgen) för att se och vid behov ändra din beställning. Du kan även lägga till en anteckning om du har några önskemål. Om man är klar bekräftar.
+      - Man får bekreftälse och där man kan ändra order innan den blir låst samt gå tillbaka till /homepage (klicka på knappen eller icon).
+   - Orderstatus: Kunden kan se statusen för sin beställning på /profilsida.
+   
 
  **Personal (Administratörer)**
-      - Hantera beställningar: Personal kan använda sidan /admin/orders för att:
-         - Se alla inkommande beställningar.
-         - Låsa en beställning när den behandlas.
-         - Läsa kommentarer från kunder (t.ex. "Ingen lök, tack").
-      - Lägga till och redigera rätter: Gå till /additem för att lägga till en ny rätt eller /edititems för att ändra befintliga menyer.
-      - Kommentarer till kockar: Lägg till instruktioner till specifika beställningar via /admin/orders/:id/comment.
+   - För att opna Adminsida öppna hamburgermeny och valij 'Adminsida'.
+   - Hantera beställningar: 
+      - Se alla inkommande beställningar.
+      - Låsa en beställning när den behandlas.
+      - Läsa kommentarer från kunder (t.ex. "Ingen lök, tack").
+   - Lägga till och redigera rätter: Gå till /additem för att lägga till en ny rätt eller /edititems för att ändra befintliga menyer.
+   - Kommentarer till kockar: Lägg till instruktioner till specifika beställningar via /admin/orders/:id/comment.
 
  **Instruktioner för nya användare**      
-
+   - Registrera dig på sidan register om man vill och logga in.
 
 ---
 
@@ -117,9 +125,9 @@ Starta utvecklingsservern: npm run dev.
 - Logga in: `/login`
 
 2. **Personal**
-- Hantera beställningar: `/admin/orders`
-- Lås en beställning: `/admin/lock-order`
-- Lägg till kommentarer: `/admin/orders/:id/comment`
+- Hantera beställningar: ``
+- Lås en beställning: ``
+- Lägg till kommentarer: ``
 
 ---
 
