@@ -7,6 +7,8 @@ import CartCounter from "../../components/CartCounter/CartCounter";
 import HamburgerIcon from "../../components/HamburgerIcon/HamburgerIcon";
 import axios from "axios";
 import { useState } from "react";
+import useAnimationStore from "../../stores/AnimationStore";
+import { motion } from "motion/react";
 
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
@@ -54,7 +56,7 @@ function CartPage() {
       setIsSubmitting(false);
     }
   };
-
+  const { staggeredFadeIn, scaleUp, buttonHover } = useAnimationStore();
   return (
     <div className="cart-page">
       <div className="header-cart">
@@ -67,12 +69,20 @@ function CartPage() {
 
       <div className="main-cart">
         <p className="main-text">Total: {totalPrice} kr</p>
-        <section className="main-filter">
+        <motion.section variants={staggeredFadeIn} className="main-filter">
           <h2 className="main-heading">Cart</h2>
-          <button className="btn-pris">Price</button>
-          <button className="btn-az">A-Z</button>
+          <motion.button
+            className="btn-pris"
+            variants={scaleUp}
+            {...buttonHover}
+          >
+            Price
+          </motion.button>
+          <motion.button className="btn-az" variants={scaleUp} {...buttonHover}>
+            A-Z
+          </motion.button>
           <div className="main-line"></div>
-        </section>
+        </motion.section>
         <CartList
           items={items}
           onAdd={handleAdd}
@@ -105,3 +115,4 @@ export default CartPage;
 
 // Förtfattare Katerina
 // Ändringar av Fredrick. Har typat om en del.
+// Ändring av Fredrick. Animation Animation och åter Animation

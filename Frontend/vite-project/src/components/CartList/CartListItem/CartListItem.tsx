@@ -1,5 +1,6 @@
 import "./cartListItem.css";
-
+import useAnimationStore from "../../../stores/AnimationStore";
+import { motion } from "motion/react";
 interface CartListItemProps {
   name: string;
   price: number;
@@ -21,8 +22,15 @@ function CartListItem({
   onSubtract,
   onNotesChange,
 }: CartListItemProps) {
+  const { fadeInUp, inputFocusScale, scaleUp } = useAnimationStore();
   return (
-    <section className="product-item">
+    <motion.section
+      variants={fadeInUp}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="product-item"
+    >
       <div className="info-product">
         <img src={imageUrl} alt={`Bild på ${name}`} className="product-image" />
         <div className="product-details">
@@ -31,25 +39,30 @@ function CartListItem({
         </div>
       </div>
       <article className="notes-container">
-        <textarea
+        <motion.textarea
           id="notes"
           name="notes"
           placeholder="Anteckningar:"
           className="notes-input"
           value={notes}
           onChange={onNotesChange}
-        ></textarea>
+          variants={inputFocusScale}
+        ></motion.textarea>
       </article>
       <div className="product-sum">{quantity}</div>
       <div className="btn-quantity">
-        <button className="btn-subtract" onClick={onSubtract}>
+        <motion.button
+          className="btn-subtract"
+          variants={scaleUp}
+          onClick={onSubtract}
+        >
           -
-        </button>
-        <button className="btn-add" onClick={onAdd}>
+        </motion.button>
+        <motion.button className="btn-add" variants={scaleUp} onClick={onAdd}>
           +
-        </button>
+        </motion.button>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
@@ -57,3 +70,4 @@ export default CartListItem;
 
 // Förtfattare Katerina
 // Ändringar av Fredrick. Har skickat props och typat om en del.
+// Ändring av Fredrick. Animation Animation och åter Animation

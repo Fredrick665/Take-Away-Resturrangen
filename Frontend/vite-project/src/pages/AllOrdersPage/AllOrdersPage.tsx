@@ -3,6 +3,8 @@ import axios from "axios";
 import "./allOrdersPage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 import { Order, ApiResponse, OrderItem } from "../../types/interface";
+import { motion } from "motion/react";
+import useAnimationStore from "../../stores/AnimationStore";
 
 const AllOrdersPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -10,6 +12,8 @@ const AllOrdersPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
+  const { slideInRight, buttonHover, scaleFade, fadeInUp } =
+    useAnimationStore();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -125,27 +129,58 @@ const AllOrdersPage: React.FC = () => {
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
       <section className="all-orders-page_contentwrapper"></section>
       <section className="all-orders-page_contentwrapper_2">
-        <button className="all-orders-page__button--az">A-Z</button>
-        <button className="all-orders-page__button--price">Pris</button>
-        <button className="all-orders-page__button--locked-orders">
+        <motion.button
+          className="all-orders-page__button--az"
+          variants={slideInRight}
+          {...buttonHover}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          A-Z
+        </motion.button>
+        <motion.button
+          className="all-orders-page__button--price"
+          variants={slideInRight}
+          {...buttonHover}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          Pris
+        </motion.button>
+        <motion.button
+          className="all-orders-page__button--locked-orders"
+          variants={slideInRight}
+          {...buttonHover}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
           Låsta Beställningar
-        </button>
+        </motion.button>
       </section>
-      <ul className="all-orders-page__list">
+      <motion.ul
+        variants={scaleFade}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="all-orders-page__list"
+      >
         {orders.map((order) => (
           <li key={order.id} className="all-orders-page__list-item">
             <label className="all-orders-page__list-item-label">
               <ul>Order ID:</ul> {order.id}
               <ul>Status:</ul> {order.status}
               <ul>Items:</ul>
-              <ul>
+              <motion.ul>
                 {order.orderItems.map((item: OrderItem) => (
                   <li key={item.id}>
                     {item.name} (x{item.quantity})
                   </li>
                 ))}
-              </ul>
-              <ul>Meddelande:</ul> {order.message}
+              </motion.ul>
+              <motion.ul>Meddelande:</motion.ul> {order.message}
             </label>
             <button
               onClick={() => handleEditOrder(order.id)}
@@ -155,40 +190,71 @@ const AllOrdersPage: React.FC = () => {
             </button>
           </li>
         ))}
-      </ul>
+      </motion.ul>
 
       {isEditing && editingOrder && (
         <div className="all-orders-page__edit-form">
           <h2>Redigera Beställning</h2>
           <div>
             <label>Status</label>
-            <select value={editingOrder.status} onChange={handleChangeStatus}>
+            <motion.select
+              value={editingOrder.status}
+              onChange={handleChangeStatus}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <option value="Pending">Pending</option>
               <option value="Locked">Locked</option>
               <option value="Cancelled">Cancelled</option>
-            </select>
+            </motion.select>
           </div>
           <label>Meddelande</label>
-          <input
+          <motion.input
             type="text"
             value={editingOrder.message}
             onChange={handleMessageChange}
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.5, delay: 0.4 }}
           />
           <label>Beställningsvaror</label>
           {editingOrder.orderItems.map((item) => (
             <div key={item.id}>
               <label>{item.name}</label>
-              <input
+              <motion.input
                 type="number"
                 value={item.quantity}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                transition={{ duration: 0.5, delay: 0.6 }}
                 onChange={(e) =>
                   handleQuantityChange(item.id, parseInt(e.target.value))
                 }
               />
             </div>
           ))}
-          <button onClick={handleSaveChanges}>Spara Ändringar</button>
-          <button onClick={handleCancelEdit}>Avbryt</button>
+          <motion.button
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            onClick={handleSaveChanges}
+          >
+            Spara Ändringar
+          </motion.button>
+          <motion.button
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.5, delay: 1.0 }}
+            onClick={handleCancelEdit}
+          >
+            Avbryt
+          </motion.button>
         </div>
       )}
     </main>
@@ -198,3 +264,4 @@ const AllOrdersPage: React.FC = () => {
 export default AllOrdersPage;
 
 // Författare Fredrick.
+// Ändring av Fredrick. Animation Animation och åter Animation

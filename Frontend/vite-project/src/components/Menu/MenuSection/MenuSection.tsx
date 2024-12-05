@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from "react";
+import { motion } from "motion/react";
+import useAnimationStore from "../../../stores/AnimationStore";
 import MenuFoodCard from "./MenuFoodItem/MenuFoodCard";
 import "./menuSection.css";
 
@@ -14,6 +16,7 @@ const MenuSection: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [sortBy, setSortBy] = useState<{ [key: string]: string }>({});
   const containerRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const { fadeInUp, staggerChildren, slideInUp } = useAnimationStore();
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -37,7 +40,10 @@ const MenuSection: React.FC = () => {
     fetchMenuItems();
   }, []);
 
-  const scrollContainer = (category: string, direction: "left" | "right"): void => {
+  const scrollContainer = (
+    category: string,
+    direction: "left" | "right"
+  ): void => {
     const container = containerRefs.current[category];
     if (container) {
       const scrollAmount: number = direction === "left" ? -500 : 500;
@@ -57,8 +63,7 @@ const MenuSection: React.FC = () => {
   const handleSortToggle = (category: string, criteria: string) => {
     setSortBy((prevSortBy) => {
       const currentSort = prevSortBy[category];
-      const newSort =
-        currentSort === criteria ? "none" : criteria;
+      const newSort = currentSort === criteria ? "none" : criteria;
       return {
         ...prevSortBy,
         [category]: newSort,
@@ -88,7 +93,14 @@ const MenuSection: React.FC = () => {
   return (
     <>
       {Object.keys(groupedByCategory).map((category) => (
-        <section key={category} className="menu__section">
+        <motion.section
+          key={category}
+          className="menu__section"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <button
             className="slide-btn left"
             onClick={() => scrollContainer(category, "left")}
@@ -104,7 +116,13 @@ const MenuSection: React.FC = () => {
 
           <section className="menu__filter-section">
             <h3>{category}</h3>
-            <div className="menu__filter-btns">
+            <motion.div
+              variants={slideInUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 1.5 }}
+              className="menu__filter-btns"
+            >
               <button
                 onClick={() =>
                   handleSortToggle(
@@ -125,27 +143,29 @@ const MenuSection: React.FC = () => {
               >
                 {sortBy[category] === "az" ? "A-Z" : "Z-A"}
               </button>
-            </div>
+            </motion.div>
           </section>
 
-          <section
+          <motion.section
             className="menu__food-container"
             ref={(el) => (containerRefs.current[category] = el)}
+            variants={staggerChildren}
+            initial="hidden"
+            animate="visible"
           >
             {getSortedItems(category).map((item) => (
-              <MenuFoodCard key={item.itemId} {...item} />
+              <MenuFoodCard {...item} />
             ))}
-          </section>
-        </section>
+          </motion.section>
+        </motion.section>
       ))}
     </>
   );
 };
 
 export default MenuSection;
-
-
 // Författare: Miklós
 // Ändring av Fredrick. Har använt useFootgun för att hämta menyalternativen och skickat ner dem som props till menufooditems. Funktionalitet för kategori för sorteringen finns inte än.
 // Ändring av Fredrick. Allt är sorterat efter kategori.
 // Ändringar av Fredrick. Har typat om en del.
+// Ändring av Fredrick. Animation Animation och åter Animation

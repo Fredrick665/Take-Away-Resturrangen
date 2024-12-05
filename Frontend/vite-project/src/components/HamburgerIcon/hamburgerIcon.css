@@ -9,6 +9,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 99;
+  background-color: var(--clr-secondery-text);
 }
 
 .hbmenu {

@@ -28,7 +28,7 @@ const useAnimationStore = create(() => ({
     visible: { opacity: 1, scale: 1 },
   } as Variants,
 
-  slideUp: {
+  slideInUp: {
     hidden: { y: 100, opacity: 0 },
     visible: { y: 0, opacity: 1 },
   } as Variants,
@@ -36,6 +36,16 @@ const useAnimationStore = create(() => ({
   slideInLeft: {
     hidden: { x: -100, opacity: 0 },
     visible: { x: 0, opacity: 1 },
+  } as Variants,
+
+  slideInRight: {
+    hidden: { x: 100, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  } as Variants,
+
+  slideInDown: {
+    hidden: { y: -100, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   } as Variants,
 
   scaleFade: {

@@ -4,7 +4,23 @@
   padding: 50px;
 }
 
+.admin-menu__heading::before,
+.admin-menu__heading::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  transition: background 0.3s ease;
+}
 
+.admin-menu__heading:hover::before,
+.admin-menu__heading:hover::after {
+  background-color: cyan;
+  content: "";
+  transition: 2s ease-in-out;
+  color: hotpink;
+  transform: scale(1, 2);
+}
 
 .admin-menu__heading:hover {
 }

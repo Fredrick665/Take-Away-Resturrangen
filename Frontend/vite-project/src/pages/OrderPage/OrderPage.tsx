@@ -1,40 +1,126 @@
 import "./orderPage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import { motion } from "framer-motion";
+import useAnimationStore from "../../stores/AnimationStore";
 
 function OrderPage() {
+  const { fadeInUp, staggeredFadeIn, inputFocusScale } = useAnimationStore();
+
   return (
-    <main className="order-page">
+    <motion.main
+      className="order-page"
+      variants={fadeInUp}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      transition={{ duration: 0.7 }}
+    >
       <Hamburgericon />
-      <h1 className="order-page__title">Lagerstatus på ingredienser</h1>
-      <ul className="order-page__list">
-        <li className="order-page__list-item">
+
+      <motion.h1
+        className="order-page__title"
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        transition={{ delay: 0.2 }}
+      >
+        Lagerstatus på ingredienser
+      </motion.h1>
+
+      <motion.ul
+        className="order-page__list"
+        variants={staggeredFadeIn}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        transition={{ delay: 0.3 }}
+      >
+        <motion.li
+          className="order-page__list-item"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ delay: 0.4 }}
+        >
           <label className="order-page__list-item-label">
             Lorem ipsum dolor sit amet
           </label>
-          <input type="number" className="order-page__number" id="item1" />
-        </li>
-        <li className="order-page__list-item">
+          <motion.input
+            type="number"
+            className="order-page__number"
+            id="item1"
+            variants={inputFocusScale}
+            whileFocus="whileFocus"
+          />
+        </motion.li>
+
+        <motion.li
+          className="order-page__list-item"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ delay: 0.5 }}
+        >
           <label className="order-page__list-item-label">
             Integer at ornare nibh
           </label>
-          <input type="number" className="order-page__number" id="item2" />
-        </li>
-        <li className="order-page__list-item">
+          <motion.input
+            type="number"
+            className="order-page__number"
+            id="item2"
+            variants={inputFocusScale}
+            whileFocus="whileFocus"
+          />
+        </motion.li>
+
+        <motion.li
+          className="order-page__list-item"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ delay: 0.6 }}
+        >
           <label className="order-page__list-item-label">
             Suspendisse venenatis elit
           </label>
-          <input type="number" className="order-page__number" id="item3" />
-        </li>
-        <li className="order-page__list-item">
+          <motion.input
+            type="number"
+            className="order-page__number"
+            id="item3"
+            variants={inputFocusScale}
+            whileFocus="whileFocus"
+          />
+        </motion.li>
+
+        <motion.li
+          className="order-page__list-item"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ delay: 0.7 }}
+        >
           <label className="order-page__list-item-label">
             Maecenas id dui egestas
           </label>
-          <input type="number" className="order-page__number" id="item4" />
-        </li>
-      </ul>
-    </main>
+          <motion.input
+            type="number"
+            className="order-page__number"
+            id="item4"
+            variants={inputFocusScale}
+            whileFocus="whileFocus"
+          />
+        </motion.li>
+      </motion.ul>
+    </motion.main>
   );
 }
 
 export default OrderPage;
+
 // Författare Fredrick.
+// Ändring av Fredrick. Animation Animation och åter Animation
