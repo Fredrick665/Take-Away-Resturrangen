@@ -26,31 +26,29 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 [Länk till aplikation](http://swift-deluxe.s3-website.eu-north-1.amazonaws.com/)
 
  **Kund (Köpare)**
-   - Startsida och navigering: På startsidan hittar du en hamburgermeny i det övre vänstra hörnet. Härifrån kan du navigera till följande sidor:
+   - Startsida och navigering: På startsidan hittar du en hamburgermeny i det övre vänstra hörnet.
+    Härifrån kan du navigera till följande sidor:
       - Registrering: För att skapa ett nytt användarkonto.
       - Inloggning: För att logga in på ditt konto och få tillgång till personliga funktioner.
       - Om oss (About): För att läsa mer om restaurangen och vår verksamhet.
       - Profilsida: För att hantera ditt konto och se din beställningshistorik.
-      - Obs! För att öppna menyn, klicka på hamburgarikonen (tre horisontella linjer).
+      - Obs! För att återgå till startsidan kan du klicka på logotypen.
    - Läsa menyn: Kunden kan navigera till sidan /homepage för att se tillgängliga rätter.
    - Göra en beställning:
       - Välj en rätt från menyn (eller klicka så många gånger behöver man) och lägg till i varukorgen.
-      - Gå till /cart (klicka på korgen) för att se och vid behov ändra din beställning. Du kan även lägga till en anteckning om du har några önskemål. Om man är klar bekräftar.
+      - Gå till /cart (klicka på korgen) för att se och vid behov ändra din beställning. Du kan även lägga till en anteckning om du har några önskemål (t.ex. "Ingen lök, tack"). Om man är klar bekräftar.
       - Man får bekreftälse och där man kan ändra order innan den blir låst samt gå tillbaka till /homepage (klicka på knappen eller icon).
    - Orderstatus: Kunden kan se statusen för sin beställning på /profilsida.
    
 
  **Personal (Administratörer)**
-   - För att opna Adminsida öppna hamburgermeny och valij 'Adminsida'.
+   - För att opna Adminsida öppna hamburgermeny och valij **'*Adminsida*'**.
    - Hantera beställningar: 
-      - Se alla inkommande beställningar.
-      - Låsa en beställning när den behandlas.
-      - Läsa kommentarer från kunder (t.ex. "Ingen lök, tack").
-   - Lägga till och redigera rätter: Gå till /additem för att lägga till en ny rätt eller /edititems för att ändra befintliga menyer.
-   - Kommentarer till kockar: Lägg till instruktioner till specifika beställningar via /admin/orders/:id/comment.
+      - För att se alla inkommande beställningar. Personalen kan redigera beställningarna här. När en beställning är klar, kan de markera den med en *checkbox* och stänga beställningen genom att klicka på *Låsta beställningar*.
+   - Lägga till och redigera rätter: Gå till *Uppdatera menyn och priser* för att lägga till en ny rätt eller för att ändra befintliga menyer.
 
  **Instruktioner för nya användare**      
-   - Registrera dig på sidan register om man vill och logga in.
+   - Registrera dig och logga in. Öppna en *hamburgermeny* i det övre vänstra hörnet.
 
 ---
 
@@ -87,9 +85,12 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 #### *Funktionalitet*
 
 **Responsiv design**: Applikationen fungerar på både datorer och mobila enheter.
+
 **Globalt tillstånd**: Zustand används för att hantera delade tillstånd, som t.ex.:
 *cartStore* för att hålla koll på produkter i varukorgen.
+
 **Routing**: Navigeringen hanteras via Router.tsx och AdminRouter.tsx, som definierar tillgång till olika sidor baserat på användarroll.
+
 **Exempel på nyckelfunktioner**
  *Varukorgslogik*:
    Produkter kan läggas till eller tas bort från varukorgen via cartStore.
@@ -98,9 +99,7 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
    Sidor som LoginPage och RegisterPage hanterar användarinloggning och registrering.
 *Användarvänlig navigering*:
    Dynamiska menyer (Navbar, HamburgerIcon) för enkel navigering.
-*Anpassningsbara teman*:
-   En ThemeSwitcher-komponent för att växla mellan olika visuella teman.
-
+ 
 **Installation och utveckling**
    För att starta frontend-applikationen:
 
@@ -117,6 +116,7 @@ Starta utvecklingsservern: npm run dev.
 ---
 
 ### Funktioner
+
 1. **Kund**
 - Läs menyn: `/menu-items`
 - Skapa beställning: `/order`
@@ -141,7 +141,6 @@ Starta utvecklingsservern: npm run dev.
 ---
 
 ### Teknologi
-Lista alla verktyg och ramverk som används, t.ex.:
 
 1. **Frontend** (Teknologier som används för att bygga användargränssnitt):
    - React (bibliotek för att bygga UI)
@@ -161,7 +160,7 @@ Lista alla verktyg och ramverk som används, t.ex.:
    - bcryptjs (hashning av lösenord)
    - dotenv (hantering av miljövariabler)
 
- 3. **Inne narzędzia i technologie**:
+ 3. **Andra verktyg och tekniker**:
    - Git / GitHub (versionskontroll)
    - Insomnia (testning av API-endpoints)  eller Postman
    - ESLint (kodstandard och linting)     
