@@ -2,7 +2,6 @@ import "./header.css";
 import HamburgerIcon from "../HamburgerIcon/HamburgerIcon";
 import CartCounter from "../CartCounter/CartCounter";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
 
 function Header() {
   return (
