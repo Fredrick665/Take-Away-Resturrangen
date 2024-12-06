@@ -70,7 +70,7 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 
 **Design och Prototyp**:
  Prototyper och design hanteras i Figma.
- Du kan se den aktuella versionen av prototypen här: [Länk till Figma-prototypen](Link URL???)  
+ Du kan se den aktuella versionen av prototypen här: [Länk till Figma-prototypen](https://www.figma.com/design/JSMkmFt9stEp3XJ8UmVHFn/Take-Away?node-id=0-1&node-type=canvas&t=2KAynQgQHxfe4sWe-0)  
 
 **Frontend**: 
    Frontend-applikationen är byggd med React i kombination med Vite för snabb utveckling och TypeScript för typkontroll. Applikationen är designad för att vara responsiv och användarvänlig med stöd för moderna webbläsare.
