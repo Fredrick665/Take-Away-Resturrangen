@@ -89,11 +89,17 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 #### *Projektet använder följande bibliotek och verktyg*:
 
  **React**: För att bygga komponentbaserade användargränssnitt.
+ 
  **Vite**: För snabb utveckling och byggprocess.
+ 
  **TypeScript**: För stark typning och bättre kodunderhåll.
+ 
  **Zustand**: För att hantera applikationens tillstånd, som t.ex. varukorg och användarinformation.
+ 
  **React Router**: För att hantera navigering och routing mellan sidor.
+ 
  **Axios**: För att göra HTTP-anrop till backend.
+ 
  **CSS**: För styling av komponenter och responsiv design.
 
 #### *Funktionalitet*
