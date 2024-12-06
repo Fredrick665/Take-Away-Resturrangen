@@ -27,7 +27,6 @@ function CartCounter() {
           className="cart-icon"
           variants={buttonHover}
           whileHover="whileHover"
-          whileTap="whileTap"
         />
       </Link>
     </div>

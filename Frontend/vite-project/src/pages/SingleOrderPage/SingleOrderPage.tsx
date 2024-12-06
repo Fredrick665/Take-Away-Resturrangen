@@ -16,8 +16,7 @@ function SingleOrderPage() {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  const { fadeInUp, staggerChildren, buttonHover, inputFocusStyle } =
-    useAnimationStore();
+  const { fadeInUp, staggerChildren, inputFocusStyle } = useAnimationStore();
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -162,18 +161,18 @@ function SingleOrderPage() {
                     className="single-order-page__button single-order-page__button--delete"
                     onClick={deleteOrder}
                     disabled={loading}
-                    variants={buttonHover}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     {loading ? "Tar bort..." : "Ta bort beställning"}
                   </motion.button>
                   <motion.button
                     className="single-order-page__button single-order-page__button--edit"
                     onClick={handleEditOrder}
-                    variants={buttonHover}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     {loading ? "Ändrar..." : "Ändra beställning"}
                   </motion.button>
@@ -264,18 +263,18 @@ function SingleOrderPage() {
                   <motion.button
                     className="single-order-page__button single-order-page__button--save"
                     onClick={handleSaveChanges}
-                    variants={buttonHover}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     Spara Ändringar
                   </motion.button>
                   <motion.button
                     className="single-order-page__button single-order-page__button--cancel"
                     onClick={handleCancelEdit}
-                    variants={buttonHover}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     Avbryt
                   </motion.button>

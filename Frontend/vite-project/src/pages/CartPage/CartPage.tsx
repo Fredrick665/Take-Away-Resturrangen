@@ -81,7 +81,7 @@ function CartPage() {
       return criteria;
     });
   };
-  const { staggeredFadeIn, scaleUp, buttonHover } = useAnimationStore();
+  const { staggeredFadeIn, scaleUp } = useAnimationStore();
   return (
     <div className="cart-page">
       <div className="header-cart">
@@ -100,7 +100,6 @@ function CartPage() {
           <motion.button
             className="btn-pris"
             variants={scaleUp}
-            {...buttonHover}
             onClick={() =>
               handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
             }
@@ -111,7 +110,6 @@ function CartPage() {
           <motion.button
             className="btn-az"
             variants={scaleUp}
-            {...buttonHover}
             onClick={() => handleSortToggle(sortBy === "az" ? "za" : "az")}
           >
             {sortBy === "az" ? "A-Z" : "Z-A"}

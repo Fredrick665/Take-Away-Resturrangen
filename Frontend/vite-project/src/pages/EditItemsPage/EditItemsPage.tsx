@@ -3,7 +3,7 @@ import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 import useAnimationStore from "../../stores/AnimationStore";
 import { motion } from "motion/react";
 function EditItemsPage() {
-  const { fadeInUp, buttonHover, scaleFade } = useAnimationStore();
+  const { fadeInUp, scaleFade } = useAnimationStore();
 
   return (
     <motion.main
@@ -45,9 +45,7 @@ function EditItemsPage() {
               Lorem ipsum dolor sit amet
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -61,9 +59,7 @@ function EditItemsPage() {
               Integer at ornare nibh
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -77,9 +73,7 @@ function EditItemsPage() {
               Suspendisse venenatis elit
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -93,9 +87,7 @@ function EditItemsPage() {
               Maecenas id dui egestas
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -118,9 +110,7 @@ function EditItemsPage() {
               Lorem ipsum dolor sit amet
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -134,9 +124,7 @@ function EditItemsPage() {
               Integer at ornare nibh
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -150,9 +138,7 @@ function EditItemsPage() {
               Suspendisse venenatis elit
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -166,9 +152,7 @@ function EditItemsPage() {
               Maecenas id dui egestas
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -191,9 +175,7 @@ function EditItemsPage() {
               Lorem ipsum dolor sit amet
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -207,9 +189,7 @@ function EditItemsPage() {
               Integer at ornare nibh
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -223,9 +203,7 @@ function EditItemsPage() {
               Suspendisse venenatis elit
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -239,9 +217,7 @@ function EditItemsPage() {
               Maecenas id dui egestas
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -264,9 +240,7 @@ function EditItemsPage() {
               Lorem ipsum dolor sit amet
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -280,9 +254,7 @@ function EditItemsPage() {
               Integer at ornare nibh
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -296,9 +268,7 @@ function EditItemsPage() {
               Suspendisse venenatis elit
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>
@@ -312,9 +282,7 @@ function EditItemsPage() {
               Maecenas id dui egestas
               <motion.button
                 className="edit-items-page__order-item-button"
-                variants={buttonHover}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                variants={scaleFade}
               >
                 Ändra/Ta bort
               </motion.button>

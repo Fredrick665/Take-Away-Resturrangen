@@ -5,7 +5,7 @@ import useAnimationStore from "../../stores/AnimationStore";
 import { motion } from "motion/react";
 
 function AddItemPage() {
-  const { fadeInUp, inputFocusScale, buttonHover } = useAnimationStore();
+  const { fadeInUp, inputFocusScale } = useAnimationStore();
 
   return (
     <motion.main
@@ -133,9 +133,11 @@ function AddItemPage() {
 
       <motion.button
         className="add-item-page__button"
-        variants={buttonHover}
-        whileHover="whileHover"
-        whileTap="whileTap"
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        transition={{ delay: 1.2 }}
       >
         Create Dish!
       </motion.button>

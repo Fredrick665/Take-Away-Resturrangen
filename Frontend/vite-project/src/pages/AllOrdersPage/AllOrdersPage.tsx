@@ -12,8 +12,7 @@ const AllOrdersPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
-  const { slideInRight, buttonHover, scaleFade, fadeInUp } =
-    useAnimationStore();
+  const { slideInRight, scaleFade, fadeInUp } = useAnimationStore();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -132,7 +131,6 @@ const AllOrdersPage: React.FC = () => {
         <motion.button
           className="all-orders-page__button--az"
           variants={slideInRight}
-          {...buttonHover}
           initial="hidden"
           animate="visible"
           transition={{ duration: 1, ease: "easeOut" }}
@@ -142,7 +140,6 @@ const AllOrdersPage: React.FC = () => {
         <motion.button
           className="all-orders-page__button--price"
           variants={slideInRight}
-          {...buttonHover}
           initial="hidden"
           animate="visible"
           transition={{ duration: 1, ease: "easeOut" }}
@@ -152,7 +149,6 @@ const AllOrdersPage: React.FC = () => {
         <motion.button
           className="all-orders-page__button--locked-orders"
           variants={slideInRight}
-          {...buttonHover}
           initial="hidden"
           animate="visible"
           transition={{ duration: 1, ease: "easeOut" }}

@@ -28,7 +28,7 @@ function LoginForm({ onSubmit }: LoginFormProps) {
     console.log("Submitting:", username, password); // Debugging log
     onSubmit(username, password);
   };
-  const { fadeInUp, buttonHover } = useAnimationStore();
+  const { fadeInUp } = useAnimationStore();
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <div>
@@ -68,7 +68,6 @@ function LoginForm({ onSubmit }: LoginFormProps) {
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
-        {...buttonHover}
         transition={{ duration: 0.5, delay: 0.6 }}
       >
         Log in

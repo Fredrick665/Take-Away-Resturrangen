@@ -92,7 +92,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
     console.log("Form is valid, submitting:", formData);
     onSubmit(formData);
   };
-  const { fadeInUp, buttonHover } = useAnimationStore();
+  const { fadeInUp } = useAnimationStore();
   return (
     <motion.form
       className="register-form"
@@ -180,8 +180,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
-        {...buttonHover}
-        transition={{ duration: 0.5, delay: 1.2 }}
+        transition={{ duration: 0.5, delay: 1.4 }}
       >
         Register
       </motion.button>
