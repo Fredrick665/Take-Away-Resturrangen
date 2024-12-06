@@ -162,6 +162,7 @@ const AllOrdersPage: React.FC = () => {
               className="all-orders-page__checkbox"
               id={`order-${order.id}`}
             />
+            <br />
             <button
               onClick={() => handleEditOrder(order.id)}
               className="all-orders-page__button--edit-order"

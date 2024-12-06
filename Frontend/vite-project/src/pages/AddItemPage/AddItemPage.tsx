@@ -1,46 +1,54 @@
 import "./addItemPage.css";
 import DD from "../../assets/DD.png";
-import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import HamburgerIcon from "../../components/HamburgerIcon/HamburgerIcon";
 
 function AddItemPage() {
   return (
     <main className="add-item-page">
-      <Hamburgericon />
+      <HamburgerIcon />
       <h1 className="add-item-page__title">Lägg till ny maträtt</h1>
-      <article className="add-item-page__subtitle-container">
+
+      <section className="add-item-page__section">
         <h3 className="add-item-page__subtitle">Add Image</h3>
-      </article>
-      <section className="add-item-page__drag-and-drop">
-        <img src={DD} alt="Logga" />
-        Drag and Drop
+        <div className="add-item-page__drag-and-drop">
+          <img src={DD} alt="Drag and Drop Icon" />
+          Drag and Drop
+        </div>
+          <input type="file" name="file" id="file"/>
       </section>
-      <article className="add-item-page__file-info">
-        <h3 className="add-item-page__subtitle">
-          Choose file. No file chosen.
-        </h3>
-      </article>
-      <article className="add-item-page__subtitle-container">
-        <h3 className="add-item-page__subtitle">Add food category</h3>
-      </article>
-      <input className="add-item-page__input_name" type="text" placeholder="" />
-      <article className="add-item-page__subtitle-container">
-        <h3 className="add-item-page__subtitle">Add name</h3>
-      </article>
-      <input className="add-item-page__input_name" type="text" placeholder="" />
-      <article className="add-item-page__subtitle-container">
-        <h3 className="add-item-page__subtitle">Add Price</h3>
-      </article>
-      <section className="add-item-page__input-container">
+
+      <section className="add-item-page__section">
+        <h3 className="add-item-page__subtitle">Add Food Category</h3>
         <input
-          className="add-item-page__input_price"
-          type="number"
-          placeholder=""
+          className="add-item-page__input"
+          type="text"
+          placeholder="Enter food category"
         />
       </section>
+
+      <section className="add-item-page__section">
+        <h3 className="add-item-page__subtitle">Add Name</h3>
+        <input
+          className="add-item-page__input"
+          type="text"
+          placeholder="Enter dish name"
+        />
+      </section>
+
+      <section className="add-item-page__section">
+        <h3 className="add-item-page__subtitle">Add Price</h3>
+        <input
+          className="add-item-page__input add-item-page__input--price"
+          type="number"
+          placeholder="Enter price"
+        />
+      </section>
+
       <button className="add-item-page__button">Create Dish!</button>
     </main>
   );
 }
 
 export default AddItemPage;
+
 // Författare Fredrick.

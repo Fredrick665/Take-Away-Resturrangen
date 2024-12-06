@@ -34,14 +34,16 @@ function MenuFoodCard({
 
   return (
     <article className="menu__food-card">
-      <div>
+      <header>
         <figure>
           <img src={imageurl} alt={title} />
         </figure>
         <h4>{title}</h4>
+      </header>  
+      <footer>
         <p>{price}kr</p>
-      </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+        <button onClick={handleAddToCart}>Add to Cart</button>
+      </footer>
     </article>
   );
 }

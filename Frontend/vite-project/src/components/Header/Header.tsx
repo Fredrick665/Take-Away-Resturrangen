@@ -17,8 +17,8 @@ function Header() {
       <Link to="/homepage">
         <img
           className="header__logo"
-          src="/src/assets/restaurant-logo.png"
-          alt=""
+          src={Logo}
+          alt="restaurant logo"
         />
       </Link>
       <h1>SwiftDeluxe Restaurant</h1>
