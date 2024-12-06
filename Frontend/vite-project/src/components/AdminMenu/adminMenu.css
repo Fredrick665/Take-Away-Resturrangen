@@ -1,10 +1,14 @@
 .admin-menu__heading {
   font-weight: 40px;
   font-family: var(--text-poly);
-  padding: 50px;
+  padding: 25px 0;
+  margin: 25px 0;
 }
 
-
+a {
+  color: var(--clr-primary-text);
+  font-weight: 300;
+}
 
 .admin-menu__heading:hover {
 }

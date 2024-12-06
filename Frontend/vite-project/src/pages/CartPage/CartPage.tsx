@@ -1,5 +1,5 @@
 import "./cartPage.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import CartList from "../../components/CartList/CartList";
 import { useCartStore } from "../../stores/cartStore";
@@ -11,14 +11,14 @@ import { useState } from "react";
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
+  const [sortBy, setSortBy] = useState<string>("none");
 
   const handleAdd = (itemId: string) => {
     const item = items.find((item) => item.itemId === itemId);
     if (item) {
       addItem(item);
     } else {
-      console.error("Item with id ${itemId} not found in cart.");
+      console.error(`Item with id ${itemId} not found in cart.`);
     }
   };
 
@@ -55,6 +55,32 @@ function CartPage() {
     }
   };
 
+  // Rendezési logika
+  const getSortedItems = () => {
+    if (sortBy === "price") {
+      return [...items].sort((a, b) => a.price - b.price);
+    }
+    if (sortBy === "reverse-price") {
+      return [...items].sort((a, b) => b.price - a.price);
+    }
+    if (sortBy === "az") {
+      return [...items].sort((a, b) => a.title.localeCompare(b.title));
+    }
+    if (sortBy === "za") {
+      return [...items].sort((a, b) => b.title.localeCompare(a.title));
+    }
+    return items;
+  };
+
+  const handleSortToggle = (criteria: string) => {
+    setSortBy((prevSortBy) => {
+      if (prevSortBy === criteria) {
+        return "none";
+      }
+      return criteria;
+    });
+  };
+
   return (
     <div className="cart-page">
       <div className="header-cart">
@@ -69,12 +95,26 @@ function CartPage() {
         <p className="main-text">Total: {totalPrice} kr</p>
         <section className="main-filter">
           <h2 className="main-heading">Cart</h2>
-          <button className="btn-pris">Price</button>
-          <button className="btn-az">A-Z</button>
+          <button
+            className="btn-pris"
+            onClick={() =>
+              handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
+            }
+          >
+            Price {sortBy === "price" ? "↓" : "↑"}
+          </button>
+          <button
+            className="btn-az"
+            onClick={() =>
+              handleSortToggle(sortBy === "az" ? "za" : "az")
+            }
+          >
+            {sortBy === "az" ? "A-Z" : "Z-A"}
+          </button>
           <div className="main-line"></div>
         </section>
         <CartList
-          items={items}
+          items={getSortedItems()}
           onAdd={handleAdd}
           onSubtract={handleSubtract}
           onNotesChange={handleNotesChange}
@@ -87,7 +127,7 @@ function CartPage() {
           onClick={(e) => {
             e.preventDefault();
             handleSubmit().then(() => {
-              navigate("/confirmedorders");
+              window.location.href = "/confirmedorders";
             });
           }}
         >
@@ -95,7 +135,6 @@ function CartPage() {
             {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
           </button>
         </Link>
-        ;
       </div>
     </div>
   );

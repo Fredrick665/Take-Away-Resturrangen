@@ -119,11 +119,19 @@ const AllOrdersPage: React.FC = () => {
     return <p>{error}</p>;
   }
 
+
   return (
     <main className="all-orders-page">
       <Hamburgericon />
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
-      <section className="all-orders-page_contentwrapper"></section>
+      <section className="all-orders-page_contentwrapper">
+        <button className="all-orders-page__button--edit-order">
+          Redigera Specifik beställning
+        </button>
+        <button className="all-orders-page__button--special-requests">
+          Lägga till Speciella Önskemål
+        </button>
+      </section>
       <section className="all-orders-page_contentwrapper_2">
         <button className="all-orders-page__button--az">A-Z</button>
         <button className="all-orders-page__button--price">Pris</button>
@@ -135,9 +143,11 @@ const AllOrdersPage: React.FC = () => {
         {orders.map((order) => (
           <li key={order.id} className="all-orders-page__list-item">
             <label className="all-orders-page__list-item-label">
-              <ul>Order ID:</ul> {order.id}
-              <ul>Status:</ul> {order.status}
-              <ul>Items:</ul>
+              <strong>Order ID:</strong> {order.id}
+              <br />
+              <strong>Status:</strong> {order.status}
+              <br />
+              <strong>Items:</strong>
               <ul>
                 {order.orderItems.map((item: OrderItem) => (
                   <li key={item.id}>
@@ -145,8 +155,14 @@ const AllOrdersPage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <ul>Meddelande:</ul> {order.message}
+              <strong>Meddelande:</strong> {order.message}
             </label>
+            <input
+              type="checkbox"
+              className="all-orders-page__checkbox"
+              id={`order-${order.id}`}
+            />
+            <br />
             <button
               onClick={() => handleEditOrder(order.id)}
               className="all-orders-page__button--edit-order"

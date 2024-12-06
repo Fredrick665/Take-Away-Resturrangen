@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import MenuFoodCard from "./MenuFoodItem/MenuFoodCard";
+import ArrowBtn from '../../../assets/arrow-icon.svg'
 import "./menuSection.css";
 
 interface MenuItem {
@@ -93,13 +94,13 @@ const MenuSection: React.FC = () => {
             className="slide-btn left"
             onClick={() => scrollContainer(category, "left")}
           >
-            <img src="/src/assets/arrow-icon.svg" alt="Previous" />
+            <img src={ArrowBtn} alt="Previous" />
           </button>
           <button
             className="slide-btn right"
             onClick={() => scrollContainer(category, "right")}
           >
-            <img src="/src/assets/arrow-icon.svg" alt="Next" />
+            <img src={ArrowBtn} alt="Next" />
           </button>
 
           <section className="menu__filter-section">
