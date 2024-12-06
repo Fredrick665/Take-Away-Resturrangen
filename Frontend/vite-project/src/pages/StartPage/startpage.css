@@ -38,7 +38,7 @@ a {
 .start-page__heading:hover::before,
 .start-page__heading:hover::after {
   background-color: cyan;
-  content: "Vi är Bäst!";
+  content: "";
   transition: 2s ease-in-out;
   color: hotpink;
   transform: scale(1, 2);
