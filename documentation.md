@@ -88,15 +88,13 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 
 #### *Projektet använder följande bibliotek och verktyg*:
 
-**React**: För att bygga komponentbaserade användargränssnitt.
-**Vite**: För snabb utveckling och byggprocess.
-**TypeScript**: För stark typning och bättre kodunderhåll.
-**Zustand**: För att hantera applikationens tillstånd, som t.ex. varukorg och användarinformation.
-**React Router**: För att hantera navigering och routing mellan sidor.
-**Axios**: För att göra HTTP-anrop till backend.
-**CSS**: För styling av komponenter och responsiv design.
-**Framer Motion**: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
-**uuid**: För att generera unika identifierare för olika objekt, vilket säkerställde att varje resurs fick en unik och säker identitet.(backend)
+ **React**: För att bygga komponentbaserade användargränssnitt.
+ **Vite**: För snabb utveckling och byggprocess.
+ **TypeScript**: För stark typning och bättre kodunderhåll.
+ **Zustand**: För att hantera applikationens tillstånd, som t.ex. varukorg och användarinformation.
+ **React Router**: För att hantera navigering och routing mellan sidor.
+ **Axios**: För att göra HTTP-anrop till backend.
+ **CSS**: För styling av komponenter och responsiv design.
 
 #### *Funktionalitet*
 
@@ -166,6 +164,7 @@ Starta utvecklingsservern: npm run dev.
    - React Router (för navigering i applikationen)
    - Axios (hantering av HTTP-förfrågningar)
    - CSS
+   - Motion: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
 
 2. **Backend** (Teknologier för att hantera affärslogik och serverfunktioner):
    - AWS Lambda (serverless computing)
@@ -175,6 +174,7 @@ Starta utvecklingsservern: npm run dev.
    - Middy (middleware för AWS Lambda)
    - bcryptjs (hashning av lösenord)
    - dotenv (hantering av miljövariabler)
+   - uuid : För att generera unika identifierare för olika objekt, vilket säkerställde att varje resurs fick en unik och säker identitet.(backend)
 
  3. **Andra verktyg och tekniker**:
    - Git / GitHub (versionskontroll)
