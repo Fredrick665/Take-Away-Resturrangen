@@ -1,5 +1,5 @@
 import "./cartPage.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import CartList from "../../components/CartList/CartList";
 import { useCartStore } from "../../stores/cartStore";
@@ -13,14 +13,14 @@ import { motion } from "motion/react";
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
+  const [sortBy, setSortBy] = useState<string>("none");
 
   const handleAdd = (itemId: string) => {
     const item = items.find((item) => item.itemId === itemId);
     if (item) {
       addItem(item);
     } else {
-      console.error("Item with id ${itemId} not found in cart.");
+      console.error(`Item with id ${itemId} not found in cart.`);
     }
   };
 
@@ -56,6 +56,31 @@ function CartPage() {
       setIsSubmitting(false);
     }
   };
+
+  const getSortedItems = () => {
+    if (sortBy === "price") {
+      return [...items].sort((a, b) => a.price - b.price);
+    }
+    if (sortBy === "reverse-price") {
+      return [...items].sort((a, b) => b.price - a.price);
+    }
+    if (sortBy === "az") {
+      return [...items].sort((a, b) => a.title.localeCompare(b.title));
+    }
+    if (sortBy === "za") {
+      return [...items].sort((a, b) => b.title.localeCompare(a.title));
+    }
+    return items;
+  };
+
+  const handleSortToggle = (criteria: string) => {
+    setSortBy((prevSortBy) => {
+      if (prevSortBy === criteria) {
+        return "none";
+      }
+      return criteria;
+    });
+  };
   const { staggeredFadeIn, scaleUp, buttonHover } = useAnimationStore();
   return (
     <div className="cart-page">
@@ -71,20 +96,32 @@ function CartPage() {
         <p className="main-text">Total: {totalPrice} kr</p>
         <motion.section variants={staggeredFadeIn} className="main-filter">
           <h2 className="main-heading">Cart</h2>
+
           <motion.button
             className="btn-pris"
             variants={scaleUp}
             {...buttonHover}
+            onClick={() =>
+              handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
+            }
           >
-            Price
+            Price {sortBy === "price" ? "↓" : "↑"}
           </motion.button>
-          <motion.button className="btn-az" variants={scaleUp} {...buttonHover}>
-            A-Z
+
+          <motion.button
+            className="btn-az"
+            variants={scaleUp}
+            {...buttonHover}
+            onClick={() => handleSortToggle(sortBy === "az" ? "za" : "az")}
+          >
+            {sortBy === "az" ? "A-Z" : "Z-A"}
           </motion.button>
+
           <div className="main-line"></div>
         </motion.section>
+
         <CartList
-          items={items}
+          items={getSortedItems()}
           onAdd={handleAdd}
           onSubtract={handleSubtract}
           onNotesChange={handleNotesChange}
@@ -97,7 +134,7 @@ function CartPage() {
           onClick={(e) => {
             e.preventDefault();
             handleSubmit().then(() => {
-              navigate("/confirmedorders");
+              window.location.href = "/confirmedorders";
             });
           }}
         >
@@ -105,7 +142,6 @@ function CartPage() {
             {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
           </button>
         </Link>
-        ;
       </div>
     </div>
   );
