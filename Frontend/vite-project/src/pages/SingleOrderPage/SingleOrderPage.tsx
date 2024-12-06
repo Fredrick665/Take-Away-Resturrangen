@@ -80,10 +80,6 @@ function SingleOrderPage() {
   };
 
   const handleQuantityChange = (itemId: string, quantity: number) => {
-    if (isNaN(quantity) || quantity < 0) {
-      alert("Vänligen ange ett giltigt antal.");
-      return;
-    }
     if (editingOrder) {
       const updatedOrderItems = editingOrder.orderItems.map((item) =>
         item.id === itemId ? { ...item, quantity } : item
@@ -99,10 +95,13 @@ function SingleOrderPage() {
     if (editingOrder) {
       try {
         if (
-          !editingOrder.message ||
-          editingOrder.orderItems.some((item) => item.quantity <= 0)
+          editingOrder.orderItems.some(
+            (item) => isNaN(item.quantity) || item.quantity <= 0
+          )
         ) {
-          setError("Fyll i alla fält korrekt.");
+          setError(
+            "Det går inte ta bort beställningar genom att ändra antalet av maträtten till 0. Ta bort hela beställningen istället."
+          );
           return;
         }
 
@@ -111,17 +110,13 @@ function SingleOrderPage() {
           {
             id: editingOrder.id,
             orderItems: editingOrder.orderItems,
-            message: editingOrder.message,
+            message: editingOrder.message || "",
             status: editingOrder.status,
           }
         );
-
-        setOrder(editingOrder);
-        setIsEditing(false);
-        setEditingOrder(null);
       } catch (error) {
-        console.error("Fel vid uppdatering av beställning", error);
-        setError("Fel vid uppdatering av beställning.");
+        console.error("Kunde inte spara ändringar:", error);
+        setError("Något gick fel vid sparandet. Försök igen senare.");
       }
     }
   };
