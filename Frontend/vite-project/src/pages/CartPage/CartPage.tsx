@@ -55,7 +55,7 @@ function CartPage() {
     }
   };
 
-  // Rendezési logika
+  
   const getSortedItems = () => {
     if (sortBy === "price") {
       return [...items].sort((a, b) => a.price - b.price);
