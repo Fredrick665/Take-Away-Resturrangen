@@ -57,7 +57,6 @@ function CartPage() {
     }
   };
 
-
   const getSortedItems = () => {
     if (sortBy === "price") {
       return [...items].sort((a, b) => a.price - b.price);
@@ -75,12 +74,7 @@ function CartPage() {
   };
 
   const handleSortToggle = (criteria: string) => {
-    setSortBy((prevSortBy) => {
-      if (prevSortBy === criteria) {
-        return "none";
-      }
-      return criteria;
-    });
+    setSortBy((prevSortBy) => (prevSortBy === criteria ? "none" : criteria));
   };
 
   const { staggeredFadeIn, scaleUp } = useAnimationStore();
@@ -100,22 +94,18 @@ function CartPage() {
         <motion.section variants={staggeredFadeIn} className="main-filter">
           <h2 className="main-heading">Cart</h2>
 
-
+          {/* Price Sorting Button */}
           <motion.button
             className="btn-pris"
             variants={scaleUp}
-
-          <button
-            className="btn-pris"
-
             onClick={() =>
               handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
             }
           >
             Price {sortBy === "price" ? "↓" : "↑"}
-
           </motion.button>
 
+          {/* A-Z / Z-A Sorting Button */}
           <motion.button
             className="btn-az"
             variants={scaleUp}
@@ -123,17 +113,6 @@ function CartPage() {
           >
             {sortBy === "az" ? "A-Z" : "Z-A"}
           </motion.button>
-
-
-          </button>
-          <button
-            className="btn-az"
-            onClick={() =>
-              handleSortToggle(sortBy === "az" ? "za" : "az")
-            }
-          >
-            {sortBy === "az" ? "A-Z" : "Z-A"}
-          </button>
 
           <div className="main-line"></div>
         </motion.section>

@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import useAnimationStore from "../../stores/AnimationStore"; // Importera zustand store
+import useAnimationStore from "../../stores/AnimationStore";
 import "./profileMenu.css";
 
 function ProfileMenu() {

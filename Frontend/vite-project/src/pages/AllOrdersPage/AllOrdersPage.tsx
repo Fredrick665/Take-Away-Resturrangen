@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./allOrdersPage.css";
-import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import HamburgerIcon from "../../components/HamburgerIcon/HamburgerIcon";
 import { Order, ApiResponse, OrderItem } from "../../types/interface";
 import { motion } from "motion/react";
 import useAnimationStore from "../../stores/AnimationStore";
@@ -87,7 +87,6 @@ const AllOrdersPage: React.FC = () => {
 
         await axios.put(
           `https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order`,
-
           {
             id: editingOrder.id,
             orderItems: editingOrder.orderItems,
@@ -122,10 +121,9 @@ const AllOrdersPage: React.FC = () => {
     return <p>{error}</p>;
   }
 
-
   return (
     <main className="all-orders-page">
-      <Hamburgericon />
+      <HamburgerIcon />
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
       <section className="all-orders-page_contentwrapper">
         <button className="all-orders-page__button--edit-order">
@@ -174,31 +172,17 @@ const AllOrdersPage: React.FC = () => {
         {orders.map((order) => (
           <li key={order.id} className="all-orders-page__list-item">
             <label className="all-orders-page__list-item-label">
-
-              <ul>Order ID:</ul> {order.id}
-              <ul>Status:</ul> {order.status}
-              <ul>Items:</ul>
-              <motion.ul>
-
-              <strong>Order ID:</strong> {order.id}
-              <br />
-              <strong>Status:</strong> {order.status}
-              <br />
-              <strong>Items:</strong>
+              <div>Order ID: {order.id}</div>
+              <div>Status: {order.status}</div>
+              <div>Items:</div>
               <ul>
-
                 {order.orderItems.map((item: OrderItem) => (
                   <li key={item.id}>
                     {item.name} (x{item.quantity})
                   </li>
                 ))}
-
-              </motion.ul>
-              <motion.ul>Meddelande:</motion.ul> {order.message}
-
               </ul>
-              <strong>Meddelande:</strong> {order.message}
-
+              <div>Meddelande: {order.message}</div>
             </label>
             <input
               type="checkbox"

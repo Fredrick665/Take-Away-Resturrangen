@@ -4,7 +4,7 @@ import CartCounter from "../CartCounter/CartCounter";
 import { Link } from "react-router-dom";
 import useAnimationStore from "../../stores/AnimationStore";
 import { motion } from "motion/react";
-import Logo from './../../assets/logo.svg'
+import Logo from "./../../assets/logo.svg";
 
 function Header() {
   const { scaleUp, fadeInDown } = useAnimationStore();
@@ -30,9 +30,6 @@ function Header() {
       <Link to="/homepage">
         <motion.img
           className="header__logo"
-
-          src="/src/assets/restaurant-logo.png"
-          alt="Restaurant Logo"
           variants={scaleUp}
           initial="hidden"
           animate="visible"

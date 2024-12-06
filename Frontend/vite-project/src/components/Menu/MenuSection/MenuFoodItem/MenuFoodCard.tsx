@@ -35,7 +35,6 @@ function MenuFoodCard({
   const { slideInLeft, slideInUp, slideInRight } = useAnimationStore();
   return (
     <article className="menu__food-card">
-
       <figure>
         <motion.img src={imageurl} alt={title} variants={slideInLeft} />
       </figure>
@@ -58,7 +57,7 @@ function MenuFoodCard({
           <img src={imageurl} alt={title} />
         </figure>
         <h4>{title}</h4>
-      </header>  
+      </header>
       <footer>
         <p>{price}kr</p>
         <button onClick={handleAddToCart}>Add to Cart</button>
@@ -73,4 +72,3 @@ export default MenuFoodCard;
 // Ändring av Fredrick: Har typat upp props för att få ett fungerande beställningsflöde.
 // Mer ändringar av Fredrick. Har typat om en del.
 // Ändring av Fredrick. Animation Animation och åter Animation
-
