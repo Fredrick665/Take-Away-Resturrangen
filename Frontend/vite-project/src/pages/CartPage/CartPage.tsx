@@ -7,6 +7,8 @@ import CartCounter from "../../components/CartCounter/CartCounter";
 import HamburgerIcon from "../../components/HamburgerIcon/HamburgerIcon";
 import axios from "axios";
 import { useState } from "react";
+import useAnimationStore from "../../stores/AnimationStore";
+import { motion } from "motion/react";
 
 function CartPage() {
   const { items, addItem, subtractItem, updateNotes } = useCartStore();
@@ -55,7 +57,7 @@ function CartPage() {
     }
   };
 
-  
+
   const getSortedItems = () => {
     if (sortBy === "price") {
       return [...items].sort((a, b) => a.price - b.price);
@@ -81,6 +83,8 @@ function CartPage() {
     });
   };
 
+  const { staggeredFadeIn, scaleUp } = useAnimationStore();
+
   return (
     <div className="cart-page">
       <div className="header-cart">
@@ -93,15 +97,34 @@ function CartPage() {
 
       <div className="main-cart">
         <p className="main-text">Total: {totalPrice} kr</p>
-        <section className="main-filter">
+        <motion.section variants={staggeredFadeIn} className="main-filter">
           <h2 className="main-heading">Cart</h2>
+
+
+          <motion.button
+            className="btn-pris"
+            variants={scaleUp}
+
           <button
             className="btn-pris"
+
             onClick={() =>
               handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
             }
           >
             Price {sortBy === "price" ? "↓" : "↑"}
+
+          </motion.button>
+
+          <motion.button
+            className="btn-az"
+            variants={scaleUp}
+            onClick={() => handleSortToggle(sortBy === "az" ? "za" : "az")}
+          >
+            {sortBy === "az" ? "A-Z" : "Z-A"}
+          </motion.button>
+
+
           </button>
           <button
             className="btn-az"
@@ -111,8 +134,10 @@ function CartPage() {
           >
             {sortBy === "az" ? "A-Z" : "Z-A"}
           </button>
+
           <div className="main-line"></div>
-        </section>
+        </motion.section>
+
         <CartList
           items={getSortedItems()}
           onAdd={handleAdd}
@@ -144,3 +169,4 @@ export default CartPage;
 
 // Förtfattare Katerina
 // Ändringar av Fredrick. Har typat om en del.
+// Ändring av Fredrick. Animation Animation och åter Animation

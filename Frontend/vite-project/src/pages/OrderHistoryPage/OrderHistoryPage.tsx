@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { motion } from "motion/react";
+import useAnimationStore from "../../stores/AnimationStore";
 import "./orderHistoryPage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 import { ApiResponse } from "../../types/interface";
@@ -8,6 +10,7 @@ import { ApiResponse } from "../../types/interface";
 function OrderHistoryPage() {
   const [orders, setOrders] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const { menuItemVariants } = useAnimationStore();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -33,21 +36,33 @@ function OrderHistoryPage() {
       {error ? (
         <p className="order-history-page__error">{error}</p>
       ) : (
-        <ul className="order-history-page__order-list">
+        <motion.ul
+          className="order-history-page__order-list"
+          variants={menuItemVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {orders.length === 0 ? (
             <li>Ingen orderhistorik tillgänglig</li>
           ) : (
-            orders.map((orderId) => (
-              <li className="order-history-page__order-item" key={orderId}>
+            orders.map((orderId, index) => (
+              <motion.li
+                className="order-history-page__order-item"
+                key={orderId}
+                variants={menuItemVariants}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+              >
                 <label className="order-history-page__order-item-label">
                   <Link to={`/singleorder/${orderId}`}>
                     Order ID: {orderId}
                   </Link>
                 </label>
-              </li>
+              </motion.li>
             ))
           )}
-        </ul>
+        </motion.ul>
       )}
     </main>
   );
@@ -56,3 +71,4 @@ function OrderHistoryPage() {
 export default OrderHistoryPage;
 
 // Författare Fredrick.
+// Ändring av Fredrick. Animation Animation och åter Animation

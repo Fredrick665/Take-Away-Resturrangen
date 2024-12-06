@@ -5,6 +5,8 @@ import "./singleOrderPage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 import ReceiptSO from "../../components/Receipt/ReceiptSO";
 import { Order } from "../../types/interface";
+import useAnimationStore from "../../stores/AnimationStore";
+import { motion } from "motion/react";
 
 function SingleOrderPage() {
   const { orderId } = useParams<{ orderId: string }>();
@@ -14,6 +16,7 @@ function SingleOrderPage() {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
+  const { fadeInUp, staggerChildren, inputFocusStyle } = useAnimationStore();
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -131,37 +134,66 @@ function SingleOrderPage() {
   return (
     <main className="single-order-page">
       <Hamburgericon />
-      <h1 className="single-order-page__title">Din valda beställning</h1>
+      <motion.h1
+        className="single-order-page__title"
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+      >
+        Din valda beställning
+      </motion.h1>
+
       {error ? (
         <p className="single-order-page__error">{error}</p>
       ) : (
         order && (
           <>
             {!isEditing ? (
-              <article className="single-order-page__details">
+              <motion.article
+                className="single-order-page__details"
+                variants={fadeInUp}
+                initial="hidden"
+                animate="visible"
+              >
                 <ReceiptSO order={order} />
                 <section className="single-order-page__actions">
-                  <button
+                  <motion.button
                     className="single-order-page__button single-order-page__button--delete"
                     onClick={deleteOrder}
                     disabled={loading}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     {loading ? "Tar bort..." : "Ta bort beställning"}
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     className="single-order-page__button single-order-page__button--edit"
                     onClick={handleEditOrder}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     {loading ? "Ändrar..." : "Ändra beställning"}
-                  </button>
+                  </motion.button>
                 </section>
-              </article>
+              </motion.article>
             ) : (
-              <section className="single-order-page__edit">
+              <motion.section
+                className="single-order-page__edit"
+                variants={fadeInUp}
+                initial="hidden"
+                animate="visible"
+              >
                 <h2 className="single-order-page__edit-title">
                   Redigera Beställning
                 </h2>
-                <article className="single-order-page__edit-section">
+                <motion.article
+                  className="single-order-page__edit-section"
+                  variants={staggerChildren}
+                  initial="hidden"
+                  animate="visible"
+                >
                   <label className="single-order-page__edit-label">
                     Status
                   </label>
@@ -174,26 +206,41 @@ function SingleOrderPage() {
                     <option value="Locked">Locked</option>
                     <option value="Cancelled">Cancelled</option>
                   </select>
-                </article>
-                <article className="single-order-page__edit-section">
+                </motion.article>
+                <motion.article
+                  className="single-order-page__edit-section"
+                  variants={staggerChildren}
+                  initial="hidden"
+                  animate="visible"
+                >
                   <label className="single-order-page__edit-label">
                     Meddelande
                   </label>
-                  <input
+                  <motion.input
                     className="single-order-page__edit-input"
                     type="text"
                     value={editingOrder?.message}
                     onChange={handleMessageChange}
+                    variants={inputFocusStyle}
+                    whileFocus="whileFocus"
                   />
-                </article>
-                <article className="single-order-page__edit-section">
+                </motion.article>
+                <motion.article
+                  className="single-order-page__edit-section"
+                  variants={staggerChildren}
+                  initial="hidden"
+                  animate="visible"
+                >
                   <label className="single-order-page__edit-label">
                     Beställningsvaror
                   </label>
                   {editingOrder?.orderItems.map((item) => (
-                    <section
+                    <motion.section
                       className="single-order-page__edit-item"
                       key={item.id}
+                      variants={fadeInUp}
+                      initial="hidden"
+                      animate="visible"
                     >
                       <label className="single-order-page__edit-item-label">
                         {item.name}
@@ -209,24 +256,30 @@ function SingleOrderPage() {
                           )
                         }
                       />
-                    </section>
+                    </motion.section>
                   ))}
-                </article>
+                </motion.article>
                 <section className="single-order-page__edit-actions">
-                  <button
+                  <motion.button
                     className="single-order-page__button single-order-page__button--save"
                     onClick={handleSaveChanges}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     Spara Ändringar
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     className="single-order-page__button single-order-page__button--cancel"
                     onClick={handleCancelEdit}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                   >
                     Avbryt
-                  </button>
+                  </motion.button>
                 </section>
-              </section>
+              </motion.section>
             )}
           </>
         )
@@ -238,3 +291,4 @@ function SingleOrderPage() {
 export default SingleOrderPage;
 
 // Författare Fredrick
+// Ändring av Fredrick. Animation Animation och åter Animation

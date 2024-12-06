@@ -4,3 +4,21 @@
   color: var(--clr-primary-text);
   margin-top: 50px;
 }
+
+.profile-menu__heading::before,
+.profile-menu__heading::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  transition: background 0.3s ease;
+}
+
+.profile-menu__heading:hover::before,
+.profile-menu__heading:hover::after {
+  background-color: cyan;
+  content: "";
+  transition: 2s ease-in-out;
+  color: hotpink;
+  transform: scale(1, 2);
+}
