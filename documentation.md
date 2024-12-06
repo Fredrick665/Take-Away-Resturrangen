@@ -42,13 +42,27 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
    
 
  **Personal (Administratörer)**
-   - För att opna Adminsida öppna hamburgermeny och valij **'*Adminsida*'**.
+   - För att opna Adminsida öppna hamburgermeny och välj alternativet **'*Adminsida*'**.
    - Hantera beställningar: 
-      - För att se alla inkommande beställningar. Personalen kan redigera beställningarna här. När en beställning är klar, kan de markera den med en *checkbox* och stänga beställningen genom att klicka på *Låsta beställningar*.
-   - Lägga till och redigera rätter: Gå till *Uppdatera menyn och priser* för att lägga till en ny rätt eller för att ändra befintliga menyer.
+      - På sidan Alla Beställningar kan personalen:
+         - Se en lista över alla inkommande beställningar, inklusive: beställnings-ID, status (t.ex. Pending, Locked, Cancelled), beställningsvaror med kvantiteter och meddelanden från kunder.
+      - Redigera beställningar:
+         - För att redigera en beställning, klicka på knappen Redigera bredvid den valda beställningen.
+         - I redigeringsformuläret kan du:
+            - Ändra status på beställningen (Pending, Locked, Cancelled).
+            - Uppdatera kundens meddelande.
+            - Justera kvantiteter för varje produkt i beställningen.
+         - För att spara ändringarna, klicka på Spara Ändringar.
+         - Om du vill avbryta redigeringen, klicka på Avbryt.
+      - Låsa beställningar: 
+         - När en beställning är färdig att levereras eller hanteras klart, markera den som "Locked" genom att ändra status och spara ändringarna. Alla låsta beställningar kan visas genom att klicka på knappen Låsta Beställningar.
+   - Lägga till och redigera rätter:
+      - Gå till sidan Uppdatera menyn och priser för att:
+      - Lägga till nya rätter eller drycker i menyn.
+      - Uppdatera befintliga rätter, inklusive namn, priser och beskrivningar.    
 
  **Instruktioner för nya användare**      
-   - Registrera dig och logga in. Öppna en *hamburgermeny* i det övre vänstra hörnet.
+   - Registrera dig och logga in. Öppna en *hamburgermeny* i det övre vänstra hörnet. Obs! Lösenordet måste innehålla minst 8 tecken.
 
 ---
 
