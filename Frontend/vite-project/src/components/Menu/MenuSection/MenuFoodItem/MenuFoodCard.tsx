@@ -51,17 +51,6 @@ function MenuFoodCard({
       >
         Add to Cart
       </motion.button>
-
-      <header>
-        <figure>
-          <img src={imageurl} alt={title} />
-        </figure>
-        <h4>{title}</h4>
-      </header>
-      <footer>
-        <p>{price}kr</p>
-        <button onClick={handleAddToCart}>Add to Cart</button>
-      </footer>
     </article>
   );
 }
