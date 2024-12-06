@@ -1,2 +1,2 @@
-organisation: studentkasia
-iamRole: arn:aws:iam::796973483684:role/LambdaDynamoDbRole
+organisation: fredrick
+iamRole: arn:aws:iam::913524926429:role/lambdadynamodb

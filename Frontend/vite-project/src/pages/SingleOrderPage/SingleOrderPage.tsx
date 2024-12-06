@@ -1,16 +1,240 @@
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./singleOrderPage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
-import Receipt from "../../components/Receipt/Receipt";
+import ReceiptSO from "../../components/Receipt/ReceiptSO";
+import { Order } from "../../types/interface";
 
 function SingleOrderPage() {
+  const { orderId } = useParams<{ orderId: string }>();
+  const [order, setOrder] = useState<Order | null>(null);
+  const [editingOrder, setEditingOrder] = useState<Order | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchOrderDetails = async () => {
+      try {
+        const response = await axios.get<Order>(
+          `https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order/${orderId}`
+        );
+        setOrder(response.data);
+      } catch (err) {
+        console.error("Fel vid hämtning av order:", err);
+        setError("Kunde inte hämta orderns detaljer.");
+      }
+    };
+
+    if (orderId) {
+      fetchOrderDetails();
+    }
+  }, [orderId]);
+
+  const deleteOrder = async () => {
+    if (!orderId) return;
+
+    try {
+      setLoading(true);
+      await axios.delete(
+        `https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/delete/${orderId}`
+      );
+      setLoading(false);
+      alert("Beställningen har tagits bort!");
+      navigate("/orderhistory");
+    } catch (err) {
+      console.error("Fel vid borttagning av order:", err);
+      setError("Kunde inte ta bort ordern.");
+      setLoading(false);
+    }
+  };
+
+  const handleEditOrder = () => {
+    if (order) {
+      setEditingOrder({ ...order });
+      setIsEditing(true);
+    }
+  };
+
+  const handleChangeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (editingOrder) {
+      setEditingOrder({
+        ...editingOrder,
+        status: event.target.value as "Locked" | "Pending" | "Cancelled",
+      });
+    }
+  };
+
+  const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (editingOrder) {
+      setEditingOrder({
+        ...editingOrder,
+        message: event.target.value,
+      });
+    }
+  };
+
+  const handleQuantityChange = (itemId: string, quantity: number) => {
+    if (isNaN(quantity) || quantity < 0) {
+      alert("Vänligen ange ett giltigt antal.");
+      return;
+    }
+    if (editingOrder) {
+      const updatedOrderItems = editingOrder.orderItems.map((item) =>
+        item.id === itemId ? { ...item, quantity } : item
+      );
+      setEditingOrder({
+        ...editingOrder,
+        orderItems: updatedOrderItems,
+      });
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    if (editingOrder) {
+      try {
+        if (
+          !editingOrder.message ||
+          editingOrder.orderItems.some((item) => item.quantity <= 0)
+        ) {
+          setError("Fyll i alla fält korrekt.");
+          return;
+        }
+
+        await axios.put(
+          `https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order`,
+          {
+            id: editingOrder.id,
+            orderItems: editingOrder.orderItems,
+            message: editingOrder.message,
+            status: editingOrder.status,
+          }
+        );
+
+        setOrder(editingOrder);
+        setIsEditing(false);
+        setEditingOrder(null);
+      } catch (error) {
+        console.error("Fel vid uppdatering av beställning", error);
+        setError("Fel vid uppdatering av beställning.");
+      }
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditingOrder(null);
+  };
+
   return (
     <main className="single-order-page">
       <Hamburgericon />
-      <h1 className="single-order-page__heading">Beställning 1</h1>
-      <Receipt />
+      <h1 className="single-order-page__title">Din valda beställning</h1>
+      {error ? (
+        <p className="single-order-page__error">{error}</p>
+      ) : (
+        order && (
+          <>
+            {!isEditing ? (
+              <article className="single-order-page__details">
+                <ReceiptSO order={order} />
+                <section className="single-order-page__actions">
+                  <button
+                    className="single-order-page__button single-order-page__button--delete"
+                    onClick={deleteOrder}
+                    disabled={loading}
+                  >
+                    {loading ? "Tar bort..." : "Ta bort beställning"}
+                  </button>
+                  <button
+                    className="single-order-page__button single-order-page__button--edit"
+                    onClick={handleEditOrder}
+                  >
+                    {loading ? "Ändrar..." : "Ändra beställning"}
+                  </button>
+                </section>
+              </article>
+            ) : (
+              <section className="single-order-page__edit">
+                <h2 className="single-order-page__edit-title">
+                  Redigera Beställning
+                </h2>
+                <article className="single-order-page__edit-section">
+                  <label className="single-order-page__edit-label">
+                    Status
+                  </label>
+                  <select
+                    className="single-order-page__edit-input"
+                    value={editingOrder?.status}
+                    onChange={handleChangeStatus}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Locked">Locked</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </article>
+                <article className="single-order-page__edit-section">
+                  <label className="single-order-page__edit-label">
+                    Meddelande
+                  </label>
+                  <input
+                    className="single-order-page__edit-input"
+                    type="text"
+                    value={editingOrder?.message}
+                    onChange={handleMessageChange}
+                  />
+                </article>
+                <article className="single-order-page__edit-section">
+                  <label className="single-order-page__edit-label">
+                    Beställningsvaror
+                  </label>
+                  {editingOrder?.orderItems.map((item) => (
+                    <section
+                      className="single-order-page__edit-item"
+                      key={item.id}
+                    >
+                      <label className="single-order-page__edit-item-label">
+                        {item.name}
+                      </label>
+                      <input
+                        className="single-order-page__edit-item-input"
+                        type="number"
+                        value={item.quantity}
+                        onChange={(e) =>
+                          handleQuantityChange(
+                            item.id,
+                            parseInt(e.target.value)
+                          )
+                        }
+                      />
+                    </section>
+                  ))}
+                </article>
+                <section className="single-order-page__edit-actions">
+                  <button
+                    className="single-order-page__button single-order-page__button--save"
+                    onClick={handleSaveChanges}
+                  >
+                    Spara Ändringar
+                  </button>
+                  <button
+                    className="single-order-page__button single-order-page__button--cancel"
+                    onClick={handleCancelEdit}
+                  >
+                    Avbryt
+                  </button>
+                </section>
+              </section>
+            )}
+          </>
+        )
+      )}
     </main>
   );
 }
 
 export default SingleOrderPage;
+
 // Författare Fredrick

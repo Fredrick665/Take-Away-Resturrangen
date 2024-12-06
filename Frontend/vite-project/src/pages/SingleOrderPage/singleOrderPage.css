@@ -6,11 +6,89 @@
   padding: 25px;
 }
 
-.single-order-page__heading {
+.single-order-page__title {
   background-color: var(--clr-background);
   font-family: var(--text-poly);
   text-align: center;
   color: var(--clr-secondery-text);
-  font-weight: 36px;
+  font-size: 36px;
   padding: 25px;
+}
+
+.single-order-page__error {
+}
+
+.single-order-page__details {
+}
+
+.single-order-page__actions {
+}
+
+.single-order-page__button {
+}
+
+.single-order-page__button--delete {
+}
+
+.single-order-page__button--edit {
+}
+
+.single-order-page__button--save {
+}
+
+.single-order-page__button--cancel {
+}
+
+.single-order-page__edit {
+}
+
+.single-order-page__edit-title {
+}
+
+.single-order-page__edit-section {
+}
+
+.single-order-page__edit-label {
+}
+
+.single-order-page__edit-input {
+}
+
+.single-order-page__edit-item {
+}
+
+.single-order-page__edit-item-label {
+}
+
+.single-order-page__edit-item-input {
+}
+
+.single-order-page__edit-actions {
+}
+
+.single-order-page__button::after {
+}
+
+.single-order-page__button::before {
+}
+
+.single-order-page__button:hover {
+}
+
+.single-order-page__edit-input::after {
+}
+
+.single-order-page__edit-input::before {
+}
+
+.single-order-page__edit-input:hover {
+}
+
+.single-order-page__details::after {
+}
+
+.single-order-page__details::before {
+}
+
+.single-order-page__details:hover {
 }

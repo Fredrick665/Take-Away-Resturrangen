@@ -1,37 +1,58 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./orderHistoryPage.css";
 import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
+import { ApiResponse } from "../../types/interface";
 
 function OrderHistoryPage() {
+  const [orders, setOrders] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get<ApiResponse>(
+          "https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order"
+        );
+        const orderIds = response.data.orders.map((order) => order.id);
+        setOrders(orderIds);
+      } catch (err) {
+        console.error("Fel vid hämtning av ordrar:", err);
+        setError("Kunde inte hämta ordrar. Försök igen senare.");
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
   return (
     <main className="order-history-page">
       <Hamburgericon />
       <h1 className="order-history-page__title">Min orderhistorik</h1>
-      <ul className="order-history-page__order-list">
-        <li className="order-history-page__order-item">
-          <label className="order-history-page__order-item-label">
-            <Link to="/singleorder">Beställning 1</Link>
-          </label>
-        </li>
-        <li className="order-history-page__order-item">
-          <label className="order-history-page__order-item-label">
-            <Link to="/singleorder">Beställning 2</Link>
-          </label>
-        </li>
-        <li className="order-history-page__order-item">
-          <label className="order-history-page__order-item-label">
-            <Link to="/singleorder">Beställning 3</Link>
-          </label>
-        </li>
-        <li className="order-history-page__order-item">
-          <label className="order-history-page__order-item-label">
-            <Link to="/singleorder">Beställning 4</Link>
-          </label>
-        </li>
-      </ul>
+      {error ? (
+        <p className="order-history-page__error">{error}</p>
+      ) : (
+        <ul className="order-history-page__order-list">
+          {orders.length === 0 ? (
+            <li>Ingen orderhistorik tillgänglig</li>
+          ) : (
+            orders.map((orderId) => (
+              <li className="order-history-page__order-item" key={orderId}>
+                <label className="order-history-page__order-item-label">
+                  <Link to={`/singleorder/${orderId}`}>
+                    Order ID: {orderId}
+                  </Link>
+                </label>
+              </li>
+            ))
+          )}
+        </ul>
+      )}
     </main>
   );
 }
 
 export default OrderHistoryPage;
+
 // Författare Fredrick.
