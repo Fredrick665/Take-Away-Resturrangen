@@ -1,5 +1,5 @@
 .order-history-page {
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   background-color: var(--clr-background);
   font-family: var(--text-poly);
