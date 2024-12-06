@@ -12,7 +12,7 @@ const AllOrdersPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
-  const { slideInRight, scaleFade, fadeInUp } = useAnimationStore();
+  const { scaleFade, fadeInUp } = useAnimationStore();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -125,43 +125,8 @@ const AllOrdersPage: React.FC = () => {
     <main className="all-orders-page">
       <HamburgerIcon />
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
-      <section className="all-orders-page_contentwrapper">
-        <button className="all-orders-page__button--edit-order">
-          Redigera Specifik beställning
-        </button>
-        <button className="all-orders-page__button--special-requests">
-          Lägga till Speciella Önskemål
-        </button>
-      </section>
-      <section className="all-orders-page_contentwrapper_2">
-        <motion.button
-          className="all-orders-page__button--az"
-          variants={slideInRight}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          A-Z
-        </motion.button>
-        <motion.button
-          className="all-orders-page__button--price"
-          variants={slideInRight}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          Pris
-        </motion.button>
-        <motion.button
-          className="all-orders-page__button--locked-orders"
-          variants={slideInRight}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          Låsta Beställningar
-        </motion.button>
-      </section>
+      <section className="all-orders-page_contentwrapper"></section>
+      <section className="all-orders-page_contentwrapper_2"></section>
       <motion.ul
         variants={scaleFade}
         initial="hidden"
@@ -184,12 +149,6 @@ const AllOrdersPage: React.FC = () => {
               </ul>
               <div>Meddelande: {order.message}</div>
             </label>
-            <input
-              type="checkbox"
-              className="all-orders-page__checkbox"
-              id={`order-${order.id}`}
-            />
-            <br />
             <button
               onClick={() => handleEditOrder(order.id)}
               className="all-orders-page__button--edit-order"
@@ -202,7 +161,7 @@ const AllOrdersPage: React.FC = () => {
 
       {isEditing && editingOrder && (
         <div className="all-orders-page__edit-form">
-          <h2>Redigera Beställning</h2>
+          <label>Redigera Beställning</label>
           <div>
             <label>Status</label>
             <motion.select

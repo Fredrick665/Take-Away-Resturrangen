@@ -4,7 +4,13 @@
   background-color: var(--clr-background);
   padding: 75px 0;
 }
-
+.all-orders-page__edit-form {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .all-orders-page__title {
   color: var(--clr-primary-text);
   font-family: var(--text-poly);
@@ -38,13 +44,6 @@
     font-weight: 300;
     font-size: 1.4rem;
   }
-}
-
-.all-orders-page__checkbox {
-  cursor: pointer;
-  margin: 0.8rem;
-  height: 1rem;
-  aspect-ratio: 1;
 }
 
 .all-orders-page__list-item::before {
@@ -124,4 +123,22 @@
 }
 
 .all-orders-page__button--locked-orders:hover {
+}
+label {
+  color: var(--clr-primary-text);
+  font-family: var(--text-poly);
+  font-weight: 300;
+}
+button {
+  background-color: var(--clr-red-button);
+  font-family: var(--text-revolution);
+  height: 40px;
+  width: 210px;
+  font-size: 16px;
+  color: var(--clr-primary-text);
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }

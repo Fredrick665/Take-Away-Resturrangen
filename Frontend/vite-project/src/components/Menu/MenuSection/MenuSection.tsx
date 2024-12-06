@@ -154,7 +154,7 @@ const MenuSection: React.FC = () => {
             animate="visible"
           >
             {getSortedItems(category).map((item) => (
-              <MenuFoodCard {...item} />
+              <MenuFoodCard key={item.itemId} {...item} />
             ))}
           </motion.section>
         </motion.section>

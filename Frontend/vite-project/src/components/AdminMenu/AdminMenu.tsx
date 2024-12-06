@@ -39,17 +39,6 @@ function Adminmenu() {
           Lagerstatus
         </motion.h2>
       </Link>
-      <Link to="/additem">
-        <motion.h2
-          className="admin-menu__heading"
-          variants={menuItemVariants}
-          initial="hidden"
-          animate="visible"
-          custom={4}
-        >
-          Lägg till saker på menyn
-        </motion.h2>
-      </Link>
     </>
   );
 }

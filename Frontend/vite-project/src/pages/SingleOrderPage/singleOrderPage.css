@@ -14,7 +14,20 @@
   font-size: 36px;
   padding: 25px;
 }
-
+.single-order-page__button,
+.single-order-page__button--delete {
+  background-color: var(--clr-red-button);
+  font-family: var(--text-revolution);
+  height: 40px;
+  width: 210px;
+  font-size: 16px;
+  color: var(--clr-primary-text);
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
 .single-order-page__error {
 }
 
@@ -43,12 +56,18 @@
 }
 
 .single-order-page__edit-title {
+  color: var(--clr-primary-text);
+  font-family: var(--text-poly);
+  font-weight: 300;
 }
 
 .single-order-page__edit-section {
 }
 
 .single-order-page__edit-label {
+  color: var(--clr-primary-text);
+  font-family: var(--text-poly);
+  font-weight: 300;
 }
 
 .single-order-page__edit-input {
@@ -58,6 +77,9 @@
 }
 
 .single-order-page__edit-item-label {
+  color: var(--clr-primary-text);
+  font-family: var(--text-poly);
+  font-weight: 300;
 }
 
 .single-order-page__edit-item-input {
