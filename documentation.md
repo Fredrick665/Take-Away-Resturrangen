@@ -95,6 +95,8 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
 **React Router**: För att hantera navigering och routing mellan sidor.
 **Axios**: För att göra HTTP-anrop till backend.
 **CSS**: För styling av komponenter och responsiv design.
+**Framer Motion**: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
+**uuid**: För att generera unika identifierare för olika objekt, vilket säkerställde att varje resurs fick en unik och säker identitet.(backend)
 
 #### *Funktionalitet*
 
