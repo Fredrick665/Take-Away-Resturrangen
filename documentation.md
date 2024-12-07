@@ -99,8 +99,6 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
  **React Router**: För att hantera navigering och routing mellan sidor.
  
  **Axios**: För att göra HTTP-anrop till backend.
- 
- **CSS**: För styling av komponenter och responsiv design.
 
 #### *Funktionalitet*
 
@@ -169,8 +167,8 @@ Starta utvecklingsservern: npm run dev.
    - Zustand (state management)
    - React Router (för navigering i applikationen)
    - Axios (hantering av HTTP-förfrågningar)
-   - CSS
-   - Motion: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
+   - CSS: För styling av komponenter och responsiv design.
+   - Framer Motion: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
 
 2. **Backend** (Teknologier för att hantera affärslogik och serverfunktioner):
    - AWS Lambda (serverless computing)
