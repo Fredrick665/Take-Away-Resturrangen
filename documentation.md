@@ -170,7 +170,7 @@ Starta utvecklingsservern: npm run dev.
    - React Router (för navigering i applikationen)
    - Axios (hantering av HTTP-förfrågningar)
    - CSS: För styling av komponenter och responsiv design.
-   - Framer Motion: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
+   - Motion: För att skapa animationer och övergångar i användargränssnittet, vilket förbättrade användarupplevelsen genom smidiga och moderna visuella effekter.
 
 2. **Backend** (Teknologier för att hantera affärslogik och serverfunktioner):
    - AWS Lambda (serverless computing)
