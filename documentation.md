@@ -39,6 +39,9 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
       - Gå till /cart (klicka på korgen) för att se och vid behov ändra din beställning. Du kan även lägga till en anteckning om du har några önskemål (t.ex. "Ingen lök, tack"). Om man är klar bekräftar.
       - Man får bekreftälse och där man kan ändra order innan den blir låst samt gå tillbaka till /homepage (klicka på knappen eller icon).
    - Orderstatus: Kunden kan se statusen för sin beställning på /profilsida.
+
+ **Instruktioner för nya användare**      
+   - Registrera dig och logga in. Öppna en *hamburgermeny* i det övre vänstra hörnet. Obs! Lösenordet måste innehålla minst 8 tecken.
    
 
  **Personal (Administratörer)**
@@ -61,8 +64,7 @@ En komplett take away-lösning som kombinerar innovativ design, effektiv backend
       - Lägga till nya rätter eller drycker i menyn.
       - Uppdatera befintliga rätter, inklusive namn, priser och beskrivningar.    
 
- **Instruktioner för nya användare**      
-   - Registrera dig och logga in. Öppna en *hamburgermeny* i det övre vänstra hörnet. Obs! Lösenordet måste innehålla minst 8 tecken.
+**Obs!** Lagerstatus på AdminPage är inte implementerad än och fungerar inte för närvarande. Detta kan utvecklas i framtida iterationer av projektet. 
 
 ---
 
