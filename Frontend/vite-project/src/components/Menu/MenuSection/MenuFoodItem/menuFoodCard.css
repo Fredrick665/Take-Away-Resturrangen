@@ -2,7 +2,7 @@
     display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 400px;
+        height: 390px;
         max-width: 175px;
 
     footer {
@@ -27,10 +27,9 @@
 
     h4 {
         font-family: var(--text-quintessential);
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 300;
         margin-top: 5px;
-
     }
 
     p {
@@ -57,13 +56,12 @@
         transform: scale(0.9);
     }
 }
-/*
+
 @media screen and (max-width: 1000px) {
     .menu__food-card {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 410px;
     }
 }
-    */
+    

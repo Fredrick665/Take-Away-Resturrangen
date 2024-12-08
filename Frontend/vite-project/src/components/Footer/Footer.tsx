@@ -44,7 +44,7 @@ function Footer() {
           alt="facebook button"
           variants={scaleFade}
           whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.01 }}
         />
         <motion.img
           className="footer__social-media-icon"
@@ -52,7 +52,7 @@ function Footer() {
           alt="instagram button"
           variants={scaleFade}
           whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.01 }}
         />
       </motion.section>
     </footer>

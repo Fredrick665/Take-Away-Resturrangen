@@ -135,6 +135,7 @@ const AllOrdersPage: React.FC = () => {
           Lägga till Speciella Önskemål
         </button>
       </section>
+
       <section className="all-orders-page_contentwrapper_2">
         <motion.button
           className="all-orders-page__button--az"
@@ -164,6 +165,7 @@ const AllOrdersPage: React.FC = () => {
           Låsta Beställningar
         </motion.button>
       </section>
+
       <motion.ul
         variants={scaleFade}
         initial="hidden"
@@ -174,31 +176,19 @@ const AllOrdersPage: React.FC = () => {
         {orders.map((order) => (
           <li key={order.id} className="all-orders-page__list-item">
             <label className="all-orders-page__list-item-label">
-
-              <ul>Order ID:</ul> {order.id}
-              <ul>Status:</ul> {order.status}
-              <ul>Items:</ul>
-              <motion.ul>
-
               <strong>Order ID:</strong> {order.id}
               <br />
               <strong>Status:</strong> {order.status}
               <br />
               <strong>Items:</strong>
               <ul>
-
                 {order.orderItems.map((item: OrderItem) => (
                   <li key={item.id}>
                     {item.name} (x{item.quantity})
                   </li>
                 ))}
-
-              </motion.ul>
-              <motion.ul>Meddelande:</motion.ul> {order.message}
-
               </ul>
               <strong>Meddelande:</strong> {order.message}
-
             </label>
             <input
               type="checkbox"
@@ -234,6 +224,7 @@ const AllOrdersPage: React.FC = () => {
               <option value="Cancelled">Cancelled</option>
             </motion.select>
           </div>
+
           <label>Meddelande</label>
           <motion.input
             type="text"
@@ -244,41 +235,23 @@ const AllOrdersPage: React.FC = () => {
             variants={fadeInUp}
             transition={{ duration: 0.5, delay: 0.4 }}
           />
+
           <label>Beställningsvaror</label>
           {editingOrder.orderItems.map((item) => (
             <div key={item.id}>
               <label>{item.name}</label>
-              <motion.input
+              <input
                 type="number"
                 value={item.quantity}
-                initial="hidden"
-                animate="visible"
-                variants={fadeInUp}
-                transition={{ duration: 0.5, delay: 0.6 }}
                 onChange={(e) =>
                   handleQuantityChange(item.id, parseInt(e.target.value))
                 }
               />
             </div>
           ))}
-          <motion.button
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            onClick={handleSaveChanges}
-          >
-            Spara Ändringar
-          </motion.button>
-          <motion.button
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            transition={{ duration: 0.5, delay: 1.0 }}
-            onClick={handleCancelEdit}
-          >
-            Avbryt
-          </motion.button>
+
+          <button onClick={handleSaveChanges}>Spara Ändringar</button>
+          <button onClick={handleCancelEdit}>Avbryt</button>
         </div>
       )}
     </main>

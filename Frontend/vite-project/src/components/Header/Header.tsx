@@ -30,9 +30,6 @@ function Header() {
       <Link to="/homepage">
         <motion.img
           className="header__logo"
-
-          src="/src/assets/restaurant-logo.png"
-          alt="Restaurant Logo"
           variants={scaleUp}
           initial="hidden"
           animate="visible"

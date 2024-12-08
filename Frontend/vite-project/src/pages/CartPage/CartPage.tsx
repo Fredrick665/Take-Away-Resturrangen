@@ -87,81 +87,68 @@ function CartPage() {
 
   return (
     <div className="cart-page">
-      <div className="header-cart">
-        <HamburgerIcon />
-        <Link to="/homepage">
-          <img src={logo} alt="logo" className="logo-icon" />
-        </Link>
-        <CartCounter />
-      </div>
+  <div className="header-cart">
+    <HamburgerIcon />
+    <Link to="/homepage">
+      <img src={logo} alt="logo" className="logo-icon" />
+    </Link>
+    <CartCounter />
+  </div>
 
-      <div className="main-cart">
-        <p className="main-text">Total: {totalPrice} kr</p>
-        <motion.section variants={staggeredFadeIn} className="main-filter">
-          <h2 className="main-heading">Cart</h2>
+  <div className="main-cart">
+    <p className="main-text">Total: {totalPrice} kr</p>
+    <motion.section variants={staggeredFadeIn} className="main-filter">
+      <h2 className="main-heading">Cart</h2>
 
+      <motion.button
+        className="btn-pris"
+        variants={scaleUp}
 
-          <motion.button
-            className="btn-pris"
-            variants={scaleUp}
+        onClick={() =>
+          handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
+        }
+      >
+        Price {sortBy === "price" ? "↓" : "↑"}
+      </motion.button>
 
-          <button
-            className="btn-pris"
+      <motion.button
+        className="btn-az"
+        variants={scaleUp}
 
-            onClick={() =>
-              handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
-            }
-          >
-            Price {sortBy === "price" ? "↓" : "↑"}
+        onClick={() =>
+          handleSortToggle(sortBy === "az" ? "za" : "az")
+        }
+      >
+        {sortBy === "az" ? "A-Z" : "Z-A"}
+      </motion.button>
 
-          </motion.button>
+      <div className="main-line"></div>
+    </motion.section>
 
-          <motion.button
-            className="btn-az"
-            variants={scaleUp}
-            onClick={() => handleSortToggle(sortBy === "az" ? "za" : "az")}
-          >
-            {sortBy === "az" ? "A-Z" : "Z-A"}
-          </motion.button>
+    <CartList
+      items={getSortedItems()}
+      onAdd={handleAdd}
+      onSubtract={handleSubtract}
+      onNotesChange={handleNotesChange}
+    />
+  </div>
 
-
-          </button>
-          <button
-            className="btn-az"
-            onClick={() =>
-              handleSortToggle(sortBy === "az" ? "za" : "az")
-            }
-          >
-            {sortBy === "az" ? "A-Z" : "Z-A"}
-          </button>
-
-          <div className="main-line"></div>
-        </motion.section>
-
-        <CartList
-          items={getSortedItems()}
-          onAdd={handleAdd}
-          onSubtract={handleSubtract}
-          onNotesChange={handleNotesChange}
-        />
-      </div>
-
-      <div className="footer-cart">
-        <Link
-          to="/confirmedorders"
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit().then(() => {
-              window.location.href = "/confirmedorders";
-            });
-          }}
-        >
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
-          </button>
-        </Link>
-      </div>
-    </div>
+  <div className="footer-cart">
+    <Link
+      to="/confirmedorders"
+      onClick={(e) => {
+        e.preventDefault();
+        handleSubmit().then(() => {
+          window.location.href = "/confirmedorders";
+        });
+      }}
+    >
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
+      </button>
+    </Link>
+  </div>
+</div>
   );
 }
 
