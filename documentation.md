@@ -138,16 +138,15 @@ Starta utvecklingsservern: npm run dev.
 ### Funktioner
 
 1. **Kund**
-- Läs menyn: `/menu-items`
+- Läs menyn: `/menu-items` 
 - Skapa beställning: `/order`
-- Hantera beställning: `/order/:id`
+- Hantera beställning: `/order/{orderId}`
 - Registera: `/register`
 - Logga in: `/login`
+- Ta bort order: `/delete`
 
 2. **Personal**
-- Hantera beställningar: ``
-- Lås en beställning: ``
-- Lägg till kommentarer: ``
+- Hantera beställningar: `/order`
 
 ---
 
