@@ -57,6 +57,7 @@ function CartPage() {
     }
   };
 
+
   const getSortedItems = () => {
     if (sortBy === "price") {
       return [...items].sort((a, b) => a.price - b.price);
@@ -74,73 +75,80 @@ function CartPage() {
   };
 
   const handleSortToggle = (criteria: string) => {
-    setSortBy((prevSortBy) => (prevSortBy === criteria ? "none" : criteria));
+    setSortBy((prevSortBy) => {
+      if (prevSortBy === criteria) {
+        return "none";
+      }
+      return criteria;
+    });
   };
 
   const { staggeredFadeIn, scaleUp } = useAnimationStore();
 
   return (
     <div className="cart-page">
-      <div className="header-cart">
-        <HamburgerIcon />
-        <Link to="/homepage">
-          <img src={logo} alt="logo" className="logo-icon" />
-        </Link>
-        <CartCounter />
-      </div>
+  <div className="header-cart">
+    <HamburgerIcon />
+    <Link to="/homepage">
+      <img src={logo} alt="logo" className="logo-icon" />
+    </Link>
+    <CartCounter />
+  </div>
 
-      <div className="main-cart">
-        <p className="main-text">Total: {totalPrice} kr</p>
-        <motion.section variants={staggeredFadeIn} className="main-filter">
-          <h2 className="main-heading">Cart</h2>
+  <div className="main-cart">
+    <p className="main-text">Total: {totalPrice} kr</p>
+    <motion.section variants={staggeredFadeIn} className="main-filter">
+      <h2 className="main-heading">Cart</h2>
 
-          {/* Price Sorting Button */}
-          <motion.button
-            className="btn-pris"
-            variants={scaleUp}
-            onClick={() =>
-              handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
-            }
-          >
-            Price {sortBy === "price" ? "↓" : "↑"}
-          </motion.button>
+      <motion.button
+        className="btn-pris"
+        variants={scaleUp}
 
-          {/* A-Z / Z-A Sorting Button */}
-          <motion.button
-            className="btn-az"
-            variants={scaleUp}
-            onClick={() => handleSortToggle(sortBy === "az" ? "za" : "az")}
-          >
-            {sortBy === "az" ? "A-Z" : "Z-A"}
-          </motion.button>
+        onClick={() =>
+          handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
+        }
+      >
+        Price {sortBy === "price" ? "↓" : "↑"}
+      </motion.button>
 
-          <div className="main-line"></div>
-        </motion.section>
+      <motion.button
+        className="btn-az"
+        variants={scaleUp}
 
-        <CartList
-          items={getSortedItems()}
-          onAdd={handleAdd}
-          onSubtract={handleSubtract}
-          onNotesChange={handleNotesChange}
-        />
-      </div>
+        onClick={() =>
+          handleSortToggle(sortBy === "az" ? "za" : "az")
+        }
+      >
+        {sortBy === "az" ? "A-Z" : "Z-A"}
+      </motion.button>
 
-      <div className="footer-cart">
-        <Link
-          to="/confirmedorders"
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit().then(() => {
-              window.location.href = "/confirmedorders";
-            });
-          }}
-        >
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
-          </button>
-        </Link>
-      </div>
-    </div>
+      <div className="main-line"></div>
+    </motion.section>
+
+    <CartList
+      items={getSortedItems()}
+      onAdd={handleAdd}
+      onSubtract={handleSubtract}
+      onNotesChange={handleNotesChange}
+    />
+  </div>
+
+  <div className="footer-cart">
+    <Link
+      to="/confirmedorders"
+      onClick={(e) => {
+        e.preventDefault();
+        handleSubmit().then(() => {
+          window.location.href = "/confirmedorders";
+        });
+      }}
+    >
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
+      </button>
+    </Link>
+  </div>
+</div>
   );
 }
 

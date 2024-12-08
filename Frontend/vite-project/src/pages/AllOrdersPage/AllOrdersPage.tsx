@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./allOrdersPage.css";
-import HamburgerIcon from "../../components/HamburgerIcon/HamburgerIcon";
+import Hamburgericon from "../../components/HamburgerIcon/HamburgerIcon";
 import { Order, ApiResponse, OrderItem } from "../../types/interface";
 import { motion } from "motion/react";
 import useAnimationStore from "../../stores/AnimationStore";
@@ -12,7 +12,7 @@ const AllOrdersPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
-  const { scaleFade, fadeInUp } = useAnimationStore();
+  const { slideInRight, scaleFade, fadeInUp } = useAnimationStore();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -87,6 +87,7 @@ const AllOrdersPage: React.FC = () => {
 
         await axios.put(
           `https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order`,
+
           {
             id: editingOrder.id,
             orderItems: editingOrder.orderItems,
@@ -121,12 +122,50 @@ const AllOrdersPage: React.FC = () => {
     return <p>{error}</p>;
   }
 
+
   return (
     <main className="all-orders-page">
-      <HamburgerIcon />
+      <Hamburgericon />
       <h1 className="all-orders-page__title">Alla Beställningar</h1>
-      <section className="all-orders-page_contentwrapper"></section>
-      <section className="all-orders-page_contentwrapper_2"></section>
+      <section className="all-orders-page_contentwrapper">
+        <button className="all-orders-page__button--edit-order">
+          Redigera Specifik beställning
+        </button>
+        <button className="all-orders-page__button--special-requests">
+          Lägga till Speciella Önskemål
+        </button>
+      </section>
+
+      <section className="all-orders-page_contentwrapper_2">
+        <motion.button
+          className="all-orders-page__button--az"
+          variants={slideInRight}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          A-Z
+        </motion.button>
+        <motion.button
+          className="all-orders-page__button--price"
+          variants={slideInRight}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          Pris
+        </motion.button>
+        <motion.button
+          className="all-orders-page__button--locked-orders"
+          variants={slideInRight}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          Låsta Beställningar
+        </motion.button>
+      </section>
+
       <motion.ul
         variants={scaleFade}
         initial="hidden"
@@ -137,9 +176,11 @@ const AllOrdersPage: React.FC = () => {
         {orders.map((order) => (
           <li key={order.id} className="all-orders-page__list-item">
             <label className="all-orders-page__list-item-label">
-              <div>Order ID: {order.id}</div>
-              <div>Status: {order.status}</div>
-              <div>Items:</div>
+              <strong>Order ID:</strong> {order.id}
+              <br />
+              <strong>Status:</strong> {order.status}
+              <br />
+              <strong>Items:</strong>
               <ul>
                 {order.orderItems.map((item: OrderItem) => (
                   <li key={item.id}>
@@ -147,8 +188,14 @@ const AllOrdersPage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <div>Meddelande: {order.message}</div>
+              <strong>Meddelande:</strong> {order.message}
             </label>
+            <input
+              type="checkbox"
+              className="all-orders-page__checkbox"
+              id={`order-${order.id}`}
+            />
+            <br />
             <button
               onClick={() => handleEditOrder(order.id)}
               className="all-orders-page__button--edit-order"
@@ -161,7 +208,7 @@ const AllOrdersPage: React.FC = () => {
 
       {isEditing && editingOrder && (
         <div className="all-orders-page__edit-form">
-          <label>Redigera Beställning</label>
+          <h2>Redigera Beställning</h2>
           <div>
             <label>Status</label>
             <motion.select
@@ -177,6 +224,7 @@ const AllOrdersPage: React.FC = () => {
               <option value="Cancelled">Cancelled</option>
             </motion.select>
           </div>
+
           <label>Meddelande</label>
           <motion.input
             type="text"
@@ -187,41 +235,23 @@ const AllOrdersPage: React.FC = () => {
             variants={fadeInUp}
             transition={{ duration: 0.5, delay: 0.4 }}
           />
+
           <label>Beställningsvaror</label>
           {editingOrder.orderItems.map((item) => (
             <div key={item.id}>
               <label>{item.name}</label>
-              <motion.input
+              <input
                 type="number"
                 value={item.quantity}
-                initial="hidden"
-                animate="visible"
-                variants={fadeInUp}
-                transition={{ duration: 0.5, delay: 0.6 }}
                 onChange={(e) =>
                   handleQuantityChange(item.id, parseInt(e.target.value))
                 }
               />
             </div>
           ))}
-          <motion.button
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            onClick={handleSaveChanges}
-          >
-            Spara Ändringar
-          </motion.button>
-          <motion.button
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            transition={{ duration: 0.5, delay: 1.0 }}
-            onClick={handleCancelEdit}
-          >
-            Avbryt
-          </motion.button>
+
+          <button onClick={handleSaveChanges}>Spara Ändringar</button>
+          <button onClick={handleCancelEdit}>Avbryt</button>
         </div>
       )}
     </main>

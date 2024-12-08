@@ -35,10 +35,13 @@ function MenuFoodCard({
   const { slideInLeft, slideInUp, slideInRight } = useAnimationStore();
   return (
     <article className="menu__food-card">
-      <figure>
-        <motion.img src={imageurl} alt={title} variants={slideInLeft} />
-      </figure>
-      <motion.h4 variants={slideInUp}>{title}</motion.h4>
+      <header>
+        <figure>
+          <motion.img src={imageurl} alt={title} variants={slideInLeft} />
+        </figure>
+        <motion.h4 variants={slideInUp}>{title}</motion.h4>
+      </header>
+      <footer>
       <motion.p variants={slideInUp}>{price}kr</motion.p>
       <motion.button
         onClick={handleAddToCart}
@@ -47,10 +50,11 @@ function MenuFoodCard({
         variants={slideInRight}
         initial="hidden"
         animate="visible"
-        transition={{ duration: 2.5 }}
+        transition={{ duration: 0.02 }}
       >
         Add to Cart
       </motion.button>
+      </footer>
     </article>
   );
 }

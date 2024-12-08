@@ -157,10 +157,14 @@
 
 @media screen and (max-width: 740px) {
 
+    .menu {
+        padding: 1rem;
+    }
+
     .menu__section {
         margin: 0;
-        padding: 0;
-        transform: scale(0.8);
+        margin-bottom: 6rem;
+        padding: 0rem;
 
         .slide-btn {
             top: 105%;
