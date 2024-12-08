@@ -3,6 +3,20 @@
   text-align: center;
   background-color: var(--clr-background);
   padding: 75px 0;
+  
+  button {
+  background-color: var(--clr-red-button);
+  font-family: var(--text-revolution);
+  height: 40px;
+  width: 210px;
+  font-size: 16px;
+  color: var(--clr-primary-text);
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
 }
 .all-orders-page__edit-form {
   margin-top: 2rem;
@@ -129,16 +143,4 @@ label {
   font-family: var(--text-poly);
   font-weight: 300;
 }
-button {
-  background-color: var(--clr-red-button);
-  font-family: var(--text-revolution);
-  height: 40px;
-  width: 210px;
-  font-size: 16px;
-  color: var(--clr-primary-text);
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  margin-left: 1rem;
-  margin-top: 1rem;
-}
+
