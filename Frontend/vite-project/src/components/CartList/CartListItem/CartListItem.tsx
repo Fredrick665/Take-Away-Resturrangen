@@ -6,10 +6,10 @@ interface CartListItemProps {
   price: number;
   quantity: number;
   imageUrl: string;
-  notes: string;
+  message: string;
   onAdd: () => void;
   onSubtract: () => void;
-  onNotesChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onMessageChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 function CartListItem({
@@ -17,10 +17,10 @@ function CartListItem({
   price,
   quantity,
   imageUrl,
-  notes,
+  message,
   onAdd,
   onSubtract,
-  onNotesChange,
+  onMessageChange,
 }: CartListItemProps) {
   const { fadeInUp, inputFocusScale, scaleUp } = useAnimationStore();
   return (
@@ -44,8 +44,8 @@ function CartListItem({
           name="notes"
           placeholder="Anteckningar:"
           className="notes-input"
-          value={notes}
-          onChange={onNotesChange}
+          value={message || ""}
+          onChange={onMessageChange}
           variants={inputFocusScale}
         ></motion.textarea>
       </article>

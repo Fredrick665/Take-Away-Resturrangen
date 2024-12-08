@@ -21,6 +21,7 @@ const AllOrdersPage: React.FC = () => {
           "https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order"
         );
         setOrders(data.orders);
+        console.log(data.orders);
       } catch (err) {
         setError("Fel vid hämtning av beställningar.");
         console.error(err);
@@ -121,7 +122,6 @@ const AllOrdersPage: React.FC = () => {
   if (error) {
     return <p>{error}</p>;
   }
-
 
   return (
     <main className="all-orders-page">

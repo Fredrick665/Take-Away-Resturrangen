@@ -11,7 +11,7 @@ import useAnimationStore from "../../stores/AnimationStore";
 import { motion } from "motion/react";
 
 function CartPage() {
-  const { items, addItem, subtractItem, updateNotes } = useCartStore();
+  const { items, addItem, subtractItem, updateMessage } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sortBy, setSortBy] = useState<string>("none");
 
@@ -25,7 +25,9 @@ function CartPage() {
   };
 
   const handleSubtract = subtractItem;
-  const handleNotesChange = updateNotes;
+  const handleMessageChange = (itemId: string, newMessage: string) => {
+    updateMessage(itemId, newMessage);
+  };
 
   const totalPrice = items.reduce(
     (sum: number, item) => sum + item.price * item.quantity,
@@ -41,22 +43,28 @@ function CartPage() {
         id: item.itemId,
         name: item.title,
         quantity: item.quantity,
-        notes: item.notes,
+        message: item.message,
       }));
+
+      const topLevelMessage = items.some((item) => item.message)
+        ? items.map((item) => item.message).join(", ")
+        : "";
 
       const response = await axios.post(
         "https://4qvo7pgicf.execute-api.eu-north-1.amazonaws.com/order",
-        { orderItems }
+        {
+          message: topLevelMessage,
+          orderItems,
+        }
       );
 
-      console.log("Order skapad:", response.data);
+      console.log("Order created:", response.data);
     } catch (error) {
-      console.error("Fel vid skapande av order:", error);
+      console.error("Error creating order:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
-
 
   const getSortedItems = () => {
     if (sortBy === "price") {
@@ -87,68 +95,64 @@ function CartPage() {
 
   return (
     <div className="cart-page">
-  <div className="header-cart">
-    <HamburgerIcon />
-    <Link to="/homepage">
-      <img src={logo} alt="logo" className="logo-icon" />
-    </Link>
-    <CartCounter />
-  </div>
+      <div className="header-cart">
+        <HamburgerIcon />
+        <Link to="/homepage">
+          <img src={logo} alt="logo" className="logo-icon" />
+        </Link>
+        <CartCounter />
+      </div>
 
-  <div className="main-cart">
-    <p className="main-text">Total: {totalPrice} kr</p>
-    <motion.section variants={staggeredFadeIn} className="main-filter">
-      <h2 className="main-heading">Cart</h2>
+      <div className="main-cart">
+        <p className="main-text">Total: {totalPrice} kr</p>
+        <motion.section variants={staggeredFadeIn} className="main-filter">
+          <h2 className="main-heading">Cart</h2>
 
-      <motion.button
-        className="btn-pris"
-        variants={scaleUp}
+          <motion.button
+            className="btn-pris"
+            variants={scaleUp}
+            onClick={() =>
+              handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
+            }
+          >
+            Price {sortBy === "price" ? "↓" : "↑"}
+          </motion.button>
 
-        onClick={() =>
-          handleSortToggle(sortBy === "price" ? "reverse-price" : "price")
-        }
-      >
-        Price {sortBy === "price" ? "↓" : "↑"}
-      </motion.button>
+          <motion.button
+            className="btn-az"
+            variants={scaleUp}
+            onClick={() => handleSortToggle(sortBy === "az" ? "za" : "az")}
+          >
+            {sortBy === "az" ? "A-Z" : "Z-A"}
+          </motion.button>
 
-      <motion.button
-        className="btn-az"
-        variants={scaleUp}
+          <div className="main-line"></div>
+        </motion.section>
 
-        onClick={() =>
-          handleSortToggle(sortBy === "az" ? "za" : "az")
-        }
-      >
-        {sortBy === "az" ? "A-Z" : "Z-A"}
-      </motion.button>
+        <CartList
+          items={getSortedItems()}
+          onAdd={handleAdd}
+          onSubtract={handleSubtract}
+          onMessageChange={handleMessageChange}
+        />
+      </div>
 
-      <div className="main-line"></div>
-    </motion.section>
-
-    <CartList
-      items={getSortedItems()}
-      onAdd={handleAdd}
-      onSubtract={handleSubtract}
-      onNotesChange={handleNotesChange}
-    />
-  </div>
-
-  <div className="footer-cart">
-    <Link
-      to="/confirmedorders"
-      onClick={(e) => {
-        e.preventDefault();
-        handleSubmit().then(() => {
-          window.location.href = "/confirmedorders";
-        });
-      }}
-    >
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
-      </button>
-    </Link>
-  </div>
-</div>
+      <div className="footer-cart">
+        <Link
+          to="/confirmedorders"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit().then(() => {
+              window.location.href = "/confirmedorders";
+            });
+          }}
+        >
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Skickar..." : "Bekräfta beställning"}
+          </button>
+        </Link>
+      </div>
+    </div>
   );
 }
 

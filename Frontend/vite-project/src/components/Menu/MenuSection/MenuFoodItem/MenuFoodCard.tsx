@@ -27,7 +27,7 @@ function MenuFoodCard({
       price,
       desc: "",
       quantity: 1,
-      notes: "",
+      message: "",
       category,
       id: 0,
     });
@@ -42,18 +42,18 @@ function MenuFoodCard({
         <motion.h4 variants={slideInUp}>{title}</motion.h4>
       </header>
       <footer>
-      <motion.p variants={slideInUp}>{price}kr</motion.p>
-      <motion.button
-        onClick={handleAddToCart}
-        whileHover={{ scale: 1.1, boxShadow: "5px 5px 15px rgba(0,0,0,0.2)" }}
-        whileTap={{ scale: 0.95, boxShadow: "5px 5px 5px rgba(0,0,0,0.2)" }}
-        variants={slideInRight}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 0.02 }}
-      >
-        Add to Cart
-      </motion.button>
+        <motion.p variants={slideInUp}>{price}kr</motion.p>
+        <motion.button
+          onClick={handleAddToCart}
+          whileHover={{ scale: 1.1, boxShadow: "5px 5px 15px rgba(0,0,0,0.2)" }}
+          whileTap={{ scale: 0.95, boxShadow: "5px 5px 5px rgba(0,0,0,0.2)" }}
+          variants={slideInRight}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.02 }}
+        >
+          Add to Cart
+        </motion.button>
       </footer>
     </article>
   );

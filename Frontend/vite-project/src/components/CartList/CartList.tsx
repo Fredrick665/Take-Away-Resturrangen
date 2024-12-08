@@ -3,14 +3,20 @@ import CartListItem from "./CartListItem/CartListItem";
 import { CartItem } from "../../types/interface";
 import useAnimationStore from "../../stores/AnimationStore";
 import { motion } from "motion/react";
+
 interface CartListProps {
   items: CartItem[];
   onAdd: (id: string) => void;
   onSubtract: (id: string) => void;
-  onNotesChange: (id: string, notes: string) => void;
+  onMessageChange: (id: string, message: string) => void;
 }
 
-function CartList({ items, onAdd, onSubtract, onNotesChange }: CartListProps) {
+function CartList({
+  items,
+  onAdd,
+  onSubtract,
+  onMessageChange,
+}: CartListProps) {
   const { staggeredFadeIn, fadeInUp } = useAnimationStore();
 
   return (
@@ -39,11 +45,13 @@ function CartList({ items, onAdd, onSubtract, onNotesChange }: CartListProps) {
             name={item.title}
             price={item.price}
             quantity={item.quantity}
-            notes={item.notes}
+            message={item.message}
             imageUrl={item.imageurl}
             onAdd={() => onAdd(item.itemId)}
             onSubtract={() => onSubtract(item.itemId)}
-            onNotesChange={(e) => onNotesChange(item.itemId, e.target.value)}
+            onMessageChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              onMessageChange(item.itemId, e.target.value)
+            }
           />
         </motion.article>
       ))}
@@ -52,6 +60,7 @@ function CartList({ items, onAdd, onSubtract, onNotesChange }: CartListProps) {
 }
 
 export default CartList;
+
 // Förtfattare Katerina
 // Miklós ändrarde koden för att kunna lägga maträtt till och hantera varukorg med hjälp av zustand
 // Ändringar av Fredrick. Har typat om en hel del.

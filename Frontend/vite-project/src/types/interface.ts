@@ -7,13 +7,14 @@ export interface CartItem {
   title: string;
   desc: string;
   quantity: number;
-  notes: string;
+  message: string;
 }
+
 export interface OrderItem {
   id: string;
   name: string;
   quantity: number;
-  notes?: string;
+  message?: string;
 }
 export interface Order {
   createdAt: string;
@@ -32,7 +33,7 @@ export interface CartState {
   totalQuantity: number;
   addItem: (menuItem: CartItem) => void;
   subtractItem: (itemId: string) => void;
-  updateNotes: (itemId: string, notes: string) => void;
+  updateMessage: (itemId: string, message: string) => void;
 }
 
 // Förtfattare Katerina

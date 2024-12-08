@@ -17,7 +17,7 @@ export const updateOrderItemsAndMessage = async (event) => {
         statusCode: 400,
         body: JSON.stringify({
           error:
-            "Order ID samt minst ett av 'orderItems' eller 'message' krävs",
+            "Order ID samt minst ett av 'orderItems' eller 'message' eller 'status' krävs",
         }),
       };
     }
@@ -38,12 +38,12 @@ export const updateOrderItemsAndMessage = async (event) => {
       UpdateExpression:
         "SET " +
         (orderItems ? "#oi = :orderItems, " : "") +
-        (message ? "#msg = :message, " : "") +
+        (message ? "#nt = :message, " : "") +
         (status ? "#st = :status, " : "") +
         "updatedAt = :updatedAt",
       ExpressionAttributeNames: {
         ...(orderItems && { "#oi": "orderItems" }),
-        ...(message && { "#msg": "message" }),
+        ...(message && { "#nt": "message" }),
         ...(status && { "#st": "status" }),
       },
       ExpressionAttributeValues: {
@@ -56,6 +56,7 @@ export const updateOrderItemsAndMessage = async (event) => {
     };
 
     const result = await db.send(new UpdateCommand(updateParams));
+
     return {
       statusCode: 200,
       body: JSON.stringify({

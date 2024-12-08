@@ -25,9 +25,9 @@ export const neworder = async (event) => {
     const newOrder = {
       id: orderId,
       orderItems: orderItems,
-      message: message || "",
       status: "Pending",
       createdAt: new Date().toISOString(),
+      message: message || "",
     };
 
     const params = {
@@ -39,7 +39,11 @@ export const neworder = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Order skapad!", orderId: orderId }),
+      body: JSON.stringify({
+        message: "Order skapad!",
+        orderId: orderId,
+        orderMessage: message || "",
+      }),
     };
   } catch (error) {
     console.error("Fel vid skapande av order:", error);
